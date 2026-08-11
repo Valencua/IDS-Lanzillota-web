@@ -4,7 +4,7 @@
 
 {% block content %}
     {# ===== Banner ===== #}
-    <section class="crono-hero">
+    <section class="terminal crono-hero">
         <div class="crono-hero__inner">
             <h1 class="crono-hero__title">Cronograma</h1>
             <p class="crono-hero__subtitle">
@@ -31,5 +31,43 @@
         </div>
     </div>
 
-    {# ===== Tabla de semanas (pendiente, próximo paso) ===== #}
+    {# ===== Tabla de cronograma ===== #}
+    <section class="crono">
+        <div class="crono__inner">
+            <table class="crono-table">
+                <thead>
+                    <tr>
+                        <th class="crono-table__wk">Semana</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for s in semanas %}
+                    <tr>
+                        <td class="crono-table__wk">{{ s.semana }}</td>
+                        {% for c in s.clases %}
+                        <td class="crono-cell">
+                            <div class="crono-class {% if c.tipo in ['Feriado', 'Sin clases'] %}crono-class--muted{% endif %}">
+                                <div class="crono-class__head">
+                                    <span class="crono-class__date">{{ c.fecha }}</span>
+                                    <span class="badge badge--{{ c.tipo|lower|replace(' ', '-') }}">{{ c.tipo }}</span>
+                                </div>
+                                {% if c.titulo %}<p class="crono-class__title">{{ c.titulo }}</p>{% endif %}
+                                {% if c.contenidos %}
+                                <ul class="crono-class__list">
+                                    {% for item in c.contenidos %}<li>{{ item }}</li>{% endfor %}
+                                </ul>
+                                {% endif %}
+                                {% if c.entrega %}<p class="crono-class__entrega">{{ c.entrega }}</p>{% endif %}
+                            </div>
+                        </td>
+                        {% endfor %}
+                        {% if s.clases|length == 1 %}<td class="crono-cell"></td>{% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
 {% endblock %}

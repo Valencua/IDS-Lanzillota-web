@@ -1,10 +1,11 @@
 from flask import Blueprint, render_template
+from web.constants import SEMANAS
 
 index_bp = Blueprint('index', __name__)
 
 @index_bp.route('/cronograma')
 def cronograma():
-    return render_template('cronograma.html')
+    return render_template('cronograma.html', semanas=SEMANAS)
 
 @index_bp.route('/cursada')
 def cursada():
