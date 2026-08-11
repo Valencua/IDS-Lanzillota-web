@@ -114,3 +114,20 @@ DOCENTES = [
     {"nombre": "Cristian Martin Sosa","rol": "Ayudante", "foto": "docentes/cristian.jpg"},
     {"nombre": "Tomás Villegas",      "rol": "Ayudante", "foto": "docentes/tomas.jpg"},
 ]
+
+BIBLIOGRAFIA = [
+    {"texto": "Bash Beginners Guide - Machtelt Garrels", "url": "https://drive.google.com/file/d/16T8ipooOMVdwPBaoinm3CNc5Mlt0TACP/view"},
+    {"texto": "Communicating the User Experience - Richard Caddick, Steve Cable", "url": "https://drive.google.com/file/u/6/d/1PAf2ak5pzgX0G6iPQXclujyBLv9Z7b6J/view?usp=drive_link"},
+    {"texto": "Introduction to Linux - Machtelt Garrels", "url": "https://drive.google.com/file/d/167ioAVI9WmigSlLTm7OziQF90zGpny7f/view"},
+    {"texto": "Test Driven Development By Example - Kent Beck", "url": "https://drive.google.com/file/d/1nMcd_X_rMIfDnywXcGQgTtBj6Cd_iRac/view"},
+]
+
+ENLACES = [
+    {"texto": "Códigos EMMET", "url": "https://drive.google.com/file/d/1H0COwPY28acPIhz8fGGMpN467ZGMS4hg/view"},
+    {"texto": "Comandos UNIX", "url": "https://drive.google.com/file/d/1e8wOwxJp9gc7uQw8JKKa4MT-BCDTqJaC/view"},
+    {"texto": "MUO - How to Install Ubuntu on VMware Workstation", "url": "https://www.makeuseof.com/install-ubuntu-on-vmware-workstation/"},
+    {"texto": "Instalación de WSL", "url": "https://learn.microsoft.com/es-es/windows/wsl/install"},
+    {"texto": "WSL | Ubuntu", "url": "https://ubuntu.com/desktop/wsl"},
+    {"texto": "Cómo instalar Ubuntu en un ordenador", "url": "https://www.hostinger.com.ar/tutoriales/como-instalar-ubuntu"},
+    {"texto": "Exámenes pasados + cheat-sheets de git", "url": "https://drive.google.com/drive/folders/1GFYdrU_kwFVtWhygoDHgydbS3YLcCK_T?usp=sharing"},
+]

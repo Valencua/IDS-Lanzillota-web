@@ -1,7 +1,11 @@
 from flask import Blueprint, render_template
-from web.constants import SEMANAS, DOCENTES
+from web.constants import SEMANAS, DOCENTES, ENLACES, BIBLIOGRAFIA
 
 index_bp = Blueprint('index', __name__)
+
+@index_bp.route('/material-adicional')
+def material():
+    return render_template('material.html', enlaces=ENLACES, bibliografia=BIBLIOGRAFIA)
 
 @index_bp.route('/docentes')
 def docentes():

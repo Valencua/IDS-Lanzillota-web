@@ -33,7 +33,7 @@
                 class="navbar__link {% if request.endpoint == 'web.index.cursada' %}navbar__link--active{% endif %}">Cursada</a>
                 <a href="{{ url_for('web.index.cronograma') }}" class="navbar__link {% if request.endpoint == 'web.index.cronograma' %}navbar__link--active{% endif %}">Cronograma</a>
                 <a href="{{ url_for('web.index.docentes') }}" class="navbar__link {% if request.endpoint == 'web.index.docentes' %}navbar__link--active{% endif %}">Docentes</a>
-                <a href="#" class="navbar__link">Material adicional</a>
+                <a href="{{ url_for('web.index.material') }}" class="navbar__link {% if request.endpoint == 'web.index.material' %}navbar__link--active{% endif %}">Material adicional</a>
                 <a href="#" class="navbar__link navbar__link--contacto">Contacto</a>
             </nav>
         </div>
