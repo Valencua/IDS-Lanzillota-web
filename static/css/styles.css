@@ -627,7 +627,7 @@ body {
 
 .docente-card__photo {
     display: block;
-    width: 120px;
+    width: auto;
     height: 132px;
     border-radius: 50%;
     object-fit: cover;
@@ -641,5 +641,5 @@ body {
 
 @media (max-width: 560px) {
     .docentes-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; }
-    .docente-card__photo { width: 96px; height: 108px; }
+    .docente-card__photo {height: 108px; }
 }
