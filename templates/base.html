@@ -31,7 +31,8 @@
             </label>
 
             <nav class="navbar__menu">
-                <a href="#" class="navbar__link">Cursada</a>
+                <a href="{{ url_for('web.index.cursada') }}"
+                class="navbar__link {% if request.endpoint == 'web.index.cursada' %}navbar__link--active{% endif %}">Cursada</a>
                 <a href="#" class="navbar__link">Cronograma</a>
                 <a href="#" class="navbar__link">Docentes</a>
                 <a href="#" class="navbar__link">Material adicional</a>
