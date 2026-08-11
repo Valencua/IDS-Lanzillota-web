@@ -489,7 +489,7 @@ body {
 .crono-table__wk { width: 90px; text-align: center; }
 
 .crono-table td {
-    vertical-align: center;
+    vertical-align: top;
     border-bottom: 1px solid #e9edf3;
     border-right: 1px solid #e9edf3;
     padding: 0;
