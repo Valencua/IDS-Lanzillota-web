@@ -23,7 +23,7 @@ body {
     font-family: var(--font-base);
     color: #1f2937;
     line-height: 1.5;
-    background: #ffffff;
+    background: #f4f4f7;
     font-size: 17px;
 }
 
@@ -189,7 +189,6 @@ body {
 .slack-banner__logo { height: 64px; object-fit: contain; flex-shrink: 0; width: auto; }
 
 /* ===== Info general ===== */
-.info { background: #f4f4f7; }
 
 .info__inner { padding: 40px 32px 64px; }
 
@@ -217,7 +216,7 @@ body {
     background: #E5EAFF;
     border: 1px solid #e0e3ea;
     border-radius: 10px;
-    padding: 28px 16px;
+    padding: 18px 16px;
     color: #374151;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
@@ -240,7 +239,7 @@ body {
 .link-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,.1); }
 
 .link-card__icon { width: 46px; height: 46px; object-fit: contain; }
-.link-card__label { font-size: 16px; font-weight: 500; }
+.link-card__label { font-size: 21px; font-weight: 500; }
 .link-card__accent { font-weight: 700; }
 .link-card__accent--whatsapp { color: #549C2E; }
 .link-card__accent--youtube  { color: #CC3333; }
