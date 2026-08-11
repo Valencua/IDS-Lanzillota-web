@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Cronograma · Lanzillotta{% endblock %}
+
+{% block content %}
+    {# ===== Banner ===== #}
+    <section class="crono-hero">
+        <div class="crono-hero__inner">
+            <h1 class="crono-hero__title">Cronograma</h1>
+            <p class="crono-hero__subtitle">
+                Enterate de las modalidades y contenidos empleados en las clases a lo largo del cuatrimestre.
+            </p>
+        </div>
+    </section>
+
+    {# ===== Barra separadora con códigos de estado ===== #}
+    {% set codes = [
+        ('200', '#4BC245'),
+        ('201', '#377434'),
+        ('400', '#983436'),
+        ('404', '#672D2E'),
+        ('500', '#4F69AA')
+    ] %}
+    <div class="status-bar">
+        <div class="status-bar__inner">
+            {% for _ in range(6) %}
+                {% for code, color in codes %}
+                    <span class="status-pill" style="--c: {{ color }}">{{ code }}</span>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+
+    {# ===== Tabla de semanas (pendiente, próximo paso) ===== #}
+{% endblock %}
