@@ -25,6 +25,15 @@ body {
     line-height: 1.5;
     background: #f4f4f7;
     font-size: 17px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Contenedor centrado reutilizable */
@@ -340,7 +349,7 @@ body {
 .requisitos__title {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 6px;
     color: #4E769C;
     font-size: 20px;
     font-weight: 600;
@@ -363,6 +372,9 @@ body {
     align-items: center;
     gap: 30px;
     min-height: 220px;
+    width: 100%;
+    max-width: 180px;     
+    justify-self: center;
 }
 .req-card__title { font-size: 18px; font-weight: 700; color: #122F4A; }
 .req-card__icon { width: 45px; height: 45px; object-fit: contain; }
