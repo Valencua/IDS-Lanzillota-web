@@ -165,7 +165,7 @@ body {
 }
 
 .terminal__line { white-space: normal; word-break: break-word; margin: 2px 0; }
-.terminal__prompt { color: #47FF3D; font-weight: 600; }
+.terminal__prompt { color: #47FF3D; font-weight: 500; }
 .terminal__tilde { color: #6D9FCF; }
 .terminal__out { color: #FFFFFF; }
 .terminal__ok { color: #47FF3D; font-weight: 700; }
