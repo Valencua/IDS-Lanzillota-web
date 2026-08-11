@@ -582,7 +582,12 @@ body {
 }
 
 /* separador bajo el banner */
-.docentes-sep { height: 44px; background: #5A6D7E;}
+.docentes-sep {
+    height: 44px; 
+    background: #5A6D7E;
+    z-index: 2;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
+}
 
 /* ===== Docentes: grilla ===== */
 .docentes {
@@ -621,10 +626,14 @@ body {
     border: 2px solid rgba(200, 222, 245, 0.9);
     box-shadow: 0 0 16px rgba(140, 185, 235, 0.40);
     border-radius: 14px;
-    padding: 42px 18px;
+    padding: 37px 18px;
     text-align: center;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
-
+.docente-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 28px rgba(160, 200, 240, 0.7);
+}
 .docente-card__photo {
     display: block;
     width: auto;
@@ -636,8 +645,8 @@ body {
     border: 3px solid rgba(120, 170, 220, 0.25);
 }
 
-.docente-card__name { color: #ffffff; font-weight: 700; font-size: 17px; margin-bottom: 4px; }
-.docente-card__role { color: #9db8d6; font-size: 15px; }
+.docente-card__name { color: #ffffff; font-weight: 700; font-size: 19px; margin-bottom: 4px; }
+.docente-card__role { color: #9db8d6; font-size: 20px; }
 
 @media (max-width: 560px) {
     .docentes-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; }
