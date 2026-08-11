@@ -355,7 +355,7 @@ body {
     font-weight: 600;
     margin-bottom: 16px;
 }
-.requisitos__title strong { font-weight: 800; }
+.requisitos__title strong { color: #122F4A; font-weight: 800; }
 .requisitos__icon { width: 26px; height: 26px; object-fit: contain; }
 
 .req-cards { display: flex; gap: 16px; }
