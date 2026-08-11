@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio · Lanzillotta{% endblock %}
+
+{% block content %}
+    {# ===== Hero tipo terminal ===== #}
+    <section class="terminal">
+        <div class="terminal__inner">
+            <p class="terminal__line">
+                <span class="terminal__prompt">bruno@lanzillotta:<span class="terminal__tilde">~</span>$</span> ./iniciar_cursada.sh
+            </p>
+            <p class="terminal__line terminal__out">
+                &gt; Bienvenido a Introducción al Desarrollo de Software - FIUBA - Curso Lanzillotta
+            </p>
+            <p class="terminal__line">&nbsp;</p>
+            <p class="terminal__line terminal__out">[<span class="terminal__ok">✓</span>] Entorno preparado</p>
+            <p class="terminal__line terminal__out">[<span class="terminal__ok">✓</span>] Material disponible</p>
+            <p class="terminal__line terminal__out">[<span class="terminal__ok">✓</span>] Cursada iniciada</p>
+            <p class="terminal__line">&nbsp;</p>
+            <p class="terminal__line">
+                <span class="terminal__prompt">bruno@lanzillotta:<span class="terminal__tilde">~</span>$</span> <span class="terminal__cursor">_</span>
+            </p>
+        </div>
+    </section>
+
+    {# ===== Banner de Slack ===== #}
+    <section class="slack-banner">
+        <a href="https://join.slack.com/t/intro-desa-software/shared_invite/zt-3bkw5ibkj-ypuGdxFclpXfXBSv5q1Jvg" target="_blank" class="slack-banner__inner">
+            <div class="slack-banner__text">
+                <h2 class="slack-banner__title">¿Estás perdido? ¿Necesitás consultar?</h2>
+                <p class="slack-banner__desc">
+                    Súmate a nuestro Slack donde tendrás acceso directo a los canales de nuestra cátedra
+                </p>
+            </div>
+            {# Insertá acá el SVG/imagen del logo de Slack #}
+            <img src="{{ url_for('static', filename='img/slack.svg') }}" alt="Slack" class="slack-banner__logo">
+        </a>
+    </section>
+
+    {# ===== Información general + enlaces ===== #}
+    <section class="info">
+        <div class="info__inner">
+            <h3 class="info__heading">Información General</h3>
+            <p class="info__text">Las clases se llevarán a cabo los días lunes y miércoles de 18:30hs a 21:30 hs.</p>
+            <p class="info__text">
+                Ante cualquier novedad o consulta con respecto a la cursada se utilizará como medio los canales de Slack.
+            </p>
+
+            <h3 class="info__heading">Enlaces de Interés</h3>
+            <div class="links">
+                <a href="https://chat.whatsapp.com/LWHJN7BCCed0FbeIGOEUkp" target="_blank" class="link-card">
+                    <img src="{{ url_for('static', filename='img/whatsapp.svg') }}" alt="" class="link-card__icon">
+                    <span class="link-card__label">Canal de <span class="link-card__accent link-card__accent--whatsapp">Whatsapp</span></span>
+                </a>
+                <a href="https://www.youtube.com/@Intro.Desa.Soft-Lanzillotta" target="_blank" class="link-card">
+                    <img src="{{ url_for('static', filename='img/youtube.svg') }}" alt="" class="link-card__icon">
+                    <span class="link-card__label">Canal de <span class="link-card__accent link-card__accent--youtube">Youtube</span></span>
+                </a>
+                <a href="https://drive.google.com/drive/folders/1EaowjueNp7y7_b0Qj_PyDmSJaaZOescM?usp=sharing" target="_blank" class="link-card">
+                    <img src="{{ url_for('static', filename='img/drive.svg') }}" alt="" class="link-card__icon">
+                    <span class="link-card__label"><span class="link-card__accent link-card__accent--drive">Drive</span> para alumnos</span>
+                </a>
+                <a href="https://meet.google.com/imx-ovzp-fuw" target="_blank" class="link-card">
+                    <img src="{{ url_for('static', filename='img/meet.svg') }}" alt="" class="link-card__icon">
+                    <span class="link-card__label">Clase <span class="link-card__accent link-card__accent--meet">Google Meet</span></span>
+                </a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Lanzillotta · Introducción al Desarrollo de Software{% endblock %}</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Afacad:wght@400;500;600;700&family=Akatab:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <header class="navbar">
+        <div class="navbar__inner">
+            <a href="{{ url_for('web.index.index') }}" class="navbar__brand">
+                {# Insertá acá el SVG/imagen del logo #}
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo Lanzillotta" class="navbar__logo">
+                <span class="navbar__brand-text">
+                    <span class="navbar__brand-name">Lanzillotta</span>
+                    <span class="navbar__brand-sub">Intro. Desarrollo de Software</span>
+                </span>
+            </a>
+
+            {# Checkbox oculto que controla el menú (truco CSS-only) #}
+            <input type="checkbox" id="nav-toggle" class="navbar__toggle-cb">
+            <label for="nav-toggle" class="navbar__toggle" aria-label="Abrir menú">
+                <span></span><span></span><span></span>
+            </label>
+
+            <nav class="navbar__menu">
+                <a href="#" class="navbar__link">Cursada</a>
+                <a href="#" class="navbar__link">Cronograma</a>
+                <a href="#" class="navbar__link">Docentes</a>
+                <a href="#" class="navbar__link">Material adicional</a>
+                <a href="#" class="navbar__link navbar__link--contacto">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="content">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
