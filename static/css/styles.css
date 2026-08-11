@@ -571,3 +571,75 @@ body {
 
     .badge { font-size: 11px; padding: 3px 10px; }
 }
+
+/* ===== Docentes: banner ===== */
+.docentes-hero {
+    /* overlay oscuro + imagen (la insertás en img/docentes-banner.jpg) */
+    background:
+        #5A6D7E url("../img/docentes-banner.png") center / cover no-repeat;
+    color: #ffffff;
+    text-align: center;
+}
+
+/* separador bajo el banner */
+.docentes-sep { height: 44px; background: #5A6D7E;}
+
+/* ===== Docentes: grilla ===== */
+.docentes {
+    position: relative;
+    background: #0A1621;      /* navy */
+    overflow: hidden;
+    flex: 1;
+}
+
+/* patrón tenue de fondo (opcional; usa tu pattern.png aclarado) */
+.docentes::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("../img/pattern2.png");
+    pointer-events: none;
+    opacity: 0.09;
+    background-size: 600px;
+}
+
+.docentes__inner {
+    position: relative;
+    z-index: 1;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 48px 32px 64px;
+}
+
+.docentes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));  /* se acomoda solo */
+    gap: 47px;
+}
+.docente-card {
+    background: #122F4A;
+    border: 2px solid rgba(200, 222, 245, 0.9);
+    box-shadow: 0 0 16px rgba(140, 185, 235, 0.40);
+    border-radius: 14px;
+    padding: 42px 18px;
+    text-align: center;
+}
+
+.docente-card__photo {
+    display: block;
+    width: 120px;
+    height: 132px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 16px;
+    background: #1c3350;      /* placeholder mientras no cargues la foto */
+    border: 3px solid rgba(120, 170, 220, 0.25);
+}
+
+.docente-card__name { color: #ffffff; font-weight: 700; font-size: 17px; margin-bottom: 4px; }
+.docente-card__role { color: #9db8d6; font-size: 15px; }
+
+@media (max-width: 560px) {
+    .docentes-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; }
+    .docente-card__photo { width: 96px; height: 108px; }
+}

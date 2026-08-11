@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Docentes · Lanzillotta{% endblock %}
+
+{% block content %}
+    {# ===== Banner (la imagen la insertás en static/img/docentes-banner.jpg) ===== #}
+    <section class="docentes-hero">
+        <div class="crono-hero__inner">
+            <h1 class="crono-hero__title">Docentes</h1>
+            <p class="crono-hero__subtitle">Conocé al equipo docente de la cátedra de Lanzillotta.</p>
+        </div>
+    </section>
+
+    <div class="docentes-sep"></div>
+
+    {# ===== Grilla de docentes ===== #}
+    <section class="docentes">
+        <div class="docentes__inner">
+            <div class="docentes-grid">
+                {% for d in docentes %}
+                <article class="docente-card">
+                    {# Insertá la foto en static/img/{{ d.foto }} #}
+                    <img src="{{ url_for('static', filename='img/' ~ d.foto) }}" alt="{{ d.nombre }}" class="docente-card__photo">
+                    <h3 class="docente-card__name">{{ d.nombre }}</h3>
+                    <p class="docente-card__role">{{ d.rol }}</p>
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

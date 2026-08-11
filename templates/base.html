@@ -16,7 +16,6 @@
     <header class="navbar">
         <div class="navbar__inner">
             <a href="{{ url_for('web.index.index') }}" class="navbar__brand">
-                {# Insertá acá el SVG/imagen del logo #}
                 <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo Lanzillotta" class="navbar__logo">
                 <span class="navbar__brand-text">
                     <span class="navbar__brand-name">Lanzillotta</span>
@@ -24,7 +23,6 @@
                 </span>
             </a>
 
-            {# Checkbox oculto que controla el menú (truco CSS-only) #}
             <input type="checkbox" id="nav-toggle" class="navbar__toggle-cb">
             <label for="nav-toggle" class="navbar__toggle" aria-label="Abrir menú">
                 <span></span><span></span><span></span>
@@ -34,7 +32,7 @@
                 <a href="{{ url_for('web.index.cursada') }}"
                 class="navbar__link {% if request.endpoint == 'web.index.cursada' %}navbar__link--active{% endif %}">Cursada</a>
                 <a href="{{ url_for('web.index.cronograma') }}" class="navbar__link {% if request.endpoint == 'web.index.cronograma' %}navbar__link--active{% endif %}">Cronograma</a>
-                <a href="#" class="navbar__link">Docentes</a>
+                <a href="{{ url_for('web.index.docentes') }}" class="navbar__link {% if request.endpoint == 'web.index.docentes' %}navbar__link--active{% endif %}">Docentes</a>
                 <a href="#" class="navbar__link">Material adicional</a>
                 <a href="#" class="navbar__link navbar__link--contacto">Contacto</a>
             </nav>
