@@ -785,3 +785,124 @@ body {
 }
 .modal__btn--ghost   { background: #eceef3; color: #374151; }
 .modal__btn--primary { background: #26a354; color: #ffffff; }   /* verde WhatsApp */
+
+/* ===== Login admin ===== */
+.login {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #5d83a6;
+    padding: 40px 20px;
+}
+
+.login__card {
+    width: 100%;
+    max-width: 380px;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 36px 32px 32px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+    text-align: center;
+}
+
+.login__title {
+    font-family: var(--font-base);
+    font-size: 26px;
+    font-weight: 700;
+    color: #3d6488;
+    margin-bottom: 4px;
+}
+
+.login__subtitle {
+    font-size: 16px;
+    color: #1f2937;
+    margin-bottom: 14px;
+}
+
+.login__divider {
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    margin: 0 0 22px;
+}
+
+.login__form {
+    text-align: left;
+}
+
+.login__label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 6px;
+}
+
+.login__field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f2f2f2;
+    border: 1px solid #d9d9d9;
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+}
+
+.login__icon {
+    width: auto;
+    height: 30px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.login__input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 15px;
+    color: #1f2937;
+    outline: none;
+}
+
+.login__input::placeholder { color: #9ca3af; }
+
+.login__submit {
+    width: 100%;
+    margin-top: 8px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    background: #3d6488;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.15s ease;
+}
+
+.login__submit:hover { background: #335675; }
+
+.login__arrow { font-size: 18px; line-height: 1; }
+
+.login__error {
+    background: #fde8e8;
+    color: #b42318;
+    border: 1px solid #f3c1c1;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+    margin-bottom: 14px;
+    text-align: center;
+}
+
+@media (max-width: 560px) {
+    .login__card { padding: 28px 20px 24px; }
+    .login__title { font-size: 22px; }
+}
