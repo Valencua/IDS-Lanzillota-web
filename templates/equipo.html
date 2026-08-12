@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Actualizar equipo · Panel Lanzillotta{% endblock %}
+
+{% block navbar_menu %}
+    <a href="{{ url_for('web.admin.logout') }}" class="navbar__link navbar__link--contacto">Cerrar sesión</a>
+{% endblock %}
+
+{% block content %}
+<section class="login">
+    <div class="admin-card admin-card--wide">
+        <div class="admin-card__top">
+            <a href="{{ url_for('web.admin.admin_panel') }}" class="admin-back">Volver a Inicio</a>
+            <h1 class="admin-card__heading">Actualizar equipo docente</h1>
+        </div>
+        <hr class="login__divider">
+
+        <form class="equipo-form" method="POST" action="#">
+            <h2 class="equipo-form__title">Agregar docente</h2>
+            <div class="equipo-form__row">
+                <label class="equipo-form__field">
+                    <span>Nombre</span>
+                    <input type="text" name="nombre" placeholder="nombre apellido" required>
+                </label>
+                <label class="equipo-form__field">
+                    <span>Rol</span>
+                    <select name="rol">
+                        <option>Profesor</option>
+                        <option selected>Ayudante</option>
+                        <option>Colaborador</option>
+                    </select>
+                </label>
+                <button type="submit" class="equipo-form__add">+ Agregar</button>
+            </div>
+        </form>
+
+        <div class="equipo-table">
+            <div class="equipo-table__head">
+                <span>Nombre</span>
+                <span>Rol</span>
+                <span></span>
+            </div>
+            {% for d in docentes %}
+            <div class="equipo-table__row">
+                <span class="equipo-table__name">{{ d.nombre }}</span>
+                <span class="badge-rol badge-rol--{{ d.rol|lower }}">{{ d.rol }}</span>
+                <span class="equipo-table__actions">
+                    <button type="button" class="icon-btn" aria-label="Editar">
+                        <img src="{{ url_for('static', filename='img/edit.svg') }}" alt="">
+                    </button>
+                    <button type="button" class="icon-btn" aria-label="Eliminar">
+                        <img src="{{ url_for('static', filename='img/trash.svg') }}" alt="">
+                    </button>
+                </span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -822,7 +822,7 @@ body {
 
 .login__divider {
     border: none;
-    border-top: 1px solid #e5e7eb;
+    border-top: 2.5px solid #ABABAB;
     margin: 0 0 22px;
 }
 
@@ -905,4 +905,184 @@ body {
 @media (max-width: 560px) {
     .login__card { padding: 28px 20px 24px; }
     .login__title { font-size: 22px; }
+}
+
+/* ===== Panel admin (reutiliza .login de fondo) ===== */
+.admin-card {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 36px 40px 44px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.admin-card-panel {
+    max-width: 1000px;
+    min-height: 600px;
+    justify-content: start;
+    gap:60px;
+    
+}
+.admin-card--wide { max-width: 860px; }
+
+.admin-card__title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #122F4A;
+    text-align: start;
+    padding-bottom: 10px;
+}
+.admin-card__heading {
+    font-size: 28px;
+    font-weight: 700;
+    color: #3d5a73;
+    text-align: center;
+    flex: 1;
+    margin: 0;
+}
+.admin-card__top {
+    display: grid;
+    grid-template-columns: auto 0.5fr auto;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 10px;
+}
+.admin-back {
+    background: #4a7094;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    white-space: nowrap;
+    width: 94px;
+    justify-content: center;
+    display: flex;
+}
+
+.admin-actions {
+    display: flex;
+    justify-content: center;
+    gap: 70px;
+}
+.admin-tile {
+    width: 300px;
+    height: 300px;
+    background: #e8edfa;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #4a7094;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    transition: transform 0.15s ease;
+}
+.admin-tile:hover { transform: translateY(-3px); }
+.admin-tile__label { font-size: 30px; font-weight: 600; }
+.admin-tile__icon { width: auto; height: 150px; object-fit: contain; }
+
+.equipo-form {
+    border: 1px solid #d9d9d9;
+    border-radius: 10px;
+    padding: 16px 20px 20px;
+    margin-bottom: 28px;
+}
+.equipo-form__title { font-size: 16px; font-weight: 600; color: #374151; margin-bottom: 12px; }
+.equipo-form__row {
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.equipo-form__field { display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: #6b7280; }
+.equipo-form__field input,
+.equipo-form__field select {
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-family: inherit;
+    font-size: 15px;
+    min-width: 220px;
+}
+.equipo-form__add {
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-family: inherit;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.equipo-table__head,
+.equipo-table__row {
+    display: grid;
+    grid-template-columns: 1fr 160px 80px;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 4px;
+}
+.equipo-table__head { color: #9ca3af; font-size: 14px; border-bottom: 1px solid #e5e7eb; }
+.equipo-table__row { border-bottom: 1px solid #eee; }
+.equipo-table__name { font-weight: 600; color: #1f2937; }
+.equipo-table__actions { display: flex; gap: 8px; justify-content: flex-end; }
+
+.badge-rol {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+}
+.badge-rol--profesor { background: #d7c7f5; color: #4c1d95; }
+.badge-rol--ayudante { background: #fde4c8; color: #9a3412; }
+.badge-rol--colaborador { background: #d1fae5; color: #065f46; }
+
+.icon-btn {
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.icon-btn img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    display: block;
+}
+.cal-box {
+    border: 1px solid #d9d9d9;
+    border-radius: 10px;
+    padding: 28px 24px 36px;
+    text-align: center;
+}
+.cal-box__title { font-size: 22px; font-weight: 700; color: #3d5a73; margin-bottom: 8px; }
+.cal-box__warn { color: #6b7280; font-size: 14px; margin-bottom: 28px; }
+.cal-drop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+.cal-drop__icon { width: auto; height: 150px; object-fit: contain; }
+.cal-drop__text { color: #4a7094; font-size: 16px; }
+.cal-drop__name { color: #6b7280; font-size: 13px; }
+
+@media (max-width: 700px) {
+    .admin-actions { flex-direction: column; align-items: center; }
+    .admin-card__top { grid-template-columns: 1fr; }
+    .admin-back { justify-self: start; }
+    .equipo-table__head,
+    .equipo-table__row { grid-template-columns: 1fr auto auto; }
 }

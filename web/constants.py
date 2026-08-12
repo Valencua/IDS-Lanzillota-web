@@ -108,11 +108,6 @@ DOCENTES = [
     {"nombre": "Bruno Lanzillotta",   "rol": "Profesor", "foto": "docentes/bruno.jpg"},
     {"nombre": "Cristian Martin Sosa","rol": "Ayudante", "foto": "docentes/cristian.jpg"},
     {"nombre": "Tomás Villegas",      "rol": "Ayudante", "foto": "docentes/tomas.jpg"},
-    {"nombre": "Nestor Palaveccino",  "rol": "Ayudante", "foto": "docentes/nestor.jpg"},
-    {"nombre": "Chaves Leonel",       "rol": "Ayudante", "foto": "docentes/leonel.jpg"},
-    {"nombre": "Bruno Lanzillotta",   "rol": "Profesor", "foto": "docentes/bruno.jpg"},
-    {"nombre": "Cristian Martin Sosa","rol": "Ayudante", "foto": "docentes/cristian.jpg"},
-    {"nombre": "Tomás Villegas",      "rol": "Ayudante", "foto": "docentes/tomas.jpg"},
 ]
 
 BIBLIOGRAFIA = [

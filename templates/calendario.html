@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Actualizar calendario · Panel Lanzillotta{% endblock %}
+
+{% block navbar_menu %}
+    <a href="{{ url_for('web.admin.logout') }}" class="navbar__link navbar__link--contacto">Cerrar sesión</a>
+{% endblock %}
+
+{% block content %}
+<section class="login">
+    <div class="admin-card admin-card--wide">
+        <div class="admin-card__top">
+            <a href="{{ url_for('web.admin.admin_panel') }}" class="admin-back">Volver a Inicio</a>
+            <h1 class="admin-card__heading">Actualizar calendario</h1>
+        </div>
+        <hr class="login__divider">
+
+        <form class="cal-box" method="POST" action="#" enctype="multipart/form-data">
+            <h2 class="cal-box__title">Subir calendario nuevo</h2>
+            <p class="cal-box__warn">Advertencia: esto eliminará el actual permanentemente para actualizarlo con el nuevo</p>
+
+            <label class="cal-drop" for="csv">
+                <img src="{{ url_for('static', filename='img/calendar2.svg') }}" alt="" class="cal-drop__icon">
+                <span class="cal-drop__text">Presione para subir archivo</span>
+                <span class="cal-drop__name" id="csv-name"></span>
+            </label>
+            <input type="file" id="csv" name="csv" accept=".csv" hidden>
+        </form>
+    </div>
+</section>
+{% endblock %}

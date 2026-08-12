@@ -1,6 +1,7 @@
 import os
 from functools import wraps
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
+from web.constants import DOCENTES
 
 admin_bp = Blueprint('admin', __name__)
 
@@ -32,14 +33,22 @@ def login():
 
     return render_template('login.html', error=error)
 
-
 @admin_bp.route('/logout')
 def logout():
     session.pop('admin', None)
     return redirect(url_for('web.admin.login'))
 
-
 @admin_bp.route('/')
 @admin_required
 def admin_panel():
     return render_template('panel.html')
+
+@admin_bp.route('/equipo')
+@admin_required
+def equipo():
+    return render_template('equipo.html', docentes=DOCENTES)
+    
+@admin_bp.route('/calendario')
+@admin_required
+def calendario():
+    return render_template('calendario.html')
