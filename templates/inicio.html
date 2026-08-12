@@ -48,7 +48,7 @@
 
             <h3 class="info__heading">Enlaces de Interés</h3>
             <div class="links">
-                <a href="https://chat.whatsapp.com/LWHJN7BCCed0FbeIGOEUkp" target="_blank" class="link-card">
+                <a href="#" target="_blank" class="link-card" id="whatsapp-card">
                     <img src="{{ url_for('static', filename='img/whatsapp.svg') }}" alt="" class="link-card__icon">
                     <span class="link-card__label">Canal de <span class="link-card__accent link-card__accent--whatsapp">Whatsapp</span></span>
                 </a>
@@ -67,4 +67,19 @@
             </div>
         </div>
     </section>
+    {# ===== Modal de advertencia de WhatsApp ===== #}
+    <div class="modal" id="whatsapp-modal" aria-hidden="true">
+        <div class="modal__overlay" data-close></div>
+        <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="wa-title">
+            <h3 class="modal__title" id="wa-title">Atención</h3>
+            <p class="modal__text">
+                Este canal de WhatsApp <strong>ya no es administrado por los docentes</strong>.
+                Es un espacio <strong>únicamente de alumnos</strong>. Si querés continuar, ingresás bajo tu responsabilidad.
+            </p>
+            <div class="modal__actions">
+                <button type="button" class="modal__btn modal__btn--ghost" data-close>Cancelar</button>
+                <a href="https://chat.whatsapp.com/LWHJN7BCCed0FbeIGOEUkp" class="modal__btn modal__btn--primary" target="_blank" rel="noopener">Continuar</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
