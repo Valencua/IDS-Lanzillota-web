@@ -6,7 +6,6 @@
 <section class="material">
     <div class="material__card">
         <h2 class="material__heading">
-            {# Insertá el ícono en img/biblio.svg #}
             <img src="{{ url_for('static', filename='img/biblio.svg') }}" alt="" class="material__heading-icon">
             Bibliografía utilizada
         </h2>
@@ -17,7 +16,6 @@
         </ul>
 
         <h2 class="material__heading">
-            {# Insertá el ícono en img/pin.svg #}
             <img src="{{ url_for('static', filename='img/pin.svg') }}" alt="" class="material__heading-icon">
             Enlaces de utilidad
         </h2>
@@ -28,7 +26,6 @@
         </ul>
     </div>
 
-    {# Botón flotante del repositorio #}
     <a href="https://github.com/fiuba-ids-lanzillotta" class="repo-btn" target="_blank" rel="noopener">
         <img src="{{ url_for('static', filename='img/repo.svg') }}" alt="Repositorio de la cátedra">
     </a>
