@@ -116,10 +116,10 @@ DOCENTES = [
 ]
 
 BIBLIOGRAFIA = [
-    {"texto": "Bash Beginners Guide - Machtelt Garrels", "url": "https://drive.google.com/file/d/16T8ipooOMVdwPBaoinm3CNc5Mlt0TACP/view"},
-    {"texto": "Communicating the User Experience - Richard Caddick, Steve Cable", "url": "https://drive.google.com/file/u/6/d/1PAf2ak5pzgX0G6iPQXclujyBLv9Z7b6J/view?usp=drive_link"},
-    {"texto": "Introduction to Linux - Machtelt Garrels", "url": "https://drive.google.com/file/d/167ioAVI9WmigSlLTm7OziQF90zGpny7f/view"},
-    {"texto": "Test Driven Development By Example - Kent Beck", "url": "https://drive.google.com/file/d/1nMcd_X_rMIfDnywXcGQgTtBj6Cd_iRac/view"},
+    {"texto": "Bash Beginners Guide - Machtelt Garrels"},
+    {"texto": "Communicating the User Experience - Richard Caddick, Steve Cable"},
+    {"texto": "Introduction to Linux - Machtelt Garrels"},
+    {"texto": "Test Driven Development By Example - Kent Beck"},
 ]
 
 ENLACES = [
