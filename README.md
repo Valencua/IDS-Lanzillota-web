@@ -32,7 +32,7 @@ pip install -r requirements.txt
 # 4. Levantar el servidor
 python app.py
 ```
-
+```
 IDS-Lanzillota-web/
 ├── app.py                     
 ├── requirements.txt           # Dependencias de Python (Flask, Jinja2)
@@ -56,7 +56,7 @@ IDS-Lanzillota-web/
 │   ├── docentes.html          # Equipo docente
 │   └── material.html          # Material adicional (bibliografía y enlaces)
 │
-└── static/                   
+└── static/
     ├── css/
     │   └── styles.css         # Estilos de todo el sitio
     └── img/                   # Imágenes, íconos SVG y patrones
