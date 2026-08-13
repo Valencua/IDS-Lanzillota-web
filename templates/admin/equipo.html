@@ -27,6 +27,10 @@
                     <input type="text" name="apellido" placeholder="apellido" required>
                 </label>
                 <label class="equipo-form__field">
+                    <span>Email</span>
+                    <input type="email" name="email" placeholder="ejemplo@gmail.com">
+                </label>
+                <label class="equipo-form__field">
                     <span>Rol</span>
                     <select name="rol">
                         <option>Profesor</option>
@@ -62,6 +66,7 @@
                         aria-label="Editar"
                         data-nombre="{{ d.nombre }}"
                         data-apellido="{{ d.apellido }}"
+                        data-email="{{ d.email or '' }}"
                         data-rol="{{ d.rol }}"
                     >
                         <img src="{{ url_for('static', filename='img/edit.svg') }}" alt="">
@@ -89,6 +94,10 @@
             <label class="equipo-form__field">
                 <span>Apellido</span>
                 <input type="text" name="apellido" id="edit-apellido" required>
+            </label>
+            <label class="equipo-form__field">
+                <span>Email</span>
+                <input type="email" name="email" id="edit-email">
             </label>
             <label class="equipo-form__field">
                 <span>Rol</span>

@@ -37,11 +37,11 @@
 
         <p class="cal-format">
             Formato del CSV:
-            <code>fecha,tipo,titulo,contenidos,entrega</code>
-            · obligatorios: <code>fecha</code> (<code>DD/MM/AAAA</code>) y <code>tipo</code>
-            (<code>Presencial</code> / <code>Virtual</code> / <code>Feriado</code>)
-            · <code>titulo</code>, <code>contenidos</code> y <code>entrega</code> pueden ir vacíos
-            · en contenidos, los ítems se separan con <code>;</code>
+            <code>semana,fecha,tipo,titulo,contenidos,hito</code>
+            · obligatorios: <code>semana</code>, <code>fecha</code> (<code>DD/MM/AAAA</code>) y <code>tipo</code>
+            (<code>Presencial</code> / <code>Virtual</code> / <code>Feriado</code> / <code>Sin clases</code>)
+            · <code>titulo</code>, <code>contenidos</code> y <code>hito</code> pueden ir vacíos
+            · <code>hito</code> es el texto en rojo (entrega, defensa, clase, etc.)
         </p>
         <p class="cal-box__warn">Publicar un CSV reemplaza el calendario actual por completo.</p>
 
@@ -67,6 +67,7 @@
                     <option>Presencial</option>
                     <option>Virtual</option>
                     <option>Feriado</option>
+                    <option>Sin clases</option>
                 </select>
             </label>
             <label class="equipo-form__field">
@@ -78,8 +79,8 @@
                 <textarea name="contenidos" id="edit-contenidos" rows="5"></textarea>
             </label>
             <label class="equipo-form__field">
-                <span>Entrega</span>
-                <input type="text" name="entrega" id="edit-entrega">
+                <span>Hito</span>
+                <input type="text" name="hito" id="edit-hito">
             </label>
             <div class="modal__actions">
                 <button type="button" class="modal__btn modal__btn--ghost" data-close>Cancelar</button>

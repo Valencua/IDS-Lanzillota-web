@@ -12,7 +12,7 @@
             <td class="crono-table__wk">{{ s.semana }}</td>
             {% for c in s.clases %}
             <td class="crono-cell">
-                <div class="crono-class {% if c.tipo == 'Feriado' %}crono-class--muted{% endif %}">
+                <div class="crono-class {% if c.tipo in ['Feriado', 'Sin clases'] %}crono-class--muted{% endif %}">
                     <div class="crono-class__head">
                         <span class="crono-class__date">{{ c.fecha }}</span>
                         <span class="badge badge--{{ c.tipo|lower|replace(' ', '-') }}">{{ c.tipo }}</span>
@@ -25,7 +25,7 @@
                             data-tipo="{{ c.tipo }}"
                             data-titulo="{{ c.titulo or '' }}"
                             data-contenidos="{{ (c.contenidos or [])|join(' || ') }}"
-                            data-entrega="{{ c.entrega or '' }}"
+                            data-hito="{{ c.hito or '' }}"
                         >
                             <img src="{{ url_for('static', filename='img/edit.svg') }}" alt="">
                         </button>
@@ -37,7 +37,7 @@
                         {% for item in c.contenidos %}<li>{{ item }}</li>{% endfor %}
                     </ul>
                     {% endif %}
-                    {% if c.entrega %}<p class="crono-class__entrega">{{ c.entrega }}</p>{% endif %}
+                    {% if c.hito %}<p class="crono-class__hito">{{ c.hito }}</p>{% endif %}
                 </div>
             </td>
             {% endfor %}

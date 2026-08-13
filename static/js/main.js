@@ -29,11 +29,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const nombre = document.getElementById('edit-nombre');
         const apellido = document.getElementById('edit-apellido');
         const rol = document.getElementById('edit-rol');
+        const email = document.getElementById('edit-email');
 
         const openEdit = (btn) => {
             nombre.value = btn.dataset.nombre || '';
             apellido.value = btn.dataset.apellido || '';
             rol.value = btn.dataset.rol || 'Ayudante';
+            email.value = btn.dataset.email || '';
             editModal.classList.add('is-open');
             editModal.setAttribute('aria-hidden', 'false');
         };
@@ -58,14 +60,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const tipo = document.getElementById('edit-tipo');
         const titulo = document.getElementById('edit-titulo');
         const contenidos = document.getElementById('edit-contenidos');
-        const entrega = document.getElementById('edit-entrega');
+        const hito = document.getElementById('edit-hito');
 
         const openClase = (btn) => {
             fecha.value = btn.dataset.fecha || '';
             tipo.value = btn.dataset.tipo || 'Virtual';
             titulo.value = btn.dataset.titulo || '';
             contenidos.value = (btn.dataset.contenidos || '').split(' || ').join('\n');
-            entrega.value = btn.dataset.entrega || '';
+            hito.value = btn.dataset.hito || '';
             claseModal.classList.add('is-open');
             claseModal.setAttribute('aria-hidden', 'false');
         };

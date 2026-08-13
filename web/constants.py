@@ -2,7 +2,7 @@ SEMANAS = [
     {"semana": 1, "clases": [
         {"fecha": "09/03", "nro": 1, "tipo": "Presencial", "titulo": "Introducción a la materia",
          "contenidos": ["Presentación de la materia", "Introducción a Linux (FileSystem, carpetas)", "Terminal y comandos básicos (cd, ls, cat, cp, mv, sudo...)"],
-         "entrega": "Entrega del enunciado TP1"},
+         "hito": "Entrega del enunciado TP1"},
         {"fecha": "11/03", "nro": 2, "tipo": "Virtual", "titulo": "Instalación de Linux",
          "contenidos": ["Opciones de instalación (WSL, VM, Dual boot)", "Repaso general de comandos", "¿Qué es bash?", "Variables de entorno", "Estructuras condicionales e iterativas", "Mi primer script"]},
     ]},
@@ -16,14 +16,14 @@ SEMANAS = [
         {"fecha": "23/03", "nro": 5, "tipo": "Feriado"},
         {"fecha": "25/03", "nro": 6, "tipo": "Presencial", "titulo": "Ejercitación TP1 (obligatoria)",
          "contenidos": ["Ejercitación integral de comandos", "Consultas Linux", "Ejercicios de scripting"],
-         "entrega": "Clase obligatoria: resolución del ejercicio TP1 de bash"},
+         "hito": "Clase obligatoria: resolución del ejercicio TP1 de bash"},
     ]},
     {"semana": 4, "clases": [
         {"fecha": "30/03", "nro": 7, "tipo": "Virtual", "titulo": "Python + Flask",
          "contenidos": ["Repaso Python", "Instalación de Flask", "Introducción a Flask"]},
         {"fecha": "01/04", "nro": 8, "tipo": "Virtual", "titulo": "API RESTful",
          "contenidos": ["¿Qué es una API?", "¿Qué es REST?", "Ejemplo"],
-         "entrega": "Entrega enunciado TP2 BackEnd"},
+         "hito": "Entrega enunciado TP2 BackEnd"},
     ]},
     {"semana": 5, "clases": [
         {"fecha": "06/04", "nro": 9, "tipo": "Virtual", "titulo": "SQL",
@@ -40,8 +40,8 @@ SEMANAS = [
     {"semana": 7, "clases": [
         {"fecha": "20/04", "nro": 13, "tipo": "Presencial", "titulo": "Ejercitación Backend",
          "contenidos": ["Ejercitación integral de Backend"],
-         "entrega": "Clase obligatoria TP N°2"},
-        {"fecha": "22/04", "nro": 14, "tipo": "Virtual", "titulo": "Elecciones en FIUBA (no hay clases)"},
+         "hito": "Clase obligatoria TP N°2"},
+        {"fecha": "22/04", "nro": 14, "tipo": "Sin clases", "titulo": "Elecciones en FIUBA (no hay clases)"},
     ]},
     {"semana": 8, "clases": [
         {"fecha": "27/04", "nro": 15, "tipo": "Virtual", "titulo": "Consultas primer parcial",
@@ -52,7 +52,7 @@ SEMANAS = [
     {"semana": 9, "clases": [
         {"fecha": "04/05", "nro": 17, "tipo": "Virtual", "titulo": "Introducción a Front End",
          "contenidos": ["Intro a HTML", "Intro a CSS", "Intro a JavaScript", "Mi primer código en Flask"],
-         "entrega": "Entrega enunciado TP Integrador"},
+         "hito": "Entrega enunciado TP Integrador"},
         {"fecha": "06/05", "nro": 18, "tipo": "Virtual", "titulo": "Front End con Flask",
          "contenidos": ["Flask con HTML + CSS (ejemplo asistido)"]},
     ]},
@@ -61,27 +61,27 @@ SEMANAS = [
          "contenidos": ["HTML: estructura y etiquetas básicas", "CSS: clases e IDs, atributos básicos", "Flexbox (direction, justify, align)"]},
         {"fecha": "13/05", "nro": 20, "tipo": "Virtual", "titulo": "JavaScript + HTML",
          "contenidos": ["JavaScript + HTML continuación", "Ejercitación"],
-         "entrega": "Entrega parcial TP Integrador: alcance, backlog y mockup"},
+         "hito": "Entrega parcial TP Integrador: alcance, backlog y mockup"},
     ]},
     {"semana": 11, "clases": [
         {"fecha": "18/05", "nro": 21, "tipo": "Presencial", "titulo": "Integración Front + Backend",
          "contenidos": ["Ejercitación integral Front + Backend", "Crear API consumiendo datos de una base", "SQL Joins"]},
         {"fecha": "20/05", "nro": 22, "tipo": "Virtual", "titulo": "Debugging + Testing",
          "contenidos": ["Debugging", "Testing"],
-         "entrega": "Entrega parcial TP Integrador: listado de endpoints y backend"},
+         "hito": "Entrega parcial TP Integrador: listado de endpoints y backend"},
     ]},
     {"semana": 12, "clases": [
         {"fecha": "25/05", "nro": 23, "tipo": "Feriado"},
         {"fecha": "27/05", "nro": 24, "tipo": "Virtual", "titulo": "TP Integrador",
          "contenidos": ["Trabajo sobre el TP Integrador"],
-         "entrega": "Entrega parcial: endpoints y backend"},
+         "hito": "Entrega parcial: endpoints y backend"},
     ]},
     {"semana": 13, "clases": [
         {"fecha": "01/06", "nro": 25, "tipo": "Virtual", "titulo": "Docker",
          "contenidos": ["¿Qué es Docker? Diferencia con VM", "Container vs imagen", "Comandos básicos (run, ps, exec, images, pull...)"]},
         {"fecha": "03/06", "nro": 26, "tipo": "Presencial", "titulo": "Consultas del TP",
          "contenidos": ["Consultas del TP"],
-         "entrega": "Entrega parcial: templates e integración front con backend"},
+         "hito": "Entrega parcial: templates e integración front con backend"},
     ]},
     {"semana": 14, "clases": [
         {"fecha": "08/06", "nro": 27, "tipo": "Virtual", "titulo": "Docker (parte 2) + Compose",
@@ -96,18 +96,18 @@ SEMANAS = [
     ]},
     {"semana": 16, "clases": [
         {"fecha": "22/06", "nro": 31, "tipo": "Presencial", "titulo": "Defensas y consultas TP",
-         "entrega": "Defensas presenciales y consultas TP"},
+         "hito": "Defensas presenciales y consultas TP"},
         {"fecha": "24/06", "nro": 32, "tipo": "Presencial", "titulo": "2da Entrega TP Integrador",
          "contenidos": ["2da entrega TP Integrador y Defensa"]},
     ]},
 ]
 
 DOCENTES = [
-    {"nombre": "Nestor", "apellido": "Palaveccino",  "rol": "Ayudante", "foto": "docentes/nestor.jpg"},
-    {"nombre": "Chaves", "apellido": "Leonel", "rol": "Ayudante", "foto": "docentes/leonel.jpg"},
-    {"nombre": "Bruno", "apellido": "Lanzillotta",  "rol": "Profesor", "foto": "docentes/bruno.jpg"},
-    {"nombre": "Cristian Martin", "apellido": "Sosa", "rol": "Ayudante", "foto": "docentes/cristian.jpg"},
-    {"nombre": "Tomás", "apellido": "Villegas", "rol": "Ayudante", "foto": "docentes/tomas.jpg"},
+    {"nombre": "Nestor", "apellido": "Palaveccino",  "rol": "Ayudante", "foto": "docentes/nestor.jpg", "email": ""},
+    {"nombre": "Chaves", "apellido": "Leonel", "rol": "Ayudante", "foto": "docentes/leonel.jpg", "email": "putazo@gmail.com"},
+    {"nombre": "Bruno", "apellido": "Lanzillotta",  "rol": "Profesor", "foto": "docentes/bruno.jpg", "email": ""},
+    {"nombre": "Cristian Martin", "apellido": "Sosa", "rol": "Ayudante", "foto": "docentes/cristian.jpg", "email": ""},
+    {"nombre": "Tomás", "apellido": "Villegas", "rol": "Ayudante", "foto": "docentes/tomas.jpg", "email": ""},
 ]
 
 BIBLIOGRAFIA = [

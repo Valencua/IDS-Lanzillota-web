@@ -358,7 +358,7 @@
     font-size: 14px;
     line-height: 1.5;
 }
-.crono-class__entrega { color: #c0392b; font-weight: 600; font-size: 14px; margin-top: 8px; }
+.crono-class__hito { color: #c0392b; font-weight: 600; font-size: 14px; margin-top: 8px; }
 .crono-class--muted .crono-class__title,
 .crono-class--muted { color: #9aa3af; }
 
@@ -372,7 +372,7 @@
 }
 .badge--presencial { background: #cfe4fb; color: #1f5fa6; }
 .badge--virtual { background: #0b2440; color: #ffffff; }
-.badge--feriado{ background: #e5e7eb; color: #6b7280; }
+.badge--feriado, .badge--sin-clases { background: #e5e7eb; color: #6b7280; }
 
 @media (max-width: 640px) {
     .crono__inner {
@@ -620,3 +620,12 @@
 }
 .modal__btn--ghost   { background: #eceef3; color: #374151; }
 .modal__btn--primary { background: #26a354; color: #ffffff; }   /* verde WhatsApp */
+
+.docente-card__email {
+    display: block;
+    margin-top: 6px;
+    color: #c5d8ee;
+    font-size: 13px;
+    text-decoration: none;
+    word-break: break-all;
+}
