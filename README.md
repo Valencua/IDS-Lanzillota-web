@@ -26,11 +26,13 @@ cp .env.example .env
 copy .env.example .env
 ```
 
-| Variable         | Descripción                                                        |
-|------------------|--------------------------------------------------------------------|
-| `SECRET_KEY`     | Clave usada por Flask para firmar las sesiones. Debe ser aleatoria. |
-| `ADMIN_USER`     | Usuario para acceder al panel de administración (`/admin/login`).   |
-| `ADMIN_PASSWORD` | Contraseña del panel de administración.                             |
+| Variable         | Descripción                                                                    |
+|------------------|--------------------------------------------------------------------------------|
+| `SECRET_KEY`     | Clave usada por Flask para firmar las sesiones. Debe ser aleatoria.            |
+| `API_BASE_URL`   | URL base de la API (ids-api). Opcional (default `http://localhost:5000/ids_api`). |
+
+> Las credenciales del panel de administración **ya no viven en el frontend**: el
+> login se valida contra la API (ids-api), que las guarda en su propio `.env`.
 
 Para generar una `SECRET_KEY` aleatoria:
 
@@ -68,7 +70,7 @@ chmod +x setup_pipenv.sh
 ./setup_pipenv.sh
 ```
 
-> Tras la primera ejecución, revisá el `.env` generado y completá `SECRET_KEY`, `ADMIN_USER` y `ADMIN_PASSWORD` antes de usar el panel de admin.
+> Tras la primera ejecución, revisá el `.env` generado y completá `SECRET_KEY` (y, si tu API no corre en el default, `API_BASE_URL`).
 
 ### Opción B — Manual
 
@@ -107,7 +109,7 @@ Una vez iniciada, la web estará disponible en `http://localhost:5001/`.
 
 ## Panel de administración
 
-El panel vive bajo el prefijo `/admin` y está protegido con un login simple basado en sesión (`session['admin']`). Las credenciales se leen de las variables de entorno `ADMIN_USER` y `ADMIN_PASSWORD`, y las rutas privadas usan el decorador `admin_required` (ver `web/routes/admin.py`). Si no hay sesión activa, se redirige a `/admin/login`.
+El panel vive bajo el prefijo `/admin`. El login (`web/services/auth.py`) delega la verificación de credenciales en la API (`POST /login`), que devuelve un **JWT**. Ese token se guarda en la sesión (`session['token']`) y las rutas privadas usan el decorador `admin_required` (ver `web/routes/admin/auth.py`) para exigir su presencia; si no hay token, se redirige a `/admin/login`. El token se enviará como `Authorization: Bearer <token>` en las operaciones de administración contra la API.
 
 ## Estructura del proyecto
 

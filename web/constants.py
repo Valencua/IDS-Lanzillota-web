@@ -1,3 +1,11 @@
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+# URL base de la API del backend (ids-api). Configurable por variable de entorno.
+API_BASE_URL = os.getenv('API_BASE_URL', 'http://localhost:5000/ids_api')
+
 SEMANAS = [
     {"semana": 1, "clases": [
         {"fecha": "09/03", "nro": 1, "tipo": "Presencial", "titulo": "Introducción a la materia",
