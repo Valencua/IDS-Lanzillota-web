@@ -103,11 +103,11 @@ SEMANAS = [
 ]
 
 DOCENTES = [
-    {"nombre": "Nestor Palaveccino",  "rol": "Ayudante", "foto": "docentes/nestor.jpg"},
-    {"nombre": "Chaves Leonel",       "rol": "Ayudante", "foto": "docentes/leonel.jpg"},
-    {"nombre": "Bruno Lanzillotta",   "rol": "Profesor", "foto": "docentes/bruno.jpg"},
-    {"nombre": "Cristian Martin Sosa","rol": "Ayudante", "foto": "docentes/cristian.jpg"},
-    {"nombre": "Tomás Villegas",      "rol": "Ayudante", "foto": "docentes/tomas.jpg"},
+    {"nombre": "Nestor", "apellido": "Palaveccino",  "rol": "Ayudante", "foto": "docentes/nestor.jpg"},
+    {"nombre": "Chaves", "apellido": "Leonel", "rol": "Ayudante", "foto": "docentes/leonel.jpg"},
+    {"nombre": "Bruno", "apellido": "Lanzillotta",  "rol": "Profesor", "foto": "docentes/bruno.jpg"},
+    {"nombre": "Cristian Martin", "apellido": "Sosa", "rol": "Ayudante", "foto": "docentes/cristian.jpg"},
+    {"nombre": "Tomás", "apellido": "Villegas", "rol": "Ayudante", "foto": "docentes/tomas.jpg"},
 ]
 
 BIBLIOGRAFIA = [

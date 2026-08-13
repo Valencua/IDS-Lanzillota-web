@@ -23,4 +23,33 @@ document.addEventListener('DOMContentLoaded', function () {
             csvName.textContent = this.files[0] ? this.files[0].name : '';
         });
     }
+
+    const editModal = document.getElementById('edit-docente-modal');
+    if (editModal) {
+        const nombre = document.getElementById('edit-nombre');
+        const apellido = document.getElementById('edit-apellido');
+        const rol = document.getElementById('edit-rol');
+
+        const openEdit = (btn) => {
+            nombre.value = btn.dataset.nombre || '';
+            apellido.value = btn.dataset.apellido || '';
+            rol.value = btn.dataset.rol || 'Ayudante';
+            editModal.classList.add('is-open');
+            editModal.setAttribute('aria-hidden', 'false');
+        };
+        const closeEdit = () => {
+            editModal.classList.remove('is-open');
+            editModal.setAttribute('aria-hidden', 'true');
+        };
+
+        document.querySelectorAll('.js-edit-docente').forEach((btn) => {
+            btn.addEventListener('click', () => openEdit(btn));
+        });
+        editModal.querySelectorAll('[data-close]').forEach((el) => {
+            el.addEventListener('click', closeEdit);
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeEdit();
+        });
+    }
 });

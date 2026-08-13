@@ -186,10 +186,6 @@
     top: 50%;
     transform: translateY(-50%);
 }
-    
-    
-    
-    
 
 .admin-actions {
     display: flex;
@@ -234,8 +230,21 @@
     border-radius: 8px;
     padding: 8px 12px;
     font-family: inherit;
-    font-size: 15px;
-    min-width: 130px;
+    font-size: 14px;
+    min-width: 120px;
+}
+.equipo-form__file {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 8px 12px;
+    min-width: 80px;
+    background: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    color: #4a7094;
 }
 .equipo-form__add {
     background: #ffffff;
@@ -313,3 +322,68 @@
     .equipo-table__head,
     .equipo-table__row { grid-template-columns: 1fr auto auto; }
 }
+
+/* ===== Modal editar docente ===== */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+.modal.is-open { display: flex; }
+
+.modal__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal__box {
+    position: relative;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px;
+    max-width: 420px;
+    width: calc(100% - 40px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.modal__title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+}
+.edit-form .equipo-form__field input,
+.edit-form .equipo-form__field select {
+    min-width: 0;
+    width: 100%;
+}
+
+.modal__actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 8px;
+}
+.modal__btn {
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+}
+.modal__btn--ghost { background: #eceef3; color: #374151; }
+.modal__btn--primary { background: #4a7094; color: #ffffff; }

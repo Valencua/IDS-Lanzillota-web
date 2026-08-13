@@ -20,7 +20,7 @@
                 {% for d in docentes %}
                 <article class="docente-card">
                     <img src="{{ url_for('static', filename='img/' ~ d.foto) }}" alt="{{ d.nombre }}" class="docente-card__photo">
-                    <h3 class="docente-card__name">{{ d.nombre }}</h3>
+                    <h3 class="docente-card__name">{{ d.nombre}} {{d.apellido}} </h3>
                     <p class="docente-card__role">{{ d.rol }}</p>
                 </article>
                 {% endfor %}

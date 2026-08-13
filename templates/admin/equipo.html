@@ -34,6 +34,13 @@
                         <option>Colaborador</option>
                     </select>
                 </label>
+                <label class="equipo-form__field">
+                    <span>Foto</span>
+                    <label class="equipo-form__file">
+                        <input type="file" name="foto" id="foto" accept="image/*" hidden required>
+                        <span id="foto-label">Elegir foto</span>
+                    </label>
+                </label>
                 <button type="submit" class="equipo-form__add">+ Agregar</button>
             </div>
         </form>
@@ -46,10 +53,17 @@
             </div>
             {% for d in docentes %}
             <div class="equipo-table__row">
-                <span class="equipo-table__name">{{ d.nombre }}</span>
+                <span class="equipo-table__name">{{ d.nombre }} {{ d.apellido }}</span>
                 <span class="badge-rol badge-rol--{{ d.rol|lower }}">{{ d.rol }}</span>
                 <span class="equipo-table__actions">
-                    <button type="button" class="icon-btn" aria-label="Editar">
+                    <button
+                        type="button"
+                        class="icon-btn js-edit-docente"
+                        aria-label="Editar"
+                        data-nombre="{{ d.nombre }}"
+                        data-apellido="{{ d.apellido }}"
+                        data-rol="{{ d.rol }}"
+                    >
                         <img src="{{ url_for('static', filename='img/edit.svg') }}" alt="">
                     </button>
                     <button type="button" class="icon-btn" aria-label="Eliminar">
@@ -61,4 +75,39 @@
         </div>
     </div>
 </section>
+
+<div class="modal" id="edit-docente-modal" aria-hidden="true">
+    <div class="modal__overlay" data-close></div>
+    <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="edit-title">
+        <h3 class="modal__title" id="edit-title">Editar docente</h3>
+
+        <form class="edit-form" method="POST" action="#" enctype="multipart/form-data">
+            <label class="equipo-form__field">
+                <span>Nombre</span>
+                <input type="text" name="nombre" id="edit-nombre" required>
+            </label>
+            <label class="equipo-form__field">
+                <span>Apellido</span>
+                <input type="text" name="apellido" id="edit-apellido" required>
+            </label>
+            <label class="equipo-form__field">
+                <span>Rol</span>
+                <select name="rol" id="edit-rol">
+                    <option>Profesor</option>
+                    <option>Ayudante</option>
+                    <option>Colaborador</option>
+                </select>
+            </label>
+            <label class="equipo-form__field">
+                <span>Foto</span>
+                <input type="file" name="foto" id="edit-foto" accept="image/*">
+            </label>
+
+            <div class="modal__actions">
+                <button type="button" class="modal__btn modal__btn--ghost" data-close>Cancelar</button>
+                <button type="submit" class="modal__btn modal__btn--primary">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}
