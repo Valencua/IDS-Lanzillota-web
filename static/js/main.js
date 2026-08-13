@@ -52,4 +52,36 @@ document.addEventListener('DOMContentLoaded', function () {
             if (e.key === 'Escape') closeEdit();
         });
     }
+    const claseModal = document.getElementById('edit-clase-modal');
+    if (claseModal) {
+        const fecha = document.getElementById('edit-fecha');
+        const tipo = document.getElementById('edit-tipo');
+        const titulo = document.getElementById('edit-titulo');
+        const contenidos = document.getElementById('edit-contenidos');
+        const entrega = document.getElementById('edit-entrega');
+
+        const openClase = (btn) => {
+            fecha.value = btn.dataset.fecha || '';
+            tipo.value = btn.dataset.tipo || 'Virtual';
+            titulo.value = btn.dataset.titulo || '';
+            contenidos.value = (btn.dataset.contenidos || '').split(' || ').join('\n');
+            entrega.value = btn.dataset.entrega || '';
+            claseModal.classList.add('is-open');
+            claseModal.setAttribute('aria-hidden', 'false');
+        };
+        const closeClase = () => {
+            claseModal.classList.remove('is-open');
+            claseModal.setAttribute('aria-hidden', 'true');
+        };
+
+        document.querySelectorAll('.js-edit-clase').forEach((btn) => {
+            btn.addEventListener('click', () => openClase(btn));
+        });
+        claseModal.querySelectorAll('[data-close]').forEach((el) => {
+            el.addEventListener('click', closeClase);
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeClase();
+        });
+    }
 });

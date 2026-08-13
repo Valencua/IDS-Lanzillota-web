@@ -142,7 +142,7 @@
     gap:60px;
     
 }
-.admin-card--wide { max-width: 860px; }
+.admin-card--wide { max-width: 1100px; }
 
 .admin-card__title {
     font-size: 26px;
@@ -297,23 +297,45 @@
     display: block;
 }
 .cal-box {
+    display: flex;
+    align-items: center;
+    gap: 16px;
     border: 1px solid #d9d9d9;
     border-radius: 10px;
-    padding: 28px 24px 36px;
-    text-align: center;
+    padding: 12px 16px;
+    text-align: left;
+    flex: 1;
 }
 .cal-box__title { font-size: 22px; font-weight: 700; color: #3d5a73; margin-bottom: 8px; }
-.cal-box__warn { color: #6b7280; font-size: 14px; margin-bottom: 28px; }
+.cal-box__warn {     
+    color: #6b7280;
+    font-size: 13px;
+    margin: 0 0 20px;
+}
 .cal-drop {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     cursor: pointer;
+    flex: 1;
 }
-.cal-drop__icon { width: auto; height: 150px; object-fit: contain; }
-.cal-drop__text { color: #4a7094; font-size: 16px; }
-.cal-drop__name { color: #6b7280; font-size: 13px; }
+.cal-drop__icon {
+    width: auto;
+    height: 40px;
+    object-fit: contain;
+}
+.cal-drop__text {
+    color: #4a7094;
+    font-size: 15px;
+    font-weight: 600;
+    display: block;
+}
+.cal-drop__name {
+    color: #6b7280;
+    font-size: 13px;
+    display: block;
+}
 
 @media (max-width: 700px) {
     .admin-actions { flex-direction: column; align-items: center; }
@@ -387,3 +409,86 @@
 }
 .modal__btn--ghost { background: #eceef3; color: #374151; }
 .modal__btn--primary { background: #4a7094; color: #ffffff; }
+
+.login--top {
+    align-items: flex-start;
+    padding-top: 32px;
+}
+
+.cal-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.cal-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    white-space: nowrap;
+}
+.cal-btn--ghost {
+    background: #ffffff;
+    color: #4a7094;
+    border: 1px solid #d1d5db;
+}
+.cal-btn--primary {
+    background: #4a7094;
+    color: #ffffff;
+}
+
+.cal-format {
+    font-size: 13px;
+    color: #4b5563;
+    line-height: 1.5;
+    margin: 0 0 8px;
+}
+.cal-format code {
+    font-family: var(--font-code);
+    font-size: 12px;
+    background: #f3f4f6;
+    padding: 1px 6px;
+    border-radius: 4px;
+}
+
+.crono__inner--admin {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;
+}
+
+.crono-class__head .icon-btn { margin-left: auto; }
+
+.modal__box--wide { max-width: 520px; }
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+}
+.edit-form textarea {
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-family: inherit;
+    font-size: 14px;
+    resize: vertical;
+    width: 100%;
+}
+.edit-form .equipo-form__field input,
+.edit-form .equipo-form__field select {
+    min-width: 0;
+    width: 100%;
+}

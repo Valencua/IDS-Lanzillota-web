@@ -2,12 +2,16 @@
 
 {% block title %}Actualizar calendario · Panel Lanzillotta{% endblock %}
 
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/public.css') }}">
+{% endblock %}
+
 {% block navbar_menu %}
     <a href="{{ url_for('web.admin.auth.logout') }}" class="navbar__link navbar__link--contacto">Cerrar sesión</a>
 {% endblock %}
 
 {% block content %}
-<section class="login">
+<section class="login login--top">
     <div class="admin-card admin-card--wide">
         <div class="admin-card__top">
             <a href="{{ url_for('web.admin.panel.index') }}" class="admin-back">Volver a Inicio</a>
@@ -15,17 +19,73 @@
         </div>
         <hr class="login__divider">
 
-        <form class="cal-box" method="POST" action="#" enctype="multipart/form-data">
-            <h2 class="cal-box__title">Subir calendario nuevo</h2>
-            <p class="cal-box__warn">Advertencia: esto eliminará el actual permanentemente para actualizarlo con el nuevo</p>
+        <div class="cal-toolbar">
+            <a href="#" class="cal-btn cal-btn--ghost">Descargar actual</a>
 
-            <label class="cal-drop" for="csv">
-                <img src="{{ url_for('static', filename='img/calendar2.svg') }}" alt="" class="cal-drop__icon">
-                <span class="cal-drop__text">Presione para subir archivo</span>
-                <span class="cal-drop__name" id="csv-name"></span>
-            </label>
-            <input type="file" id="csv" name="csv" accept=".csv" hidden>
-        </form>
+            <form class="cal-box" method="POST" action="#" enctype="multipart/form-data">
+                <label class="cal-drop" for="csv">
+                    <img src="{{ url_for('static', filename='img/calendar2.svg') }}" alt="" class="cal-drop__icon">
+                    <span>
+                        <span class="cal-drop__text">Subir archivo CSV</span>
+                        <span class="cal-drop__name" id="csv-name"></span>
+                    </span>
+                </label>
+                <input type="file" id="csv" name="csv" accept=".csv" hidden required>
+                <button type="submit" class="cal-btn cal-btn--primary">Publicar CSV</button>
+            </form>
+        </div>
+
+        <p class="cal-format">
+            Formato del CSV:
+            <code>fecha,tipo,titulo,contenidos,entrega</code>
+            · obligatorios: <code>fecha</code> (<code>DD/MM/AAAA</code>) y <code>tipo</code>
+            (<code>Presencial</code> / <code>Virtual</code> / <code>Feriado</code>)
+            · <code>titulo</code>, <code>contenidos</code> y <code>entrega</code> pueden ir vacíos
+            · en contenidos, los ítems se separan con <code>;</code>
+        </p>
+        <p class="cal-box__warn">Publicar un CSV reemplaza el calendario actual por completo.</p>
+
+        <div class="crono__inner crono__inner--admin">
+            {% set editable = true %}
+            {% include 'public/_cronograma_tabla.html' %}
+        </div>
     </div>
 </section>
+
+<div class="modal" id="edit-clase-modal" aria-hidden="true">
+    <div class="modal__overlay" data-close></div>
+    <div class="modal__box modal__box--wide" role="dialog" aria-modal="true" aria-labelledby="edit-clase-title">
+        <h3 class="modal__title" id="edit-clase-title">Editar clase</h3>
+        <form class="edit-form" method="POST" action="#">
+            <label class="equipo-form__field">
+                <span>Fecha</span>
+                <input type="text" name="fecha" id="edit-fecha" placeholder="DD/MM" required>
+            </label>
+            <label class="equipo-form__field">
+                <span>Tipo</span>
+                <select name="tipo" id="edit-tipo">
+                    <option>Presencial</option>
+                    <option>Virtual</option>
+                    <option>Feriado</option>
+                </select>
+            </label>
+            <label class="equipo-form__field">
+                <span>Título</span>
+                <input type="text" name="titulo" id="edit-titulo">
+            </label>
+            <label class="equipo-form__field">
+                <span>Contenidos (uno por línea)</span>
+                <textarea name="contenidos" id="edit-contenidos" rows="5"></textarea>
+            </label>
+            <label class="equipo-form__field">
+                <span>Entrega</span>
+                <input type="text" name="entrega" id="edit-entrega">
+            </label>
+            <div class="modal__actions">
+                <button type="button" class="modal__btn modal__btn--ghost" data-close>Cancelar</button>
+                <button type="submit" class="modal__btn modal__btn--primary">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}

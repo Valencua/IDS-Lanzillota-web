@@ -41,7 +41,7 @@ SEMANAS = [
         {"fecha": "20/04", "nro": 13, "tipo": "Presencial", "titulo": "Ejercitación Backend",
          "contenidos": ["Ejercitación integral de Backend"],
          "entrega": "Clase obligatoria TP N°2"},
-        {"fecha": "22/04", "nro": 14, "tipo": "Sin clases", "titulo": "Elecciones en FIUBA (no hay clases)"},
+        {"fecha": "22/04", "nro": 14, "tipo": "Virtual", "titulo": "Elecciones en FIUBA (no hay clases)"},
     ]},
     {"semana": 8, "clases": [
         {"fecha": "27/04", "nro": 15, "tipo": "Virtual", "titulo": "Consultas primer parcial",

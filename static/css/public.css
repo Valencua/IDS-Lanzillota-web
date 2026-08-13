@@ -372,8 +372,7 @@
 }
 .badge--presencial { background: #cfe4fb; color: #1f5fa6; }
 .badge--virtual { background: #0b2440; color: #ffffff; }
-.badge--feriado,
-.badge--sin-clases { background: #e5e7eb; color: #6b7280; }
+.badge--feriado{ background: #e5e7eb; color: #6b7280; }
 
 @media (max-width: 640px) {
     .crono__inner {
