@@ -11,7 +11,7 @@
         <p class="login__subtitle">Inicie sesión</p>
         <hr class="login__divider">
 
-        <form class="login__form" method="POST" action="{{ url_for('web.admin.login') }}">
+        <form class="login__form" method="POST" action="{{ url_for('web.admin.auth.login') }}">
             {% if error %}
             <p class="login__error">{{ error }}</p>
             {% endif %}

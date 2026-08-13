@@ -128,8 +128,19 @@ ids-web/
 │   ├── constants.py           # Datos de las páginas (semanas, docentes, enlaces, bibliografía)
 │   └── routes/
 │       ├── __init__.py        # Blueprint principal "web" + registro de sub-blueprints
-│       ├── index.py           # Rutas públicas
-│       └── admin.py           # Rutas del panel de admin (login, logout, panel protegido)
+│       ├── public/            # Sub-blueprint "public" (una sección por archivo)
+│       │   ├── __init__.py    #   registra home / cursada / cronograma / docentes / material
+│       │   ├── home.py        #   inicio (/)
+│       │   ├── cursada.py     #   /cursada
+│       │   ├── cronograma.py  #   /cronograma
+│       │   ├── docentes.py    #   /docentes
+│       │   └── material.py    #   /material-adicional
+│       └── admin/             # Sub-blueprint "admin" (una sección por archivo)
+│           ├── __init__.py    #   registra auth / panel / equipo / calendario
+│           ├── auth.py        #   login, logout y decorador admin_required
+│           ├── panel.py       #   dashboard (/admin/)
+│           ├── equipo.py      #   /admin/equipo
+│           └── calendario.py  #   /admin/calendario
 │
 ├── templates/                 # Templates Jinja2
 │   ├── base.html              # Layout base (navbar + bloques comunes)

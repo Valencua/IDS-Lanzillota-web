@@ -3,7 +3,7 @@
 {% block title %}Panel · Lanzillotta{% endblock %}
 
 {% block navbar_menu %}
-    <a href="{{ url_for('web.admin.logout') }}" class="navbar__link navbar__link--contacto">Cerrar sesión</a>
+    <a href="{{ url_for('web.admin.auth.logout') }}" class="navbar__link navbar__link--contacto">Cerrar sesión</a>
 {% endblock %}
 
 {% block content %}
@@ -14,11 +14,11 @@
             <hr class="login__divider">
         </div>
         <div class="admin-actions">
-            <a href="{{ url_for('web.admin.equipo') }}" class="admin-tile">
+            <a href="{{ url_for('web.admin.equipo.index') }}" class="admin-tile">
                 <span class="admin-tile__label">Actualizar equipo</span>
                 <img src="{{ url_for('static', filename='img/user.svg') }}" alt="" class="admin-tile__icon">
             </a>
-            <a href="{{ url_for('web.admin.calendario') }}" class="admin-tile">
+            <a href="{{ url_for('web.admin.calendario.index') }}" class="admin-tile">
                 <span class="admin-tile__label">Actualizar calendario</span>
                 <img src="{{ url_for('static', filename='img/calendar.svg') }}" alt="" class="admin-tile__icon">
             </a>

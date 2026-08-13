@@ -3,14 +3,14 @@
 {% block title %}Actualizar equipo · Panel Lanzillotta{% endblock %}
 
 {% block navbar_menu %}
-    <a href="{{ url_for('web.admin.logout') }}" class="navbar__link navbar__link--contacto">Cerrar sesión</a>
+    <a href="{{ url_for('web.admin.auth.logout') }}" class="navbar__link navbar__link--contacto">Cerrar sesión</a>
 {% endblock %}
 
 {% block content %}
 <section class="login">
     <div class="admin-card admin-card--wide">
         <div class="admin-card__top">
-            <a href="{{ url_for('web.admin.admin_panel') }}" class="admin-back">Volver a Inicio</a>
+            <a href="{{ url_for('web.admin.panel.index') }}" class="admin-back">Volver a Inicio</a>
             <h1 class="admin-card__heading">Actualizar equipo docente</h1>
         </div>
         <hr class="login__divider">
