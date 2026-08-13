@@ -31,7 +31,7 @@ def login():
 
         error = 'Usuario o contraseña incorrectos.'
 
-    return render_template('login.html', error=error)
+    return render_template('admin/login.html', error=error)
 
 @admin_bp.route('/logout')
 def logout():
@@ -41,14 +41,14 @@ def logout():
 @admin_bp.route('/')
 @admin_required
 def admin_panel():
-    return render_template('panel.html')
+    return render_template('admin/panel.html')
 
 @admin_bp.route('/equipo')
 @admin_required
 def equipo():
-    return render_template('equipo.html', docentes=DOCENTES)
+    return render_template('admin/equipo.html', docentes=DOCENTES)
     
 @admin_bp.route('/calendario')
 @admin_required
 def calendario():
-    return render_template('calendario.html')
+    return render_template('admin/calendario.html')
