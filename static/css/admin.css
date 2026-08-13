@@ -160,11 +160,13 @@
     margin: 0;
 }
 .admin-card__top {
-    display: grid;
-    grid-template-columns: auto 0.5fr auto;
     align-items: center;
     gap: 12px;
     padding-bottom: 10px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    min-height: 40px;
 }
 .admin-back {
     background: #4a7094;
@@ -179,7 +181,15 @@
     width: 94px;
     justify-content: center;
     display: flex;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
 }
+    
+    
+    
+    
 
 .admin-actions {
     display: flex;
@@ -225,7 +235,7 @@
     padding: 8px 12px;
     font-family: inherit;
     font-size: 15px;
-    min-width: 220px;
+    min-width: 130px;
 }
 .equipo-form__add {
     background: #ffffff;
