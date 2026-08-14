@@ -60,14 +60,14 @@
                     <img src="{{ url_for('static', filename='img/drive.svg') }}" alt="" class="link-card__icon">
                     <span class="link-card__label"><span class="link-card__accent link-card__accent--drive">Drive</span> para alumnos</span>
                 </a>
-                <a href="https://meet.google.com/imx-ovzp-fuw" target="_blank" class="link-card">
+                <a href="#" target="_blank" id="meet-card" class="link-card">
                     <img src="{{ url_for('static', filename='img/meet.svg') }}" alt="" class="link-card__icon">
                     <span class="link-card__label">Clase <span class="link-card__accent link-card__accent--meet">Google Meet</span></span>
                 </a>
             </div>
         </div>
     </section>
-    {# ===== Modal de advertencia de WhatsApp ===== #}
+    
     <div class="modal" id="whatsapp-modal" aria-hidden="true">
         <div class="modal__overlay" data-close></div>
         <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="wa-title">
@@ -79,6 +79,21 @@
             <div class="modal__actions">
                 <button type="button" class="modal__btn modal__btn--ghost" data-close>Cancelar</button>
                 <a href="https://chat.whatsapp.com/LWHJN7BCCed0FbeIGOEUkp" class="modal__btn modal__btn--primary" target="_blank" rel="noopener">Continuar</a>
+            </div>
+        </div>
+    </div>
+
+    {# ===== Modal de advertencia de Meet ===== #}
+    <div class="modal" id="meet-modal" aria-hidden="true">
+        <div class="modal__overlay" data-close></div>
+        <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="meet-title">
+            <h3 class="modal__title" id="meet-title">Google Meet</h3>
+            <p class="modal__text">
+                Ingresá con tu mail de FIUBA (<strong>@fi.uba.ar</strong>) para tener acceso directo a la clase.
+            </p>
+            <div class="modal__actions">
+                <button type="button" class="modal__btn modal__btn--ghost" data-close>Cancelar</button>
+                <a href="https://meet.google.com/imx-ovzp-fuw" target="_blank" class="modal__btn modal__btn--primary">Ingresar</a>
             </div>
         </div>
     </div>

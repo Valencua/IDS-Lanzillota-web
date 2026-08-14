@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const card = document.getElementById('whatsapp-card');
-    const modal = document.getElementById('whatsapp-modal');
-    if (card && modal) {
+    function bindLinkModal(cardId, modalId) {
+        const card = document.getElementById(cardId);
+        const modal = document.getElementById(modalId);
+        if (!card || !modal) return;
+
         const open = (e) => {
             e.preventDefault();
             modal.classList.add('is-open');
@@ -11,11 +13,17 @@ document.addEventListener('DOMContentLoaded', function () {
             modal.classList.remove('is-open');
             modal.setAttribute('aria-hidden', 'true');
         };
+
         card.addEventListener('click', open);
         modal.querySelectorAll('[data-close]').forEach((el) => el.addEventListener('click', close));
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') close();
+        });
     }
-    
+
+    bindLinkModal('whatsapp-card', 'whatsapp-modal');
+    bindLinkModal('meet-card', 'meet-modal');
+        
     const csv = document.getElementById('csv');
     const csvName = document.getElementById('csv-name');
     if (csv && csvName) {

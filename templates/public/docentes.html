@@ -19,7 +19,7 @@
             <div class="docentes-grid">
                 {% for d in docentes %}
                 <article class="docente-card">
-                    <img src="{{ d.foto if d.foto else url_for('static', filename='img/user.svg') }}" alt="{{ d.nombre }}" class="docente-card__photo">
+                    <img src="{{ d.foto if d.foto else url_for('static', filename='img/profile.svg') }}" alt="{{ d.nombre }}" class="docente-card__photo">
                     <h3 class="docente-card__name">{{ d.nombre}} {{d.apellido}} </h3>
                     <p class="docente-card__role">{{ d.rol }}</p>
                     <a class="docente-card__email">{{ d.email or '' }}</a>
