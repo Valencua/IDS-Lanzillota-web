@@ -407,6 +407,19 @@
     border: none;
     font-family: inherit;
 }
+
+.modal__btn--danger { background: #b42318; color: #ffffff; }
+.modal__btn--danger:hover { background: #912018; }
+
+.modal__box--confirm { max-width: 380px; text-align: center; }
+.modal__text {
+    color: #4b5563;
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 0 0 20px;
+}
+.modal__text strong { color: #1f2937; }
+
 .modal__btn--ghost { background: #eceef3; color: #374151; }
 .modal__btn--primary { background: #4a7094; color: #ffffff; }
 

@@ -30,12 +30,15 @@ document.addEventListener('DOMContentLoaded', function () {
         const apellido = document.getElementById('edit-apellido');
         const rol = document.getElementById('edit-rol');
         const email = document.getElementById('edit-email');
-
+        const form = document.getElementById('edit-docente-form');
         const openEdit = (btn) => {
             nombre.value = btn.dataset.nombre || '';
             apellido.value = btn.dataset.apellido || '';
             rol.value = btn.dataset.rol || 'Ayudante';
             email.value = btn.dataset.email || '';
+            if (form) {
+                form.action = btn.dataset.editUrl || '#';
+            }
             editModal.classList.add('is-open');
             editModal.setAttribute('aria-hidden', 'false');
         };
@@ -43,7 +46,6 @@ document.addEventListener('DOMContentLoaded', function () {
             editModal.classList.remove('is-open');
             editModal.setAttribute('aria-hidden', 'true');
         };
-
         document.querySelectorAll('.js-edit-docente').forEach((btn) => {
             btn.addEventListener('click', () => openEdit(btn));
         });
@@ -52,6 +54,34 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeEdit();
+        });
+    }
+
+    const deleteModal = document.getElementById('delete-docente-modal');
+    if (deleteModal) {
+        const deleteName = document.getElementById('delete-docente-nombre');
+        const deleteForm = document.getElementById('delete-docente-form');
+
+        const openDelete = (btn) => {
+            const nombre = [btn.dataset.nombre, btn.dataset.apellido].filter(Boolean).join(' ');
+            if (deleteName) deleteName.textContent = nombre || 'este docente';
+            if (deleteForm) deleteForm.action = btn.dataset.deleteUrl || '#';
+            deleteModal.classList.add('is-open');
+            deleteModal.setAttribute('aria-hidden', 'false');
+        };
+        const closeDelete = () => {
+            deleteModal.classList.remove('is-open');
+            deleteModal.setAttribute('aria-hidden', 'true');
+        };
+
+        document.querySelectorAll('.js-delete-docente').forEach((btn) => {
+            btn.addEventListener('click', () => openDelete(btn));
+        });
+        deleteModal.querySelectorAll('[data-close]').forEach((el) => {
+            el.addEventListener('click', closeDelete);
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeDelete();
         });
     }
     const claseModal = document.getElementById('edit-clase-modal');
