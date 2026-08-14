@@ -469,14 +469,18 @@
     transform: translateY(-4px);
     box-shadow: 0 0 28px rgba(160, 200, 240, 0.7);
 }
+
 .docente-card__photo {
     display: block;
-    width: auto;
+    width: 132px;
     height: 132px;
+    aspect-ratio: 1;
     border-radius: 50%;
     object-fit: cover;
+    object-position: center;
+    flex-shrink: 0;
     margin: 0 auto 16px;
-    background: #1c3350;      /* placeholder mientras no cargues la foto */
+    background: #1c3350;
     border: 3px solid rgba(120, 170, 220, 0.25);
 }
 
@@ -485,7 +489,7 @@
 
 @media (max-width: 560px) {
     .docentes-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; }
-    .docente-card__photo {height: 108px; }
+    .docente-card__photo { width: 108px; height: 108px; }
 }
 
 /* ===== Material adicional ===== */
