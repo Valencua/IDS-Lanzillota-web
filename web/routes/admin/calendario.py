@@ -5,7 +5,7 @@ from web.services.cronograma import (
     obtener_semanas,
     actualizar_clase,
     body_desde_formulario,
-    exportar_csv,
+    descargar_csv,
     publicar_csv,
 )
 
@@ -66,9 +66,16 @@ def editar(clase_id):
 @calendario_bp.route('/calendario/csv')
 @admin_required
 def descargar():
-    contenido = exportar_csv()
+    resultado = descargar_csv()
+    if not resultado.get('ok'):
+        return render_template(
+            'admin/calendario.html',
+            semanas=obtener_semanas(),
+            error=resultado.get('error'),
+        )
+
     return Response(
-        contenido,
+        resultado['contenido'],
         mimetype='text/csv',
-        headers={'Content-Disposition': 'attachment; filename="cronograma.csv"'},
+        headers={'Content-Disposition': resultado['disposition']},
     )

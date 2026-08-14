@@ -1,6 +1,4 @@
 """Consumo de la API (ids-api) para el cronograma."""
-import csv
-import io
 import logging
 from datetime import datetime
 
@@ -9,9 +7,6 @@ import requests
 from web.constants import API_BASE_URL
 
 logger = logging.getLogger(__name__)
-
-CSV_HEADER = ['semana', 'fecha', 'tipo', 'titulo', 'contenidos', 'hito']
-
 
 def _mensaje_error_api(response) -> str:
     try:
@@ -44,15 +39,6 @@ def _fecha_iso_a_corta(fecha_iso: str) -> str:
         return datetime.strptime(str(fecha_iso)[:10], '%Y-%m-%d').strftime('%d/%m')
     except ValueError:
         return str(fecha_iso)
-
-
-def _fecha_iso_a_csv(fecha_iso: str) -> str:
-    """2026-03-09 → 09/03/2026."""
-    try:
-        return datetime.strptime(str(fecha_iso)[:10], '%Y-%m-%d').strftime('%d/%m/%Y')
-    except ValueError:
-        return str(fecha_iso)
-
 
 def _clase_para_vista(clase: dict) -> dict:
     """Adapta el DTO de la API al formato de la tabla (contenidos + hito en rojo)."""
@@ -174,101 +160,47 @@ def body_desde_formulario(form) -> dict:
     }
 
 
-def exportar_csv() -> str:
-    """CSV en el formato del panel: semana,fecha,tipo,titulo,contenidos,hito."""
-    salida = io.StringIO()
-    escritor = csv.writer(salida)
-    escritor.writerow(CSV_HEADER)
-
+def descargar_csv() -> dict:
+    """Proxy de GET /cronograma/csv: devuelve el archivo tal cual lo arma la API."""
     try:
-        response = requests.get(f'{API_BASE_URL}/cronograma/clases', timeout=10)
-        clases = response.json() if response.status_code == 200 else []
-    except Exception as e:
-        logger.error(f"Error al exportar el cronograma: {e}")
-        clases = []
-
-    for clase in clases or []:
-        vista = _clase_para_vista(clase)
-        escritor.writerow([
-            vista['semana'],
-            _fecha_iso_a_csv(vista['fecha_iso']),
-            vista['tipo'],
-            vista['titulo'],
-            ';'.join(vista['contenidos']),
-            vista['hito'],
-        ])
-
-    return salida.getvalue()
-
-
-def _csv_vista_a_api(contenido: str) -> str:
-    """Convierte el CSV del panel al formato que espera la API (pares texto,True/False)."""
-    filas = [f for f in csv.reader(io.StringIO(contenido)) if any(c.strip() for c in f)]
-
-    if not filas:
-        return contenido
-
-    if filas[0] and filas[0][0].strip().lower() == 'semana':
-        filas = filas[1:]
-
-    salida = io.StringIO()
-    escritor = csv.writer(salida)
-    escritor.writerow(['semana', 'fecha', 'tipo', 'titulo'])
-
-    for campos in filas:
-        semana = campos[0].strip() if len(campos) > 0 else ''
-        fecha = campos[1].strip() if len(campos) > 1 else ''
-        tipo = campos[2].strip() if len(campos) > 2 else ''
-        titulo = campos[3].strip() if len(campos) > 3 else ''
-        contenidos_txt = campos[4].strip() if len(campos) > 4 else ''
-        hito = campos[5].strip() if len(campos) > 5 else ''
-
-        fila = [semana, fecha, tipo, titulo]
-        for item in contenidos_txt.split(';'):
-            texto = item.strip()
-            if texto:
-                fila.extend([texto, 'False'])
-        if hito:
-            fila.extend([hito, 'True'])
-
-        escritor.writerow(fila)
-
-    return salida.getvalue()
-
-
-def publicar_csv(token: str, archivo) -> dict:
-    """Reemplaza el cronograma vía PUT /cronograma/csv."""
-    if not archivo or not archivo.filename:
-        return {'ok': False, 'error': 'Elegí un archivo CSV para publicar.'}
-
-    try:
-        bruto = archivo.read()
-        texto = bruto.decode('utf-8-sig')
-        csv_api = _csv_vista_a_api(texto)
-
-        response = requests.put(
-            f'{API_BASE_URL}/cronograma/csv',
-            files={'archivo': ('cronograma.csv', csv_api.encode('utf-8'), 'text/csv')},
-            headers={'Authorization': f'Bearer {token}'},
-            timeout=30,
-        )
-
-        unauthorized = _unauthorized(response)
-        if unauthorized:
-            return unauthorized
-
+        response = requests.get(f'{API_BASE_URL}/cronograma/csv', timeout=15)
         if response.status_code == 200:
-            return {'ok': True}
-
+            return {
+                'ok': True,
+                'contenido': response.content,
+                'disposition': response.headers.get(
+                    'Content-Disposition',
+                    'attachment; filename="cronograma.csv"',
+                ),
+            }
         return {'ok': False, 'error': _mensaje_error_api(response)}
-
-    except UnicodeDecodeError:
-        return {'ok': False, 'error': 'El CSV tiene que estar en UTF-8.'}
-
     except requests.exceptions.ConnectionError:
         logger.error(f"No se pudo conectar con la API en {API_BASE_URL}")
         return {'ok': False, 'error': 'No se pudo conectar con el servidor. Intentá más tarde.'}
+    except Exception as e:
+        logger.error(f"Error al descargar el cronograma: {e}")
+        return {'ok': False, 'error': 'Ocurrió un error al descargar el calendario.'}
 
+def publicar_csv(token: str, archivo) -> dict:
+    """Reemplaza el cronograma vía PUT /cronograma/csv (archivo tal cual)."""
+    if not archivo or not archivo.filename:
+        return {'ok': False, 'error': 'Elegí un archivo CSV para publicar.'}
+    try:
+        response = requests.put(
+            f'{API_BASE_URL}/cronograma/csv',
+            files={'archivo': (archivo.filename, archivo.stream, 'text/csv')},
+            headers={'Authorization': f'Bearer {token}'},
+            timeout=30,
+        )
+        unauthorized = _unauthorized(response)
+        if unauthorized:
+            return unauthorized
+        if response.status_code == 200:
+            return {'ok': True}
+        return {'ok': False, 'error': _mensaje_error_api(response)}
+    except requests.exceptions.ConnectionError:
+        logger.error(f"No se pudo conectar con la API en {API_BASE_URL}")
+        return {'ok': False, 'error': 'No se pudo conectar con el servidor. Intentá más tarde.'}
     except Exception as e:
         logger.error(f"Error al publicar el CSV: {e}")
         return {'ok': False, 'error': 'Ocurrió un error al publicar el calendario.'}
