@@ -40,11 +40,11 @@
 
         <p class="cal-format">
             Formato del CSV:
-            <code>semana,fecha,tipo,titulo,contenidos,hito</code>
-            · obligatorios: <code>semana</code>, <code>fecha</code> (<code>DD/MM/AAAA</code>) y <code>tipo</code>
+            <code>semana,fecha,tipo,titulo,descripción1,hito1,descripción2,hito2,…</code>
+            · obligatorios: <code>semana</code>, <code>fecha</code> (<code>DD/MM/AAAA</code>, lunes o miércoles del período) y <code>tipo</code>
             (<code>Presencial</code> / <code>Virtual</code> / <code>Feriado</code> / <code>Sin clases</code>)
-            · <code>titulo</code>, <code>contenidos</code> y <code>hito</code> pueden ir vacíos
-            · <code>hito</code> es el texto en rojo (entrega, defensa, clase, etc.)
+            · los contenidos van en <strong>pares</strong> <code>descripción, hito</code> (<code>hito</code> = <code>True</code>/<code>False</code>, el texto en rojo)
+            · las fechas del período que no cargues se completan solas como <code>Virtual · A definir</code>
         </p>
         <p class="cal-box__warn">Publicar un CSV reemplaza el calendario actual por completo.</p>
 

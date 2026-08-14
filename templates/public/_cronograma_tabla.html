@@ -16,7 +16,7 @@
                     <div class="crono-class__head">
                         <span class="crono-class__date">{{ c.fecha }}</span>
                         <span class="badge badge--{{ c.tipo|lower|replace(' ', '-') }}">{{ c.tipo }}</span>
-                        {% if editable %}
+                        {% if editable and c.id %}
                         <button
                             type="button"
                             class="icon-btn js-edit-clase"
