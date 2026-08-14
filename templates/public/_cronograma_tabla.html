@@ -21,11 +21,13 @@
                             type="button"
                             class="icon-btn js-edit-clase"
                             aria-label="Editar clase"
-                            data-fecha="{{ c.fecha }}"
+                            data-semana="{{ c.semana }}"
+                            data-fecha="{{ c.fecha_iso }}"
                             data-tipo="{{ c.tipo }}"
                             data-titulo="{{ c.titulo or '' }}"
                             data-contenidos="{{ (c.contenidos or [])|join(' || ') }}"
                             data-hito="{{ c.hito or '' }}"
+                            data-edit-url="{{ url_for('web.admin.calendario.editar', clase_id=c.id) }}"
                         >
                             <img src="{{ url_for('static', filename='img/edit.svg') }}" alt="">
                         </button>

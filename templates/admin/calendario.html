@@ -18,11 +18,14 @@
             <h1 class="admin-card__heading">Actualizar calendario</h1>
         </div>
         <hr class="login__divider">
+        {% if error %}
+        <p class="login__error">{{ error }}</p>
+        {% endif %}
 
         <div class="cal-toolbar">
-            <a href="#" class="cal-btn cal-btn--ghost">Descargar actual</a>
+            <a href="{{ url_for('web.admin.calendario.descargar') }}" class="cal-btn cal-btn--ghost">Descargar actual</a>
 
-            <form class="cal-box" method="POST" action="#" enctype="multipart/form-data">
+            <form class="cal-box" method="POST" action="{{ url_for('web.admin.calendario.index') }}" enctype="multipart/form-data">
                 <label class="cal-drop" for="csv">
                     <img src="{{ url_for('static', filename='img/calendar2.svg') }}" alt="" class="cal-drop__icon">
                     <span>
@@ -47,7 +50,11 @@
 
         <div class="crono__inner crono__inner--admin">
             {% set editable = true %}
+            {% if semanas %}
             {% include 'public/_cronograma_tabla.html' %}
+            {% else %}
+            <p class="cal-box__warn">No hay clases cargadas. Publicá un CSV para crear el calendario.</p>
+            {% endif %}
         </div>
     </div>
 </section>
@@ -56,10 +63,11 @@
     <div class="modal__overlay" data-close></div>
     <div class="modal__box modal__box--wide" role="dialog" aria-modal="true" aria-labelledby="edit-clase-title">
         <h3 class="modal__title" id="edit-clase-title">Editar clase</h3>
-        <form class="edit-form" method="POST" action="#">
+        <form class="edit-form" id="edit-clase-form" method="POST" action="#">
+            <input type="hidden" name="semana" id="edit-semana">        
             <label class="equipo-form__field">
                 <span>Fecha</span>
-                <input type="text" name="fecha" id="edit-fecha" placeholder="DD/MM" required>
+                <input type="date" name="fecha" id="edit-fecha" required>
             </label>
             <label class="equipo-form__field">
                 <span>Tipo</span>

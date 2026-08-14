@@ -91,13 +91,17 @@ document.addEventListener('DOMContentLoaded', function () {
         const titulo = document.getElementById('edit-titulo');
         const contenidos = document.getElementById('edit-contenidos');
         const hito = document.getElementById('edit-hito');
+        const semana = document.getElementById('edit-semana');
+        const form = document.getElementById('edit-clase-form');
 
         const openClase = (btn) => {
+            if (semana) semana.value = btn.dataset.semana || '';
             fecha.value = btn.dataset.fecha || '';
             tipo.value = btn.dataset.tipo || 'Virtual';
             titulo.value = btn.dataset.titulo || '';
             contenidos.value = (btn.dataset.contenidos || '').split(' || ').join('\n');
             hito.value = btn.dataset.hito || '';
+            if (form) form.action = btn.dataset.editUrl || '#';
             claseModal.classList.add('is-open');
             claseModal.setAttribute('aria-hidden', 'false');
         };
