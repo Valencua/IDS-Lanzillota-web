@@ -4,7 +4,7 @@ from datetime import datetime
 
 import requests
 
-from web.constants import API_BASE_URL
+from web.constants import API_BASE_URL, api_headers
 
 logger = logging.getLogger(__name__)
 
@@ -90,7 +90,7 @@ def _agrupar_semanas(clases: list[dict]) -> list[dict]:
 def obtener_semanas() -> list[dict]:
     """Lista el cronograma agrupado por semana, listo para la tabla."""
     try:
-        response = requests.get(f'{API_BASE_URL}/cronograma/clases', timeout=10)
+        response = requests.get(f'{API_BASE_URL}/cronograma/clases', headers=api_headers(), timeout=10)
 
         if response.status_code == 200:
             return _agrupar_semanas(response.json() or [])
@@ -112,7 +112,7 @@ def actualizar_clase(token: str, clase_id: int, datos: dict) -> dict:
         response = requests.put(
             f'{API_BASE_URL}/cronograma/clases/{clase_id}',
             json=datos,
-            headers={'Authorization': f'Bearer {token}'},
+            headers=api_headers({'Authorization': f'Bearer {token}'}),
             timeout=15,
         )
 
@@ -164,7 +164,7 @@ def body_desde_formulario(form) -> dict:
 def descargar_csv() -> dict:
     """Proxy de GET /cronograma/csv: devuelve el archivo tal cual lo arma la API."""
     try:
-        response = requests.get(f'{API_BASE_URL}/cronograma/csv', timeout=15)
+        response = requests.get(f'{API_BASE_URL}/cronograma/csv', headers=api_headers(), timeout=15)
         if response.status_code == 200:
             return {
                 'ok': True,
@@ -190,7 +190,7 @@ def publicar_csv(token: str, archivo) -> dict:
         response = requests.put(
             f'{API_BASE_URL}/cronograma/csv',
             files={'archivo': (archivo.filename, archivo.stream, 'text/csv')},
-            headers={'Authorization': f'Bearer {token}'},
+            headers=api_headers({'Authorization': f'Bearer {token}'}),
             timeout=30,
         )
         unauthorized = _unauthorized(response)

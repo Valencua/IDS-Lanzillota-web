@@ -3,7 +3,7 @@ import logging
 import requests
 import base64
 
-from web.constants import API_BASE_URL
+from web.constants import API_BASE_URL, api_headers
 
 logger = logging.getLogger(__name__)
 
@@ -17,7 +17,7 @@ def obtener_docentes() -> list[dict]:
     Devuelve [] si la API no responde o no hay docentes (204).
     """
     try:
-        response = requests.get(f'{API_BASE_URL}/docentes', timeout=10)
+        response = requests.get(f'{API_BASE_URL}/docentes', headers=api_headers(), timeout=10)
 
         if response.status_code == 200:
             return response.json()
@@ -63,7 +63,7 @@ def crear_docente(token: str, datos: dict) -> dict:
         response = requests.post(
             f'{API_BASE_URL}/docentes',
             json=datos,
-            headers={'Authorization': f'Bearer {token}'},
+            headers=api_headers({'Authorization': f'Bearer {token}'}),
             timeout=15,
         )
 
@@ -89,7 +89,7 @@ def actualizar_docente(token: str, docente_id: int, datos: dict) -> dict:
         response = requests.put(
             f'{API_BASE_URL}/docentes/{docente_id}',
             json=datos,
-            headers={'Authorization': f'Bearer {token}'},
+            headers=api_headers({'Authorization': f'Bearer {token}'}),
             timeout=15,
         )
 
@@ -115,7 +115,7 @@ def eliminar_docente(token: str, docente_id: int) -> dict:
     try:
         response = requests.delete(
             f'{API_BASE_URL}/docentes/{docente_id}',
-            headers={'Authorization': f'Bearer {token}'},
+            headers=api_headers({'Authorization': f'Bearer {token}'}),
             timeout=10,
         )
 

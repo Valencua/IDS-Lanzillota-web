@@ -2,7 +2,7 @@
 import logging
 import requests
 
-from web.constants import API_BASE_URL
+from web.constants import API_BASE_URL, api_headers
 
 logger = logging.getLogger(__name__)
 
@@ -17,6 +17,7 @@ def autenticar(usuario: str, password: str) -> dict:
         response = requests.post(
             f'{API_BASE_URL}/login',
             json={'usuario': usuario, 'password': password},
+            headers=api_headers(),
             timeout=10,
         )
 
