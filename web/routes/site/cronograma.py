@@ -7,4 +7,4 @@ cronograma_bp = Blueprint('cronograma', __name__)
 
 @cronograma_bp.route('/cronograma')
 def index():
-    return render_template('public/cronograma.html', semanas=obtener_semanas())
+    return render_template('site/cronograma.html', semanas=obtener_semanas())
