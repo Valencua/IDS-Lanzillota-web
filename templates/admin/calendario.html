@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}Actualizar calendario · Panel Lanzillotta{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/public.css') }}">
+{% endblock %}
+
+{% block navbar_menu %}
+    <a href="{{ url_for('web.admin.auth.logout') }}" class="navbar__link navbar__link--contacto">Cerrar sesión</a>
+{% endblock %}
+
+{% block content %}
+<section class="login login--top">
+    <div class="admin-card admin-card--wide">
+        <div class="admin-card__top">
+            <a href="{{ url_for('web.admin.panel.index') }}" class="admin-back">Volver a Inicio</a>
+            <h1 class="admin-card__heading">Actualizar calendario</h1>
+        </div>
+        <hr class="login__divider">
+        {% if error %}
+        <p class="login__error">{{ error }}</p>
+        {% endif %}
+
+        <div class="cal-toolbar">
+            <a href="{{ url_for('web.admin.calendario.descargar') }}" class="cal-btn cal-btn--ghost">Descargar actual</a>
+
+            <form class="cal-box" method="POST" action="{{ url_for('web.admin.calendario.index') }}" enctype="multipart/form-data">
+                <label class="cal-drop" for="csv">
+                    <img src="{{ url_for('static', filename='img/calendar2.svg') }}" alt="" class="cal-drop__icon">
+                    <span>
+                        <span class="cal-drop__text">Subir archivo CSV</span>
+                        <span class="cal-drop__name" id="csv-name"></span>
+                    </span>
+                </label>
+                <input type="file" id="csv" name="csv" accept=".csv" hidden required>
+                <button type="submit" class="cal-btn cal-btn--primary">Publicar CSV</button>
+            </form>
+        </div>
+
+        <p class="cal-format">
+            Formato del CSV:
+            <code>semana,fecha,tipo,titulo,descripción1,hito1,descripción2,hito2,…</code>
+            · obligatorios: <code>semana</code>, <code>fecha</code> (<code>DD/MM/AAAA</code>, lunes o miércoles del período) y <code>tipo</code>
+            (<code>Presencial</code> / <code>Virtual</code> / <code>Feriado</code> / <code>Sin clases</code>)
+            · los contenidos van en <strong>pares</strong> <code>descripción, hito</code> (<code>hito</code> = <code>True</code>/<code>False</code>, el texto en rojo)
+            · las fechas del período que no cargues se completan solas como <code>Virtual · A definir</code>
+        </p>
+        <p class="cal-box__warn">Publicar un CSV reemplaza el calendario actual por completo.</p>
+
+        <div class="crono__inner crono__inner--admin">
+            {% set editable = true %}
+            {% if semanas %}
+            {% include 'public/_cronograma_tabla.html' %}
+            {% else %}
+            <p class="cal-box__warn">No hay clases cargadas. Publicá un CSV para crear el calendario.</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<div class="modal" id="edit-clase-modal" aria-hidden="true">
+    <div class="modal__overlay" data-close></div>
+    <div class="modal__box modal__box--wide" role="dialog" aria-modal="true" aria-labelledby="edit-clase-title">
+        <h3 class="modal__title" id="edit-clase-title">Editar clase</h3>
+        <form class="edit-form" id="edit-clase-form" method="POST" action="#">
+            <input type="hidden" name="semana" id="edit-semana">        
+            <label class="equipo-form__field">
+                <span>Fecha</span>
+                <input type="date" name="fecha" id="edit-fecha" required>
+            </label>
+            <label class="equipo-form__field">
+                <span>Tipo</span>
+                <select name="tipo" id="edit-tipo">
+                    <option>Presencial</option>
+                    <option>Virtual</option>
+                    <option>Feriado</option>
+                    <option>Sin clases</option>
+                </select>
+            </label>
+            <label class="equipo-form__field">
+                <span>Título</span>
+                <input type="text" name="titulo" id="edit-titulo">
+            </label>
+            <label class="equipo-form__field">
+                <span>Contenidos (uno por línea)</span>
+                <textarea name="contenidos" id="edit-contenidos" rows="5"></textarea>
+            </label>
+            <div class="equipo-form__field">
+                <span>Hitos</span>
+                <div id="edit-hitos" class="hito-list"></div>
+                <button type="button" class="cal-btn cal-btn--ghost" id="add-hito">+ Agregar hito</button>
+            </div>
+            <div class="modal__actions">
+                <button type="button" class="modal__btn modal__btn--ghost" data-close>Cancelar</button>
+                <button type="submit" class="modal__btn modal__btn--primary">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

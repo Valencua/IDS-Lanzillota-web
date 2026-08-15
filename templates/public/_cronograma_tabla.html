@@ -1,0 +1,53 @@
+<table class="crono-table">
+    <thead>
+        <tr>
+            <th class="crono-table__wk">Semana</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for s in semanas %}
+        <tr>
+            <td class="crono-table__wk">{{ s.semana }}</td>
+            {% for c in s.clases %}
+            <td class="crono-cell">
+                <div class="crono-class {% if c.tipo in ['Feriado', 'Sin clases'] %}crono-class--muted{% endif %}">
+                    <div class="crono-class__head">
+                        <span class="crono-class__date">{{ c.fecha }}</span>
+                        <span class="badge badge--{{ c.tipo|lower|replace(' ', '-') }}">{{ c.tipo }}</span>
+                        {% if editable and c.id %}
+                        <button
+                            type="button"
+                            class="icon-btn js-edit-clase"
+                            aria-label="Editar clase"
+                            data-semana="{{ c.semana }}"
+                            data-fecha="{{ c.fecha_iso }}"
+                            data-tipo="{{ c.tipo }}"
+                            data-titulo="{{ c.titulo or '' }}"
+                            data-contenidos="{{ (c.contenidos or [])|join(' || ') }}"
+                            data-hitos="{{ (c.hitos or [])|join(' || ') }}"
+                            data-edit-url="{{ url_for('web.admin.calendario.editar', clase_id=c.id) }}"
+                        >
+                            <img src="{{ url_for('static', filename='img/edit.svg') }}" alt="">
+                        </button>
+                        {% endif %}
+                    </div>
+                    {% if c.titulo %}<p class="crono-class__title">{{ c.titulo }}</p>{% endif %}
+                    {% if c.contenidos %}
+                    <ul class="crono-class__list">
+                        {% for item in c.contenidos %}<li>{{ item }}</li>{% endfor %}
+                    </ul>
+                    {% endif %}
+                    
+                    {% for hito in c.hitos or [] %}
+                    <p class="crono-class__hito">{{ hito }}</p>
+                    {% endfor %}
+                </div>
+            </td>
+            {% endfor %}
+            {% if s.clases|length == 1 %}<td class="crono-cell"></td>{% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

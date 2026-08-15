@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block navbar_menu %}{% endblock %}
+
+{% block title %}Login · Panel Lanzillotta{% endblock %}
+
+{% block content %}
+<section class="login">
+    <div class="login__card">
+        <h1 class="login__title">¡Bienvenido al panel!</h1>
+        <p class="login__subtitle">Inicie sesión</p>
+        <hr class="login__divider">
+
+        <form class="login__form" method="POST" action="{{ url_for('web.admin.auth.login') }}">
+            {% if error %}
+            <p class="login__error">{{ error }}</p>
+            {% endif %}
+
+            <label class="login__label" for="usuario">Usuario</label>
+            <div class="login__field">
+                <img src="{{ url_for('static', filename='img/user.svg') }}" alt="" class="login__icon">
+                <input
+                    type="text"
+                    id="usuario"
+                    name="usuario"
+                    class="login__input"
+                    placeholder="Ingrese su usuario"
+                    autocomplete="username"
+                    required
+                >
+            </div>
+
+            <label class="login__label" for="password">Contraseña</label>
+            <div class="login__field">
+                <img src="{{ url_for('static', filename='img/lock.svg') }}" alt="" class="login__icon">
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    class="login__input"
+                    placeholder="Ingrese su contraseña"
+                    autocomplete="current-password"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="login__submit">
+                Ingresar <span class="login__arrow">→</span>
+            </button>
+        </form>
+    </div>
+</section>
+{% endblock %}

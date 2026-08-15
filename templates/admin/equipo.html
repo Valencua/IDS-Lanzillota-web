@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block title %}Actualizar equipo · Panel Lanzillotta{% endblock %}
+
+{% block navbar_menu %}
+    <a href="{{ url_for('web.admin.auth.logout') }}" class="navbar__link navbar__link--contacto">Cerrar sesión</a>
+{% endblock %}
+
+{% block content %}
+<section class="login">
+    <div class="admin-card admin-card--wide">
+        <div class="admin-card__top">
+            <a href="{{ url_for('web.admin.panel.index') }}" class="admin-back">Volver a Inicio</a>
+            <h1 class="admin-card__heading">Actualizar equipo docente</h1>
+        </div>
+        <hr class="login__divider">
+
+        <form class="equipo-form" method="POST" action="{{ url_for('web.admin.equipo.index') }}" enctype="multipart/form-data">
+            <h2 class="equipo-form__title">Agregar docente</h2>
+            {% if error %}
+            <p class="login__error">{{ error }}</p>
+            {% endif %}
+            <div class="equipo-form__row">
+                <label class="equipo-form__field">
+                    <span>Nombre</span>
+                    <input type="text" name="nombre" placeholder="nombre" required>
+                </label>
+                <label class="equipo-form__field">
+                    <span>Apellido</span>
+                    <input type="text" name="apellido" placeholder="apellido" required>
+                </label>
+                <label class="equipo-form__field">
+                    <span>Email</span>
+                    <input type="email" name="email" placeholder="ejemplo@gmail.com">
+                </label>
+                <label class="equipo-form__field">
+                    <span>Rol</span>
+                    <select name="rol">
+                        <option>Profesor</option>
+                        <option selected>Ayudante</option>
+                        <option>Colaborador</option>
+                    </select>
+                </label>
+                <label class="equipo-form__field">
+                    <span>Foto</span>
+                    <label class="equipo-form__file">
+                        <input type="file" name="foto" id="foto" accept="image/*" hidden>
+                        <span id="foto-label">Elegir foto</span>
+                    </label>
+                </label>
+                <button type="submit" class="equipo-form__add">+ Agregar</button>
+            </div>
+        </form>
+
+        <div class="equipo-table">
+            <div class="equipo-table__head">
+                <span>Nombre</span>
+                <span>Rol</span>
+                <span></span>
+            </div>
+            {% for d in docentes %}
+            <div class="equipo-table__row">
+                <span class="equipo-table__name">{{ d.nombre }} {{ d.apellido }}</span>
+                <span class="badge-rol badge-rol--{{ d.rol|lower }}">{{ d.rol }}</span>
+                <span class="equipo-table__actions">
+                    <button
+                        type="button"
+                        class="icon-btn js-edit-docente"
+                        aria-label="Editar"
+                        data-nombre="{{ d.nombre }}"
+                        data-apellido="{{ d.apellido }}"
+                        data-email="{{ d.email or '' }}"
+                        data-rol="{{ d.rol }}"
+                        data-edit-url="{{ url_for('web.admin.equipo.editar', docente_id=d.id) }}"
+                    >
+                        <img src="{{ url_for('static', filename='img/edit.svg') }}" alt="">
+                    </button>
+                    <button
+                        type="button"
+                        class="icon-btn js-delete-docente"
+                        aria-label="Eliminar"
+                        data-nombre="{{ d.nombre }}"
+                        data-apellido="{{ d.apellido }}"
+                        data-delete-url="{{ url_for('web.admin.equipo.eliminar', docente_id=d.id) }}"
+                    >
+                        <img src="{{ url_for('static', filename='img/trash.svg') }}" alt="">
+                    </button>
+                </span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<div class="modal" id="edit-docente-modal" aria-hidden="true">
+    <div class="modal__overlay" data-close></div>
+    <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="edit-title">
+        <h3 class="modal__title" id="edit-title">Editar docente</h3>
+
+        <form class="edit-form" id="edit-docente-form" method="POST" action="#" enctype="multipart/form-data">            <label class="equipo-form__field">
+            <label class="equipo-form__field">
+                <span>Nombre</span>
+                <input type="text" name="nombre" id="edit-nombre" required>
+            </label>
+            <label class="equipo-form__field">
+                <span>Apellido</span>
+                <input type="text" name="apellido" id="edit-apellido" required>
+            </label>
+            <label class="equipo-form__field">
+                <span>Email</span>
+                <input type="email" name="email" id="edit-email">
+            </label>
+            <label class="equipo-form__field">
+                <span>Rol</span>
+                <select name="rol" id="edit-rol">
+                    <option>Profesor</option>
+                    <option>Ayudante</option>
+                    <option>Colaborador</option>
+                </select>
+            </label>
+            <label class="equipo-form__field">
+                <span>Foto</span>
+                <input type="file" name="foto" id="edit-foto" accept="image/*">
+            </label>
+
+            <div class="modal__actions">
+                <button type="button" class="modal__btn modal__btn--ghost" data-close>Cancelar</button>
+                <button type="submit" class="modal__btn modal__btn--primary">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal" id="delete-docente-modal" aria-hidden="true">
+    <div class="modal__overlay" data-close></div>
+    <div class="modal__box modal__box--confirm" role="dialog" aria-modal="true" aria-labelledby="delete-title">
+        <h3 class="modal__title" id="delete-title">Eliminar docente</h3>
+        <p class="modal__text">
+            ¿Querés eliminar a <strong id="delete-docente-nombre"></strong> del equipo?
+            Esta acción no se puede deshacer.
+        </p>
+        <form id="delete-docente-form" method="POST" action="#">
+            <div class="modal__actions">
+                <button type="button" class="modal__btn modal__btn--ghost" data-close>Cancelar</button>
+                <button type="submit" class="modal__btn modal__btn--danger">Eliminar</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

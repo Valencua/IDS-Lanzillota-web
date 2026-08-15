@@ -1,164 +1,7 @@
-@font-face {
-    font-family: "Google Sans Code";
-    src: url("../fonts/GoogleSansCode.ttf") format("truetype");
-    font-weight: 100 900;
-    font-style: normal;
-    font-display: swap;
-}
-
-/* ===== Variables ===== */
-:root {
-    --font-base: "Afacad", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    --font-brand: "Akatab", var(--font-base);
-    --font-code: "DM Mono", "Consolas", "Liberation Mono", monospace;
-    --container: 1200px;
-}
-
-/* ===== Reset ===== */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-    font-family: var(--font-base);
-    color: #1f2937;
-    line-height: 1.5;
-    background: #f4f4f7;
-    font-size: 17px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.content{
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Contenedor centrado reutilizable */
-.navbar__inner,
-.terminal__inner,
-.slack-banner__inner,
-.info__inner {
-    max-width: var(--container);
-    margin: 0 auto;
-    width: 100%;
-    text-decoration: none;
-}
-
-/* ===== Navbar (full-width, sticky, con hamburguesa) ===== */
-.navbar {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: #ffffff;
-    border-bottom: 1px solid #eef0f2;
-}
-
-.navbar__inner {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    padding: 14px 32px;
-}
-
-.navbar__brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    color: inherit;
-    flex-shrink: 0;
-}
-
-.navbar__logo { width: 45px; height: 44px; object-fit: contain; }
-.navbar__brand-text { display: flex; flex-direction: column; line-height: 1.1; }
-
-.navbar__brand-name {
-    font-family: var(--font-brand);   /* Akatab */
-    font-weight: 700;
-    font-size: 18px;
-    color: #1f2937;
-}
-.navbar__brand-sub {
-    font-family: var(--font-brand);   /* Akatab */
-    font-size: 10px;
-    color: #6b7280;
-}
-
-/* Menú */
-.navbar__menu {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-    flex: 1;
-}
-
-.navbar__link {
-    text-decoration: none;
-    color: #374151;
-    font-size: 16px;
-    transition: color 0.15s ease;
-}
-.navbar__link:hover { color: #2563eb; }
-.navbar__link--contacto { margin-left: auto; }   /* Contacto a la derecha */
-
-/* Botón hamburguesa (oculto en desktop) */
-.navbar__toggle-cb { display: none; }
-.navbar__toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 26px;
-    height: 20px;
-    margin-left: auto;
-    cursor: pointer;
-}
-.navbar__toggle span {
-    display: block;
-    height: 3px;
-    width: 100%;
-    background: #1f2937;
-    border-radius: 2px;
-    transition: transform 0.25s ease, opacity 0.2s ease;
-}
-
-/* ===== Mobile ===== */
-@media (max-width: 900px) {
-.navbar__toggle { display: flex; }
-
-.navbar__menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-    background: #ffffff;
-    border-bottom: 1px solid #eef0f2;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
-    padding: 12px 32px 20px;
-}
-
-/* Al tildar el checkbox, se despliega el menú */
-.navbar__toggle-cb:checked ~ .navbar__menu { display: flex; }
-
-.navbar__link {
-    width: 100%;
-    padding: 10px 0;
-    border-bottom: 1px solid #f1f2f4;
-}
-.navbar__link--contacto { margin-left: 0; }
-
-/* Animación hamburguesa -> X */
-.navbar__toggle-cb:checked ~ .navbar__toggle span:nth-child(1) { transform: translateY(8.5px) rotate(45deg); }
-.navbar__toggle-cb:checked ~ .navbar__toggle span:nth-child(2) { opacity: 0; }
-.navbar__toggle-cb:checked ~ .navbar__toggle span:nth-child(3) { transform: translateY(-8.5px) rotate(-45deg); }
-}
+/* ============================================================
+   public.css - Estilos de las paginas publicas
+   (inicio, cursada, cronograma, docentes, material) + 404
+   ============================================================ */
 
 /* ===== Hero terminal (full-bleed) ===== */
 .terminal {
@@ -179,6 +22,8 @@ body {
 .terminal__out { color: #FFFFFF; }
 .terminal__ok { color: #47FF3D; font-weight: 700; }
 .terminal__cursor { animation: blink 1s step-end infinite; }
+.terminal__link { color: #6D9FCF; text-decoration: underline; }
+.terminal__link:hover { color: #47FF3D; }
 
 @keyframes blink { 50% { opacity: 0; } }
 
@@ -255,25 +100,16 @@ body {
 .link-card__accent--drive    { color: #EBB12D; }
 .link-card__accent--meet     { color: #507CEB; }
 
-/* ===== Responsive ===== */
+/* ===== Responsive (publico) ===== */
 @media (max-width: 900px) {
-    .navbar__inner { flex-wrap: wrap; gap: 16px; }
-    .navbar__nav { order: 3; width: 100%; gap: 18px; flex-wrap: wrap; }
-    .navbar__end { margin-left: auto; }
     .links { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 560px) {
-    body { font-size: 16px; }
     .links { grid-template-columns: 1fr; }
     .slack-banner__inner { flex-direction: column; text-align: center; }
     .terminal__inner { font-size: 13px; padding: 32px 20px; }
 }
-
-
-/* ===== Link activo del navbar ===== */
-.navbar__link--active { color: #2f80c9; font-weight: 600; }
-
 /* ===== Página Cursada ===== */
 .cursada {
     flex: 1;   /* ocupa el alto sobrante (sticky footer) */
@@ -522,7 +358,7 @@ body {
     font-size: 14px;
     line-height: 1.5;
 }
-.crono-class__entrega { color: #c0392b; font-weight: 600; font-size: 14px; margin-top: 8px; }
+.crono-class__hito { color: #c0392b; font-weight: 600; font-size: 14px; margin-top: 6px; }
 .crono-class--muted .crono-class__title,
 .crono-class--muted { color: #9aa3af; }
 
@@ -536,8 +372,7 @@ body {
 }
 .badge--presencial { background: #cfe4fb; color: #1f5fa6; }
 .badge--virtual { background: #0b2440; color: #ffffff; }
-.badge--feriado,
-.badge--sin-clases { background: #e5e7eb; color: #6b7280; }
+.badge--feriado, .badge--sin-clases { background: #e5e7eb; color: #6b7280; }
 
 @media (max-width: 640px) {
     .crono__inner {
@@ -618,15 +453,21 @@ body {
 
 .docentes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));  /* se acomoda solo */
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 47px;
 }
 .docente-card {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 4;
+    row-gap: 6px;
+    justify-items: center;
+    align-items: center;
     background: #122F4A;
     border: 2px solid rgba(200, 222, 245, 0.9);
     box-shadow: 0 0 16px rgba(140, 185, 235, 0.40);
     border-radius: 14px;
-    padding: 37px 18px;
+    padding: 20px 18px;
     text-align: center;
     transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
@@ -636,21 +477,47 @@ body {
 }
 .docente-card__photo {
     display: block;
-    width: auto;
+    width: 132px;
     height: 132px;
+    aspect-ratio: 1;
     border-radius: 50%;
     object-fit: cover;
-    margin: 0 auto 16px;
-    background: #1c3350;      /* placeholder mientras no cargues la foto */
+    object-position: center;
+    margin: 0 0 10px;
+    background: #1c3350;
     border: 3px solid rgba(120, 170, 220, 0.25);
 }
 
-.docente-card__name { color: #ffffff; font-weight: 700; font-size: 19px; margin-bottom: 4px; }
-.docente-card__role { color: #9db8d6; font-size: 20px; }
+.docente-card__name,
+.docente-card__role,
+.docente-card__email {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+}
+
+.docente-card__name {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 1.25;
+}
+.docente-card__role {
+    color: #9db8d6;
+    font-size: 20px;
+    line-height: 1.3;
+}
+.docente-card__email {
+    color: #7eb3e0;
+    font-size: 13px;
+    line-height: 1.35;
+    word-break: break-word;
+    margin-top: -10px;
+}
 
 @media (max-width: 560px) {
-    .docentes-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; }
-    .docente-card__photo {height: 108px; }
+    .docentes-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
+    .docente-card__photo { width: 108px; height: 108px; }
 }
 
 /* ===== Material adicional ===== */
