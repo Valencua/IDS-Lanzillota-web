@@ -85,6 +85,25 @@
 
 .login__input::placeholder { color: #9ca3af; }
 
+.login__toggle-pass {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 6px;
+}
+.login__toggle-pass:hover { background: #e5e7eb; }
+.login__toggle-pass .login__icon {
+    height: 22px;
+    width: auto;
+}
+
 .login__submit {
     width: 100%;
     margin-top: 8px;
@@ -338,11 +357,33 @@
 }
 
 @media (max-width: 700px) {
+    .login { padding: 24px 12px; }
     .admin-actions { flex-direction: column; align-items: center; }
-    .admin-card__top { grid-template-columns: 1fr; }
-    .admin-back { justify-self: start; }
+    .admin-card,
+    .admin-card--wide {
+        padding: 20px 14px 28px;
+    }
+    .admin-card__top {
+        flex-direction: column;
+        align-items: stretch;
+        min-height: 0;
+        gap: 10px;
+    }
+    .admin-back {
+        position: static;
+        transform: none;
+        width: auto;
+        align-self: flex-start;
+    }
+    .admin-card__heading {
+        font-size: 22px;
+        line-height: 1.25;
+    }
     .equipo-table__head,
     .equipo-table__row { grid-template-columns: 1fr auto auto; }
+    .crono__inner--admin {
+        overflow-x: auto;
+    }
 }
 
 /* ===== Modal editar docente ===== */
@@ -465,6 +506,7 @@
     color: #4b5563;
     line-height: 1.5;
     margin: 0 0 8px;
+    overflow-wrap: anywhere;
 }
 .cal-format code {
     font-family: var(--font-code);
@@ -472,6 +514,9 @@
     background: #f3f4f6;
     padding: 1px 6px;
     border-radius: 4px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .crono__inner--admin {
