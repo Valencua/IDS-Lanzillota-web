@@ -11,9 +11,11 @@ logging.basicConfig(
     format='%(levelname)s - %(name)s - %(message)s'
 )
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 app = Flask(__name__,
-            template_folder='templates',
-            static_folder='static')
+            template_folder=os.path.join(BASE_DIR, 'templates'),
+            static_folder=os.path.join(BASE_DIR, 'static'))
 
 app.json.sort_keys = False
 app.secret_key = os.getenv('SECRET_KEY')
