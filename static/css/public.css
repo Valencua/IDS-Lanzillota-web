@@ -358,7 +358,7 @@
     font-size: 14px;
     line-height: 1.5;
 }
-.crono-class__hito { color: #c0392b; font-weight: 600; font-size: 14px; margin-top: 8px; }
+.crono-class__hito { color: #c0392b; font-weight: 600; font-size: 14px; margin-top: 6px; }
 .crono-class--muted .crono-class__title,
 .crono-class--muted { color: #9aa3af; }
 

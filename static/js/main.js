@@ -98,9 +98,34 @@ document.addEventListener('DOMContentLoaded', function () {
         const tipo = document.getElementById('edit-tipo');
         const titulo = document.getElementById('edit-titulo');
         const contenidos = document.getElementById('edit-contenidos');
-        const hito = document.getElementById('edit-hito');
+        const hitosBox = document.getElementById('edit-hitos');
+        const addHitoBtn = document.getElementById('add-hito');
         const semana = document.getElementById('edit-semana');
         const form = document.getElementById('edit-clase-form');
+
+        const addHitoInput = (valor, focus) => {
+            if (!hitosBox) return;
+            const row = document.createElement('div');
+            row.className = 'hito-row';
+
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.name = 'hito';
+            input.value = valor || '';
+            input.placeholder = 'Entrega, defensa, clase obligatoria…';
+
+            const quitar = document.createElement('button');
+            quitar.type = 'button';
+            quitar.className = 'icon-btn';
+            quitar.setAttribute('aria-label', 'Quitar hito');
+            quitar.textContent = '×';
+            quitar.addEventListener('click', () => row.remove());
+
+            row.appendChild(input);
+            row.appendChild(quitar);
+            hitosBox.appendChild(row);
+            if (focus) input.focus();
+        };
 
         const openClase = (btn) => {
             if (semana) semana.value = btn.dataset.semana || '';
@@ -108,7 +133,15 @@ document.addEventListener('DOMContentLoaded', function () {
             tipo.value = btn.dataset.tipo || 'Virtual';
             titulo.value = btn.dataset.titulo || '';
             contenidos.value = (btn.dataset.contenidos || '').split(' || ').join('\n');
-            hito.value = btn.dataset.hito || '';
+            if (hitosBox) {
+                hitosBox.innerHTML = '';
+                const items = (btn.dataset.hitos || '').split(' || ').map((s) => s.trim()).filter(Boolean);
+                if (items.length) {
+                    items.forEach((item) => addHitoInput(item));
+                } else {
+                    addHitoInput('');
+                }
+            }
             if (form) form.action = btn.dataset.editUrl || '#';
             claseModal.classList.add('is-open');
             claseModal.setAttribute('aria-hidden', 'false');
@@ -118,6 +151,9 @@ document.addEventListener('DOMContentLoaded', function () {
             claseModal.setAttribute('aria-hidden', 'true');
         };
 
+        if (addHitoBtn) {
+            addHitoBtn.addEventListener('click', () => addHitoInput('', true));
+        }
         document.querySelectorAll('.js-edit-clase').forEach((btn) => {
             btn.addEventListener('click', () => openClase(btn));
         });

@@ -86,10 +86,11 @@
                 <span>Contenidos (uno por línea)</span>
                 <textarea name="contenidos" id="edit-contenidos" rows="5"></textarea>
             </label>
-            <label class="equipo-form__field">
-                <span>Hito</span>
-                <input type="text" name="hito" id="edit-hito">
-            </label>
+            <div class="equipo-form__field">
+                <span>Hitos</span>
+                <div id="edit-hitos" class="hito-list"></div>
+                <button type="button" class="cal-btn cal-btn--ghost" id="add-hito">+ Agregar hito</button>
+            </div>
             <div class="modal__actions">
                 <button type="button" class="modal__btn modal__btn--ghost" data-close>Cancelar</button>
                 <button type="submit" class="modal__btn modal__btn--primary">Guardar</button>

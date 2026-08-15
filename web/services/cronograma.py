@@ -69,7 +69,7 @@ def _clase_para_vista(clase: dict) -> dict:
         'tipo': clase.get('tipo') or '',
         'titulo': clase.get('titulo') or '',
         'contenidos': contenidos,
-        'hito': ' · '.join(hitos),
+        'hitos': hitos,
     }
 
 
@@ -143,9 +143,10 @@ def body_desde_formulario(form) -> dict:
         if texto:
             contenidos.append({'texto': texto, 'hito': False})
 
-    hito = (form.get('hito') or '').strip()
-    if hito:
-        contenidos.append({'texto': hito, 'hito': True})
+    for hito in form.getlist('hito'):
+        texto = hito.strip()
+        if texto:
+            contenidos.append({'texto': texto, 'hito': True})
 
     titulo = (form.get('titulo') or '').strip() or None
     semana_raw = (form.get('semana') or '').strip()
