@@ -7,4 +7,4 @@ material_bp = Blueprint('material', __name__)
 
 @material_bp.route('/material-adicional')
 def index():
-    return render_template('public/material.html', enlaces=ENLACES, bibliografia=BIBLIOGRAFIA)
+    return render_template('site/material.html', enlaces=ENLACES, bibliografia=BIBLIOGRAFIA)

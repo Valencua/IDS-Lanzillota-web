@@ -5,4 +5,4 @@ cursada_bp = Blueprint('cursada', __name__)
 
 @cursada_bp.route('/cursada')
 def index():
-    return render_template('public/cursada.html')
+    return render_template('site/cursada.html')

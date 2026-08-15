@@ -7,4 +7,4 @@ docentes_bp = Blueprint('docentes', __name__)
 
 @docentes_bp.route('/docentes')
 def index():
-    return render_template('public/docentes.html', docentes=obtener_docentes())
+    return render_template('site/docentes.html', docentes=obtener_docentes())

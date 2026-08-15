@@ -11,9 +11,9 @@ from web.routes.site.cronograma import cronograma_bp
 from web.routes.site.docentes import docentes_bp
 from web.routes.site.material import material_bp
 
-public_bp = Blueprint('public', __name__)
-public_bp.register_blueprint(home_bp)
-public_bp.register_blueprint(cursada_bp)
-public_bp.register_blueprint(cronograma_bp)
-public_bp.register_blueprint(docentes_bp)
-public_bp.register_blueprint(material_bp)
+site_bp = Blueprint('site', __name__)
+site_bp.register_blueprint(home_bp)
+site_bp.register_blueprint(cursada_bp)
+site_bp.register_blueprint(cronograma_bp)
+site_bp.register_blueprint(docentes_bp)
+site_bp.register_blueprint(material_bp)
