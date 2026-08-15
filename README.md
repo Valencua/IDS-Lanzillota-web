@@ -4,15 +4,32 @@ Página informativa de la cátedra de Lanzillotta de **Introducción al Desarrol
 
 Sitio web desarrollado con **Flask + Jinja**, con las secciones públicas: Inicio, Cursada, Cronograma, Docentes y Material adicional; y un **panel de administración** protegido por login.
 
+Es el frontend del proyecto: los datos dinámicos (docentes, cronograma) y la autenticación del panel se consumen de la API [`ids-api`](https://github.com/fiuba-ids-lanzillotta/ids-api) vía HTTP.
+
 ## Tecnologías
 
-- **Python 3.10+**
+- **Python 3.10+** (en Vercel corre sobre Python 3.12)
 - **Flask 3.0.3** (servidor web y routing)
 - **Jinja2 3.1.2** (motor de templates)
 - **python-dotenv 1.0.1** (carga de variables de entorno)
+- **requests 2.32.3** (cliente HTTP para consumir la API)
 - **HTML + CSS + JavaScript** (sin frameworks de front)
 - Tipografías vía Google Fonts: **Afacad**, **Akatab** y **DM Mono**
 - Deploy en **Vercel**
+
+## Integración con la API (ids-api)
+
+El frontend no tiene base de datos propia: delega en la API `ids-api`. La capa `web/services/`
+encapsula las llamadas HTTP con `requests`:
+
+- **`docentes.py`** → `GET /docentes` para la grilla pública de docentes.
+- **`cronograma.py`** → `GET /cronograma/clases` (vista pública y admin) y las operaciones
+  de administración: editar clase, descargar y publicar el cronograma por CSV.
+- **`auth.py`** → `POST /login` para autenticar el panel (devuelve un **JWT**).
+
+La URL de la API se configura con `API_BASE_URL`. Las lecturas públicas degradan de forma
+segura: si la API no responde, las páginas se renderizan igual (grilla vacía / fallback), sin
+romper. Las operaciones del panel viajan con el token en el header `Authorization: Bearer <token>`.
 
 ## Variables de entorno
 
@@ -116,9 +133,10 @@ El panel vive bajo el prefijo `/admin`. El login (`web/services/auth.py`) delega
 ```
 ids-web/
 ├── app.py                     # Entry point Flask (puerto 5001, logging + errorhandler 404)
-├── requirements.txt           # Dependencias de Python (Flask, Jinja2, python-dotenv)
+├── requirements.txt           # Dependencias de Python (Flask, Jinja2, python-dotenv, requests)
 ├── vercel.json                # Configuración de despliegue en Vercel
 ├── .env.example               # Plantilla de variables de entorno
+├── .gitattributes             # Normaliza los finales de línea de los scripts .sh a LF
 ├── setup_virtualenv.bat/.sh   # Scripts de setup con virtualenv
 ├── setup_pipenv.bat/.sh       # Scripts de setup con pipenv
 ├── README.md
@@ -127,10 +145,15 @@ ids-web/
 │
 ├── web/
 │   ├── __init__.py
-│   ├── constants.py           # Datos de las páginas (semanas, docentes, enlaces, bibliografía)
+│   ├── constants.py           # API_BASE_URL + datos de las páginas (enlaces, bibliografía, etc.)
+│   ├── services/              # Capa de consumo de la API (ids-api) vía requests
+│   │   ├── __init__.py
+│   │   ├── docentes.py        #   GET /docentes
+│   │   ├── cronograma.py      #   GET/PUT cronograma + CSV
+│   │   └── auth.py            #   POST /login (JWT)
 │   └── routes/
 │       ├── __init__.py        # Blueprint principal "web" + registro de sub-blueprints
-│       ├── public/            # Sub-blueprint "public" (una sección por archivo)
+│       ├── site/              # Sub-blueprint "site" (zona pública, una sección por archivo)
 │       │   ├── __init__.py    #   registra home / cursada / cronograma / docentes / material
 │       │   ├── home.py        #   inicio (/)
 │       │   ├── cursada.py     #   /cursada
@@ -147,10 +170,11 @@ ids-web/
 ├── templates/                 # Templates Jinja2
 │   ├── base.html              # Layout base (navbar + bloques comunes)
 │   ├── 404.html               # Página de error 404
-│   ├── public/                # Vistas públicas
+│   ├── site/                  # Vistas públicas
 │   │   ├── inicio.html        # Página de inicio
 │   │   ├── cursada.html       # Contenidos y requisitos de la cursada
 │   │   ├── cronograma.html    # Cronograma de clases
+│   │   ├── _cronograma_tabla.html  # Parcial de la tabla (reutilizado en admin)
 │   │   ├── docentes.html      # Equipo docente
 │   │   └── material.html      # Material adicional (bibliografía y enlaces)
 │   └── admin/                 # Vistas del panel de administración
@@ -160,8 +184,10 @@ ids-web/
 │       └── calendario.html    # Gestión del calendario
 │
 └── static/
-    ├── css/
-    │   └── styles.css         # Estilos de todo el sitio
+    ├── css/                   # Estilos modularizados
+    │   ├── common.css         #   base, navbar y layout (se carga siempre)
+    │   ├── public.css         #   estilos de la zona pública + 404
+    │   └── admin.css          #   estilos del panel de administración
     ├── js/
     │   └── main.js            # Interacciones del front (menú, modal, etc.)
     └── img/                   # Imágenes, íconos SVG y patrones
@@ -170,3 +196,18 @@ ids-web/
         ├── *.svg              # Íconos (slack, whatsapp, youtube, drive, meet, etc.)
         └── docentes/          # Fotos de los docentes
 ```
+
+## Despliegue en Vercel
+
+Vercel detecta la app con **zero-config**: busca la instancia `app` de Flask en `app.py` y
+lee `requirements.txt`. El `vercel.json` solo configura la función (`maxDuration`) e incluye
+todos los archivos en el bundle con `includeFiles: "**"` (para empaquetar templates, estáticos
+y los paquetes de `web/`).
+
+Antes de desplegar, configurá las **variables de entorno** en el dashboard de Vercel
+(Settings → Environment Variables): `SECRET_KEY` y `API_BASE_URL` (apuntando a la API
+desplegada, no a `localhost`).
+
+> **Nota:** Vercel excluye del bundle de las funciones Python cualquier carpeta llamada
+> `public` (la trata como assets estáticos). Por eso la zona pública se llama `site` (módulo
+> `web/routes/site` y `templates/site`), evitando ese nombre reservado.
