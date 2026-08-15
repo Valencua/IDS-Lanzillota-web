@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}Cursada · Lanzillotta{% endblock %}
+
+{% block content %}
+<section class="cursada">
+    <div class="cursada__inner">
+
+        {# ===== Card de contenidos ===== #}
+        <div class="contenidos-card">
+            <h2 class="contenidos-card__title">A lo largo de la cursada desarrollaremos los siguientes contenidos</h2>
+
+            <div class="contenidos-card__cols">
+                <ul class="contenidos-list">
+                    <li>Nociones básicas de Ingeniería de Software</li>
+                    <li>Terminal y Comandos Básicos</li>
+                    <li>Sistemas Operativos Linux</li>
+                    <li>Entorno de Programación</li>
+                    <li>Shell-Scripting</li>
+                </ul>
+                <ul class="contenidos-list">
+                    <li>Front-End, Back-End y Frameworks</li>
+                    <li>Docker, Containerizacion</li>
+                    <li>Depuración (debugging)</li>
+                    <li>Control de Versiones</li>
+                    <li>Bases de Datos</li>
+                </ul>
+            </div>
+
+            <div class="contenidos-card__mascota">
+                <img src="{{ url_for('static', filename='img/linux.png') }}" alt="Linux">
+            </div>
+        </div>
+
+        {# ===== Requisitos ===== #}
+        <div class="requisitos">
+
+            <div class="requisitos__col requisitos__col--regularizar">
+                <h3 class="requisitos__title requisitos__title--reg">
+                    <img src="{{ url_for('static', filename='img/cap.svg') }}" alt="" class="requisitos__icon">
+                    <span>Requisitos para <strong>regularizar</strong> la materia:</span>
+                </h3>
+                <div class="req-cards">
+                    <div class="req-card">
+                        <h4 class="req-card__title">Asistencia</h4>
+                        <img src="{{ url_for('static', filename='img/asistencia.svg') }}" alt="" class="req-card__icon">
+                        <p class="req-card__text">Haber asistido a por lo menos 3 de las 4 clases presenciales <strong>obligatorias</strong></p>
+                    </div>
+                    <div class="req-card">
+                        <h4 class="req-card__title">Aprobar TP</h4>
+                        <img src="{{ url_for('static', filename='img/tp.svg') }}" alt="" class="req-card__icon">
+                        <p class="req-card__text">Aprobar el <strong>Trabajo Práctico Grupal</strong> (nota grupal e individual)</p>
+                    </div>
+                    <div class="req-card">
+                        <h4 class="req-card__title">Aprobar Parcial</h4>
+                        <img src="{{ url_for('static', filename='img/parcial.svg') }}" alt="" class="req-card__icon">
+                        <p class="req-card__text">Aprobar el <strong>Parcial</strong> y <strong>Final</strong> (en alguna de sus tres instancias)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="requisitos__col requisitos__col--promociona">
+                <h3 class="requisitos__title requisitos__title--prom">
+                    <span>La materia se <strong>promociona</strong> sí y sólo si:</span>
+                </h3>                
+                <div class="req-cards">
+                    <div class="req-card">
+                        <h4 class="req-card__title">Nota Parcial</h4>
+                        <p class="req-card__text">Nota Parcial ó 1er Recuperatorio <strong>&gt;= 5.5</strong> (el 2do Recuperatorio no promociona)</p>
+                    </div>
+                    <div class="req-card">
+                        <h4 class="req-card__title">Nota TP</h4>
+                        <p class="req-card__text">Nota Defensa Oral Individual Trabajo Práctico <strong>&gt;= 7</strong></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Material adicional · Lanzillotta{% endblock %}
+
+{% block content %}
+<section class="material">
+    <div class="material__card">
+        <h2 class="material__heading">
+            <img src="{{ url_for('static', filename='img/biblio.svg') }}" alt="" class="material__heading-icon">
+            Bibliografía utilizada
+        </h2>
+        <ul class="material__links">
+            {% for item in bibliografia %}
+            <li><aclass="material__link" target="_blank" rel="noopener">{{ item.texto }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <h2 class="material__heading">
+            <img src="{{ url_for('static', filename='img/pin.svg') }}" alt="" class="material__heading-icon">
+            Enlaces de utilidad
+        </h2>
+        <ul class="material__links">
+            {% for item in enlaces %}
+            <li><a href="{{ item.url }}" class="material__link" target="_blank" rel="noopener">{{ item.texto }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <a href="https://github.com/fiuba-ids-lanzillotta" class="repo-btn" target="_blank" rel="noopener">
+        <img src="{{ url_for('static', filename='img/repo.svg') }}" alt="Repositorio de la cátedra">
+    </a>
+</section>
+{% endblock %}

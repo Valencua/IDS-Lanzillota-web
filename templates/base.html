@@ -4,19 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Lanzillotta · Introducción al Desarrollo de Software{% endblock %}</title>
-    
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/logo.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Afacad:wght@400;500;600;700&family=Akatab:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+    {% if request.blueprint and 'admin' in request.blueprint.split('.') %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    {% else %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/public.css') }}">
+    {% endif %}
     {% block head %}{% endblock %}
 </head>
 <body>
     <header class="navbar">
         <div class="navbar__inner">
-            <a href="{{ url_for('web.index.index') }}" class="navbar__brand">
-                {# Insertá acá el SVG/imagen del logo #}
+            <a href="{{ url_for('web.public.home.index') }}" class="navbar__brand">
                 <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo Lanzillotta" class="navbar__logo">
                 <span class="navbar__brand-text">
                     <span class="navbar__brand-name">Lanzillotta</span>
@@ -24,24 +28,27 @@
                 </span>
             </a>
 
-            {# Checkbox oculto que controla el menú (truco CSS-only) #}
+            {% block navbar_menu %}
             <input type="checkbox" id="nav-toggle" class="navbar__toggle-cb">
             <label for="nav-toggle" class="navbar__toggle" aria-label="Abrir menú">
                 <span></span><span></span><span></span>
             </label>
 
             <nav class="navbar__menu">
-                <a href="#" class="navbar__link">Cursada</a>
-                <a href="#" class="navbar__link">Cronograma</a>
-                <a href="#" class="navbar__link">Docentes</a>
-                <a href="#" class="navbar__link">Material adicional</a>
-                <a href="#" class="navbar__link navbar__link--contacto">Contacto</a>
+                <a href="{{ url_for('web.public.cursada.index') }}"
+                class="navbar__link {% if request.endpoint == 'web.public.cursada.index' %}navbar__link--active{% endif %}">Cursada</a>
+                <a href="{{ url_for('web.public.cronograma.index') }}" class="navbar__link {% if request.endpoint == 'web.public.cronograma.index' %}navbar__link--active{% endif %}">Cronograma</a>
+                <a href="{{ url_for('web.public.docentes.index') }}" class="navbar__link {% if request.endpoint == 'web.public.docentes.index' %}navbar__link--active{% endif %}">Docentes</a>
+                <a href="{{ url_for('web.public.material.index') }}" class="navbar__link {% if request.endpoint == 'web.public.material.index' %}navbar__link--active{% endif %}">Material adicional</a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=introfiuba@gmail.com" class="navbar__link navbar__link--contacto" target="_blank" rel="noopener">Contacto</a>
             </nav>
+            {% endblock %}
         </div>
     </header>
 
     <main class="content">
         {% block content %}{% endblock %}
     </main>
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
 </body>
 </html>

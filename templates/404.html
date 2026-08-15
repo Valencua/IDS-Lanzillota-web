@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}404 · Página no encontrada{% endblock %}
+
+{% block content %}
+    <section class="terminal">
+        <div class="terminal__inner">
+            <p class="terminal__line">
+                <span class="terminal__prompt">bruno@lanzillotta:<span class="terminal__tilde">~</span>$</span> cat {{ request.path }}
+            </p>
+            <p class="terminal__line terminal__out">
+                bash: {{ request.path }}: No existe el archivo o directorio (404)
+            </p>
+            <p class="terminal__line">&nbsp;</p>
+            <p class="terminal__line terminal__out">
+                {{ error.description if error and error.description else 'La página que buscás no existe o fue movida.' }}
+            </p>
+            <p class="terminal__line">&nbsp;</p>
+            <p class="terminal__line">
+                <span class="terminal__prompt">bruno@lanzillotta:<span class="terminal__tilde">~</span>$</span>
+                <a href="{{ url_for('web.public.home.index') }}" class="terminal__link">cd ~/inicio</a>
+                <span class="terminal__cursor">_</span>
+            </p>
+        </div>
+    </section>
+{% endblock %}
