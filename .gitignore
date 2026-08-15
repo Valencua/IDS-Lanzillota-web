@@ -89,10 +89,10 @@ ipython_config.py
 
 # pipenv
 #   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-# Pipfile.lock
+#   However, en este proyecto el Pipfile lo generan los scripts de setup a partir de
+#   requirements.txt (que es la fuente de verdad), así que se ignoran ambos.
+Pipfile
+Pipfile.lock
 
 # UV
 #   Similar to Pipfile.lock, it is generally recommended to include uv.lock in version control.
