@@ -47,6 +47,7 @@ copy .env.example .env
 |------------------|--------------------------------------------------------------------------------|
 | `SECRET_KEY`     | Clave usada por Flask para firmar las sesiones. Debe ser aleatoria.            |
 | `API_BASE_URL`   | URL base de la API (ids-api). Opcional (default `http://localhost:5000/ids_api`). |
+| `API_KEY`        | Key para consumir ids-api; se envía como header `X-API-Key`. Debe coincidir con la `API_KEY` del backend. Vacío si la API es pública. |
 
 > Las credenciales del panel de administración **ya no viven en el frontend**: el
 > login se valida contra la API (ids-api), que las guarda en su propio `.env`.
@@ -145,7 +146,7 @@ ids-web/
 │
 ├── web/
 │   ├── __init__.py
-│   ├── constants.py           # API_BASE_URL + datos de las páginas (enlaces, bibliografía, etc.)
+│   ├── constants.py           # API_BASE_URL, API_KEY/api_headers + datos de las páginas (enlaces, etc.)
 │   ├── services/              # Capa de consumo de la API (ids-api) vía requests
 │   │   ├── __init__.py
 │   │   ├── docentes.py        #   GET /docentes
@@ -205,8 +206,8 @@ todos los archivos en el bundle con `includeFiles: "**"` (para empaquetar templa
 y los paquetes de `web/`).
 
 Antes de desplegar, configurá las **variables de entorno** en el dashboard de Vercel
-(Settings → Environment Variables): `SECRET_KEY` y `API_BASE_URL` (apuntando a la API
-desplegada, no a `localhost`).
+(Settings → Environment Variables): `SECRET_KEY`, `API_BASE_URL` (apuntando a la API
+desplegada, no a `localhost`) y, si el backend la exige, `API_KEY` (misma clave que en ids-api).
 
 > **Nota:** Vercel excluye del bundle de las funciones Python cualquier carpeta llamada
 > `public` (la trata como assets estáticos). Por eso la zona pública se llama `site` (módulo
