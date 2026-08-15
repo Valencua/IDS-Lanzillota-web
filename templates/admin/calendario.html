@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block navbar_menu %}
-    <a href="{{ url_for('web.admin.auth.logout') }}" class="navbar__link navbar__link--contacto">Cerrar sesión</a>
+    <a href="{{ url_for('web.admin.auth.logout') }}" class="navbar__link navbar__link--contacto navbar__logout">Cerrar sesión</a>
 {% endblock %}
 
 {% block content %}
@@ -61,7 +61,7 @@
 
 <div class="modal" id="edit-clase-modal" aria-hidden="true">
     <div class="modal__overlay" data-close></div>
-    <div class="modal__box modal__box--wide" role="dialog" aria-modal="true" aria-labelledby="edit-clase-title">
+    <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="edit-clase-title">
         <h3 class="modal__title" id="edit-clase-title">Editar clase</h3>
         <form class="edit-form" id="edit-clase-form" method="POST" action="#">
             <input type="hidden" name="semana" id="edit-semana">        
