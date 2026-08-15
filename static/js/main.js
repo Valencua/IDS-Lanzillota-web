@@ -164,4 +164,18 @@ document.addEventListener('DOMContentLoaded', function () {
             if (e.key === 'Escape') closeClase();
         });
     }
+
+    const password = document.getElementById('password');
+    const togglePass = document.getElementById('toggle-password');
+    if (password && togglePass) {
+        togglePass.addEventListener('click', () => {
+        const visible = password.type === 'text';
+        password.type = visible ? 'password' : 'text';
+        togglePass.setAttribute('aria-label', visible ? 'Mostrar contraseña' : 'Ocultar contraseña');
+        const eyeOpen = togglePass.querySelector('.login__eye--open');
+        const eyeShut = togglePass.querySelector('.login__eye--shut');
+        if (eyeOpen) eyeOpen.hidden = !visible;
+        if (eyeShut) eyeShut.hidden = visible;
+    });
+    }
 });
