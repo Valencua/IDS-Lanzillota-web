@@ -5,11 +5,11 @@ sección en su propio archivo.
 """
 from flask import Blueprint
 
-from web.routes.public.home import home_bp
-from web.routes.public.cursada import cursada_bp
-from web.routes.public.cronograma import cronograma_bp
-from web.routes.public.docentes import docentes_bp
-from web.routes.public.material import material_bp
+from web.routes.publico.home import home_bp
+from web.routes.publico.cursada import cursada_bp
+from web.routes.publico.cronograma import cronograma_bp
+from web.routes.publico.docentes import docentes_bp
+from web.routes.publico.material import material_bp
 
 public_bp = Blueprint('public', __name__)
 public_bp.register_blueprint(home_bp)

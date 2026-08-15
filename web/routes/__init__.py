@@ -1,5 +1,5 @@
 from flask import Blueprint
-from web.routes.public import public_bp
+from web.routes.publico import public_bp
 from web.routes.admin import admin_bp
 
 web_bp = Blueprint('web', __name__)
