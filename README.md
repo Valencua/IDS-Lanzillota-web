@@ -186,7 +186,7 @@ ids-web/
 └── static/
     ├── css/                   # Estilos modularizados
     │   ├── common.css         #   base, navbar y layout (se carga siempre)
-    │   ├── public.css         #   estilos de la zona pública + 404
+    │   ├── site.css           #   estilos de la zona pública + 404
     │   └── admin.css          #   estilos del panel de administración
     ├── js/
     │   └── main.js            # Interacciones del front (menú, modal, etc.)
