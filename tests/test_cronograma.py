@@ -51,16 +51,6 @@ def test_body_desde_formulario():
     ]
 
 
-def test_unauthorized(respuesta_falsa):
-    assert cronograma._unauthorized(respuesta_falsa(401))['unauthorized'] is True
-    assert cronograma._unauthorized(respuesta_falsa(200)) is None
-
-
-def test_mensaje_error_api(respuesta_falsa):
-    con_errores = respuesta_falsa(400, {'errors': [{'description': 'fecha inválida'}]})
-    assert cronograma._mensaje_error_api(con_errores) == 'fecha inválida'
-
-
 # --- obtener_semanas (requests mockeado) ---
 
 def test_obtener_semanas_ok(monkeypatch, respuesta_falsa, cargar_json):

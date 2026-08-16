@@ -32,8 +32,10 @@ def autenticar(usuario: str, password: str) -> dict:
 
     except requests.exceptions.ConnectionError:
         logger.error(f"No se pudo conectar con la API en {API_BASE_URL}")
+        
         return {'ok': False, 'error': 'No se pudo conectar con el servidor. Intentá más tarde.'}
 
     except Exception as error:
         logger.error(f"Error al autenticar: {error}")
+
         return {'ok': False, 'error': 'Ocurrió un error al iniciar sesión.'}

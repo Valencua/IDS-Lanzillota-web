@@ -22,6 +22,14 @@ def admin_required(view):
     return wrapped
 
 
+def redirigir_a_login_sin_sesion():
+    """Limpia la sesión y redirige al login (p. ej. cuando la API responde 401/403)."""
+    session.pop('token', None)
+    session.pop('usuario', None)
+
+    return redirect(url_for('web.admin.auth.login'))
+
+
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if session.get('token'):
@@ -46,6 +54,4 @@ def login():
 
 @auth_bp.route('/logout')
 def logout():
-    session.pop('token', None)
-    session.pop('usuario', None)
-    return redirect(url_for('web.admin.auth.login'))
+    return redirigir_a_login_sin_sesion()

@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session, Response
 
-from web.routes.admin.auth import admin_required
+from web.routes.admin.auth import admin_required, redirigir_a_login_sin_sesion
 from web.services.cronograma import (
     obtener_semanas,
     actualizar_clase,
@@ -12,11 +12,9 @@ from web.services.cronograma import (
 calendario_bp = Blueprint('calendario', __name__)
 
 
-def _si_no_autorizado(resultado):
+def _redireccion_si_no_autorizado(resultado):
     if resultado.get('unauthorized'):
-        session.pop('token', None)
-        session.pop('usuario', None)
-        return redirect(url_for('web.admin.auth.login'))
+        return redirigir_a_login_sin_sesion()
     return None
 
 
@@ -27,9 +25,9 @@ def index():
 
     if request.method == 'POST':
         resultado = publicar_csv(session.get('token'), request.files.get('csv'))
-        redir = _si_no_autorizado(resultado)
-        if redir:
-            return redir
+        redireccion = _redireccion_si_no_autorizado(resultado)
+        if redireccion:
+            return redireccion
         if resultado.get('ok'):
             return redirect(url_for('web.admin.calendario.index'))
         error = resultado.get('error')
@@ -49,9 +47,9 @@ def editar(clase_id):
         clase_id,
         body_desde_formulario(request.form),
     )
-    redir = _si_no_autorizado(resultado)
-    if redir:
-        return redir
+    redireccion = _redireccion_si_no_autorizado(resultado)
+    if redireccion:
+        return redireccion
 
     if resultado.get('ok'):
         return redirect(url_for('web.admin.calendario.index'))
