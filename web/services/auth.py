@@ -22,8 +22,8 @@ def autenticar(usuario: str, password: str) -> dict:
         )
 
         if response.status_code == 200:
-            data = response.json()
-            return {'ok': True, 'token': data['token'], 'usuario': data['usuario']}
+            datos = response.json()
+            return {'ok': True, 'token': datos['token'], 'usuario': datos['usuario']}
 
         if response.status_code == 401:
             return {'ok': False, 'error': 'Usuario o contraseña incorrectos.'}
@@ -34,6 +34,6 @@ def autenticar(usuario: str, password: str) -> dict:
         logger.error(f"No se pudo conectar con la API en {API_BASE_URL}")
         return {'ok': False, 'error': 'No se pudo conectar con el servidor. Intentá más tarde.'}
 
-    except Exception as e:
-        logger.error(f"Error al autenticar: {e}")
+    except Exception as error:
+        logger.error(f"Error al autenticar: {error}")
         return {'ok': False, 'error': 'Ocurrió un error al iniciar sesión.'}
