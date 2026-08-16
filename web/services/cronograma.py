@@ -28,14 +28,13 @@ def _clase_para_vista(clase: dict) -> dict:
         if isinstance(contenido, str):
             if contenido.strip():
                 contenidos.append(contenido.strip())
-            continue
-        texto = str(contenido.get('texto') or '').strip()
-        if not texto:
-            continue
-        if contenido.get('hito'):
-            hitos.append(texto)
         else:
-            contenidos.append(texto)
+            texto = str(contenido.get('texto') or '').strip()
+            
+            if texto and contenido.get('hito'):
+                hitos.append(texto)
+            elif texto:
+                contenidos.append(texto)
 
     fecha_iso = clase.get('fecha') or ''
 
@@ -105,10 +104,12 @@ def actualizar_clase(token: str, clase_id: int, datos: dict) -> dict:
 
     except requests.exceptions.ConnectionError:
         logger.error(f"No se pudo conectar con la API en {API_BASE_URL}")
+        
         return {'ok': False, 'error': 'No se pudo conectar con el servidor. Intentá más tarde.'}
 
     except Exception as error:
         logger.error(f"Error al actualizar la clase: {error}")
+        
         return {'ok': False, 'error': 'Ocurrió un error al guardar la clase.'}
 
 
@@ -118,11 +119,13 @@ def body_desde_formulario(form) -> dict:
 
     for linea in (form.get('contenidos') or '').splitlines():
         texto = linea.strip()
+        
         if texto:
             contenidos.append({'texto': texto, 'hito': False})
 
     for hito in form.getlist('hito'):
         texto = hito.strip()
+        
         if texto:
             contenidos.append({'texto': texto, 'hito': True})
 
@@ -153,6 +156,7 @@ def descargar_csv() -> dict:
                     'attachment; filename="cronograma.csv"',
                 ),
             }
+        
         return {'ok': False, 'error': mensaje_error_api(response)}
     except requests.exceptions.ConnectionError:
         logger.error(f"No se pudo conectar con la API en {API_BASE_URL}")
