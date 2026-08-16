@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
 
-from web.routes.admin.auth import admin_required
+from web.routes.admin.auth import admin_required, redirigir_a_login_sin_sesion
 from web.services.docentes import (
     obtener_docentes,
     crear_docente,
@@ -16,9 +16,7 @@ def _resultado_o_redirect(resultado):
         return redirect(url_for('web.admin.equipo.index'))
 
     if resultado.get('unauthorized'):
-        session.pop('token', None)
-        session.pop('usuario', None)
-        return redirect(url_for('web.admin.auth.login'))
+        return redirigir_a_login_sin_sesion()
 
     return None
 
@@ -39,13 +37,9 @@ def index():
             'foto': foto,
         })
 
-        if resultado.get('ok'):
-            return redirect(url_for('web.admin.equipo.index'))
-
-        if resultado.get('unauthorized'):
-            session.pop('token', None)
-            session.pop('usuario', None)
-            return redirect(url_for('web.admin.auth.login'))
+        redireccion = _resultado_o_redirect(resultado)
+        if redireccion:
+            return redireccion
 
         error = resultado.get('error')
 
@@ -67,13 +61,15 @@ def editar(docente_id):
         'rol': request.form.get('rol', '').strip(),
         'email': email,
     }
+    
     if foto:
         datos['foto'] = foto
 
     resultado = actualizar_docente(session.get('token'), docente_id, datos)
-    redir = _resultado_o_redirect(resultado)
-    if redir:
-        return redir
+    redireccion = _resultado_o_redirect(resultado)
+    
+    if redireccion:
+        return redireccion
 
     return render_template(
         'admin/equipo.html',
@@ -86,9 +82,10 @@ def editar(docente_id):
 @admin_required
 def eliminar(docente_id):
     resultado = eliminar_docente(session.get('token'), docente_id)
-    redir = _resultado_o_redirect(resultado)
-    if redir:
-        return redir
+    redireccion = _resultado_o_redirect(resultado)
+    
+    if redireccion:
+        return redireccion
 
     return render_template(
         'admin/equipo.html',

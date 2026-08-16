@@ -50,6 +50,8 @@ Read `AGENTS.md` at the project root first and follow it.
 ## Important rules
 
 - **Do NOT introduce classes** (this project is intentionally functional).
+- **Avoid `break`/`continue`/`pass`** unless strictly necessary or unavoidable (e.g. `pass` in an
+  `except`); prefer clear `if`/`else`.
 - Don't over-engineer.
 
 ## Production review criteria (`web/`)

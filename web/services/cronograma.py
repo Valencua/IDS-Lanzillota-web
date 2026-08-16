@@ -5,32 +5,9 @@ from datetime import datetime
 import requests
 
 from web.constants import API_BASE_URL, api_headers
+from web.services.respuestas_api import mensaje_error_api, respuesta_no_autorizada
 
 logger = logging.getLogger(__name__)
-
-def _mensaje_error_api(response) -> str:
-    try:
-        datos = response.json()
-        errores = datos.get('errors') or []
-        if errores:
-            textos = [
-                error.get('description') or error.get('message') or ''
-                for error in errores
-            ]
-            return ' '.join(texto for texto in textos if texto) or 'Error de validación.'
-    except Exception:
-        pass
-    return f'Error del servidor (HTTP {response.status_code}).'
-
-
-def _unauthorized(response) -> dict | None:
-    if response.status_code in (401, 403):
-        return {
-            'ok': False,
-            'error': 'Sesión expirada. Volvé a iniciar sesión.',
-            'unauthorized': True,
-        }
-    return None
 
 
 def _fecha_iso_a_corta(fecha_iso: str) -> str:
@@ -51,14 +28,13 @@ def _clase_para_vista(clase: dict) -> dict:
         if isinstance(contenido, str):
             if contenido.strip():
                 contenidos.append(contenido.strip())
-            continue
-        texto = str(contenido.get('texto') or '').strip()
-        if not texto:
-            continue
-        if contenido.get('hito'):
-            hitos.append(texto)
         else:
-            contenidos.append(texto)
+            texto = str(contenido.get('texto') or '').strip()
+            
+            if texto and contenido.get('hito'):
+                hitos.append(texto)
+            elif texto:
+                contenidos.append(texto)
 
     fecha_iso = clase.get('fecha') or ''
 
@@ -117,21 +93,23 @@ def actualizar_clase(token: str, clase_id: int, datos: dict) -> dict:
             timeout=15,
         )
 
-        unauthorized = _unauthorized(response)
-        if unauthorized:
-            return unauthorized
+        no_autorizada = respuesta_no_autorizada(response)
+        if no_autorizada:
+            return no_autorizada
 
         if response.status_code == 200:
             return {'ok': True}
 
-        return {'ok': False, 'error': _mensaje_error_api(response)}
+        return {'ok': False, 'error': mensaje_error_api(response)}
 
     except requests.exceptions.ConnectionError:
         logger.error(f"No se pudo conectar con la API en {API_BASE_URL}")
+        
         return {'ok': False, 'error': 'No se pudo conectar con el servidor. Intentá más tarde.'}
 
     except Exception as error:
         logger.error(f"Error al actualizar la clase: {error}")
+        
         return {'ok': False, 'error': 'Ocurrió un error al guardar la clase.'}
 
 
@@ -141,11 +119,13 @@ def body_desde_formulario(form) -> dict:
 
     for linea in (form.get('contenidos') or '').splitlines():
         texto = linea.strip()
+        
         if texto:
             contenidos.append({'texto': texto, 'hito': False})
 
     for hito in form.getlist('hito'):
         texto = hito.strip()
+        
         if texto:
             contenidos.append({'texto': texto, 'hito': True})
 
@@ -166,6 +146,7 @@ def descargar_csv() -> dict:
     """Proxy de GET /cronograma/csv: devuelve el archivo tal cual lo arma la API."""
     try:
         response = requests.get(f'{API_BASE_URL}/cronograma/csv', headers=api_headers(), timeout=15)
+        
         if response.status_code == 200:
             return {
                 'ok': True,
@@ -175,12 +156,15 @@ def descargar_csv() -> dict:
                     'attachment; filename="cronograma.csv"',
                 ),
             }
-        return {'ok': False, 'error': _mensaje_error_api(response)}
+        
+        return {'ok': False, 'error': mensaje_error_api(response)}
     except requests.exceptions.ConnectionError:
         logger.error(f"No se pudo conectar con la API en {API_BASE_URL}")
+        
         return {'ok': False, 'error': 'No se pudo conectar con el servidor. Intentá más tarde.'}
     except Exception as error:
         logger.error(f"Error al descargar el cronograma: {error}")
+        
         return {'ok': False, 'error': 'Ocurrió un error al descargar el calendario.'}
 
 
@@ -188,6 +172,7 @@ def publicar_csv(token: str, archivo) -> dict:
     """Reemplaza el cronograma vía PUT /cronograma/csv (archivo tal cual)."""
     if not archivo or not archivo.filename:
         return {'ok': False, 'error': 'Elegí un archivo CSV para publicar.'}
+    
     try:
         response = requests.put(
             f'{API_BASE_URL}/cronograma/csv',
@@ -195,15 +180,20 @@ def publicar_csv(token: str, archivo) -> dict:
             headers=api_headers({'Authorization': f'Bearer {token}'}),
             timeout=30,
         )
-        unauthorized = _unauthorized(response)
-        if unauthorized:
-            return unauthorized
+        
+        no_autorizada = respuesta_no_autorizada(response)
+        
+        if no_autorizada:
+            return no_autorizada
         if response.status_code == 200:
             return {'ok': True}
-        return {'ok': False, 'error': _mensaje_error_api(response)}
+        
+        return {'ok': False, 'error': mensaje_error_api(response)}
     except requests.exceptions.ConnectionError:
         logger.error(f"No se pudo conectar con la API en {API_BASE_URL}")
+        
         return {'ok': False, 'error': 'No se pudo conectar con el servidor. Intentá más tarde.'}
     except Exception as error:
         logger.error(f"Error al publicar el CSV: {error}")
+        
         return {'ok': False, 'error': 'Ocurrió un error al publicar el calendario.'}

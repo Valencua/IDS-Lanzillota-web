@@ -46,6 +46,8 @@ Los tests cubren funciones puras, los services y las rutas (`test_client`) con `
 ## Code conventions
 
 - **Functional style, no classes.** Data passed to templates as `dict`/`list`.
+- **Avoid `break`/`continue`/`pass`** unless strictly necessary or unavoidable (e.g. `pass` in an
+  `except`); prefer clear `if`/`else`.
 - **Spanish naming, no abbreviations** (self-explanatory variables).
 - **Layers**: `routes` (Flask blueprints, presentation/flow) → `services` (HTTP calls to `ids-api`
   via `requests`). Routes hold no HTTP-client logic; services encapsulate the API calls.

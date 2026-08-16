@@ -4,6 +4,7 @@ import requests
 import base64
 
 from web.constants import API_BASE_URL, api_headers
+from web.services.respuestas_api import mensaje_error_api, respuesta_no_autorizada
 
 logger = logging.getLogger(__name__)
 
@@ -36,26 +37,18 @@ def archivo_a_data_uri(archivo) -> str | None:
         return None
 
     contenido = archivo.read()
+    
     if not contenido:
         return None
 
     mime = archivo.mimetype or 'image/jpeg'
+    
     if mime == 'image/jpg':
         mime = 'image/jpeg'
 
     codificado = base64.b64encode(contenido).decode('ascii')
+    
     return f'data:{mime};base64,{codificado}'
-
-
-def _mensaje_error_api(response) -> str:
-    try:
-        datos = response.json()
-        errores = datos.get('errors') or []
-        if errores:
-            return errores[0].get('description') or errores[0].get('message') or 'Error de validación.'
-    except Exception:
-        pass
-    return f'Error del servidor (HTTP {response.status_code}).'
 
 
 def crear_docente(token: str, datos: dict) -> dict:
@@ -71,17 +64,21 @@ def crear_docente(token: str, datos: dict) -> dict:
         if response.status_code == 201:
             return {'ok': True}
 
-        if response.status_code in (401, 403):
-            return {'ok': False, 'error': 'Sesión expirada. Volvé a iniciar sesión.', 'unauthorized': True}
+        no_autorizada = respuesta_no_autorizada(response)
+        
+        if no_autorizada:
+            return no_autorizada
 
-        return {'ok': False, 'error': _mensaje_error_api(response)}
+        return {'ok': False, 'error': mensaje_error_api(response)}
 
     except requests.exceptions.ConnectionError:
         logger.error(f"No se pudo conectar con la API en {API_BASE_URL}")
+        
         return {'ok': False, 'error': 'No se pudo conectar con el servidor. Intentá más tarde.'}
 
     except Exception as error:
         logger.error(f"Error al crear docente: {error}")
+        
         return {'ok': False, 'error': 'Ocurrió un error al agregar el docente.'}
 
 
@@ -98,17 +95,21 @@ def actualizar_docente(token: str, docente_id: int, datos: dict) -> dict:
         if response.status_code == 200:
             return {'ok': True}
 
-        if response.status_code in (401, 403):
-            return {'ok': False, 'error': 'Sesión expirada. Volvé a iniciar sesión.', 'unauthorized': True}
+        no_autorizada = respuesta_no_autorizada(response)
+        
+        if no_autorizada:
+            return no_autorizada
 
-        return {'ok': False, 'error': _mensaje_error_api(response)}
+        return {'ok': False, 'error': mensaje_error_api(response)}
 
     except requests.exceptions.ConnectionError:
         logger.error(f"No se pudo conectar con la API en {API_BASE_URL}")
+        
         return {'ok': False, 'error': 'No se pudo conectar con el servidor. Intentá más tarde.'}
 
     except Exception as error:
         logger.error(f"Error al actualizar docente: {error}")
+        
         return {'ok': False, 'error': 'Ocurrió un error al guardar el docente.'}
 
 
@@ -124,15 +125,19 @@ def eliminar_docente(token: str, docente_id: int) -> dict:
         if response.status_code == 204:
             return {'ok': True}
 
-        if response.status_code in (401, 403):
-            return {'ok': False, 'error': 'Sesión expirada. Volvé a iniciar sesión.', 'unauthorized': True}
+        no_autorizada = respuesta_no_autorizada(response)
+        
+        if no_autorizada:
+            return no_autorizada
 
-        return {'ok': False, 'error': _mensaje_error_api(response)}
+        return {'ok': False, 'error': mensaje_error_api(response)}
 
     except requests.exceptions.ConnectionError:
         logger.error(f"No se pudo conectar con la API en {API_BASE_URL}")
+        
         return {'ok': False, 'error': 'No se pudo conectar con el servidor. Intentá más tarde.'}
 
     except Exception as error:
         logger.error(f"Error al eliminar docente: {error}")
+        
         return {'ok': False, 'error': 'Ocurrió un error al eliminar el docente.'}
