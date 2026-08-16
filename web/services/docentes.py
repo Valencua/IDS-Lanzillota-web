@@ -24,10 +24,11 @@ def obtener_docentes() -> list[dict]:
 
     except requests.exceptions.ConnectionError:
         logger.error(f"No se pudo conectar con la API en {API_BASE_URL}")
-    except Exception as e:
-        logger.error(f"Error al obtener docentes: {e}")
+    except Exception as error:
+        logger.error(f"Error al obtener docentes: {error}")
 
     return []
+
 
 def archivo_a_data_uri(archivo) -> str | None:
     """Convierte un FileStorage de Flask en data URI base64, o None si está vacío."""
@@ -42,14 +43,14 @@ def archivo_a_data_uri(archivo) -> str | None:
     if mime == 'image/jpg':
         mime = 'image/jpeg'
 
-    encoded = base64.b64encode(contenido).decode('ascii')
-    return f'data:{mime};base64,{encoded}'
+    codificado = base64.b64encode(contenido).decode('ascii')
+    return f'data:{mime};base64,{codificado}'
 
 
 def _mensaje_error_api(response) -> str:
     try:
-        data = response.json()
-        errores = data.get('errors') or []
+        datos = response.json()
+        errores = datos.get('errors') or []
         if errores:
             return errores[0].get('description') or errores[0].get('message') or 'Error de validación.'
     except Exception:
@@ -79,9 +80,10 @@ def crear_docente(token: str, datos: dict) -> dict:
         logger.error(f"No se pudo conectar con la API en {API_BASE_URL}")
         return {'ok': False, 'error': 'No se pudo conectar con el servidor. Intentá más tarde.'}
 
-    except Exception as e:
-        logger.error(f"Error al crear docente: {e}")
+    except Exception as error:
+        logger.error(f"Error al crear docente: {error}")
         return {'ok': False, 'error': 'Ocurrió un error al agregar el docente.'}
+
 
 def actualizar_docente(token: str, docente_id: int, datos: dict) -> dict:
     """Actualiza un docente vía PUT /docentes/<id>."""
@@ -105,8 +107,8 @@ def actualizar_docente(token: str, docente_id: int, datos: dict) -> dict:
         logger.error(f"No se pudo conectar con la API en {API_BASE_URL}")
         return {'ok': False, 'error': 'No se pudo conectar con el servidor. Intentá más tarde.'}
 
-    except Exception as e:
-        logger.error(f"Error al actualizar docente: {e}")
+    except Exception as error:
+        logger.error(f"Error al actualizar docente: {error}")
         return {'ok': False, 'error': 'Ocurrió un error al guardar el docente.'}
 
 
@@ -131,6 +133,6 @@ def eliminar_docente(token: str, docente_id: int) -> dict:
         logger.error(f"No se pudo conectar con la API en {API_BASE_URL}")
         return {'ok': False, 'error': 'No se pudo conectar con el servidor. Intentá más tarde.'}
 
-    except Exception as e:
-        logger.error(f"Error al eliminar docente: {e}")
+    except Exception as error:
+        logger.error(f"Error al eliminar docente: {error}")
         return {'ok': False, 'error': 'Ocurrió un error al eliminar el docente.'}

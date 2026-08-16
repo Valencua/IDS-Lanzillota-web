@@ -6,6 +6,10 @@ Sitio web desarrollado con **Flask + Jinja**, con las secciones públicas: Inici
 
 Es el frontend del proyecto: los datos dinámicos (docentes, cronograma) y la autenticación del panel se consumen de la API [`ids-api`](https://github.com/fiuba-ids-lanzillotta/ids-api) vía HTTP.
 
+## Diseño
+
+El diseño de la interfaz está documentado en Figma: [IDS Lanzillotta — Figma](https://www.figma.com/design/X11aOHxeUYlTzLgACz0suV/IDS-Lanzillota?node-id=21-1692&p=f&t=3JW44ivP5SYLMHsu-0).
+
 ## Tecnologías
 
 - **Python 3.10+** (en Vercel corre sobre Python 3.12)
@@ -110,6 +114,21 @@ python app.py
 
 Una vez iniciada, la web estará disponible en `http://localhost:5001/`.
 
+## Tests
+
+Los tests usan **pytest** y mockean `requests`, así que **no necesitan `ids-api` corriendo** ni red.
+Cubren las funciones puras (armado del cronograma para la vista, parseo del formulario, imagen a
+data URI, headers), los services (respuestas 200 / 401 / error, y degradación ante fallos) y las
+rutas (páginas públicas + `admin_required` + login) vía `test_client`.
+
+Las respuestas de la API se guardan como **mocks JSON** en `tests/resources/json/<dominio>/` y se
+cargan con la fixture `cargar_json` (ver `conftest.py`).
+
+```bash
+pip install -r requirements-dev.txt
+pytest
+```
+
 ## Páginas
 
 | Ruta                   | Acceso   | Descripción                                        |
@@ -135,14 +154,22 @@ El panel vive bajo el prefijo `/admin`. El login (`web/services/auth.py`) delega
 ids-web/
 ├── app.py                     # Entry point Flask (puerto 5001, logging + errorhandler 404)
 ├── requirements.txt           # Dependencias de Python (Flask, Jinja2, python-dotenv, requests)
+├── requirements-dev.txt       # Dependencias de desarrollo (pytest)
 ├── vercel.json                # Configuración de despliegue en Vercel
 ├── .env.example               # Plantilla de variables de entorno
 ├── .gitattributes             # Normaliza los finales de línea de los scripts .sh a LF
 ├── setup_virtualenv.bat/.sh   # Scripts de setup con virtualenv
 ├── setup_pipenv.bat/.sh       # Scripts de setup con pipenv
+├── AGENTS.md                  # Guía para agentes (convenciones, verificación)
+├── .agents/skills/            # Skills del proyecto (code-review, add-page, verify, etc.)
 ├── README.md
 ├── LICENSE
 ├── .gitignore
+│
+├── tests/                     # Tests (pytest); requests mockeado, sin red
+│   └── resources/json/        # Mocks JSON de respuestas de la API, por dominio
+├── conftest.py                # Fixtures compartidas (respuesta_falsa, cargar_json) + env dummy
+├── pytest.ini
 │
 ├── web/
 │   ├── __init__.py

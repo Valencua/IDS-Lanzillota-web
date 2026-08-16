@@ -1,0 +1,122 @@
+[
+  {
+    "id": 3,
+    "nombre": "Bruno",
+    "apellido": "Lanzillotta",
+    "email": null,
+    "rol": "Profesor",
+    "foto": null
+  },
+  {
+    "id": 1,
+    "nombre": "Néstor Fabián",
+    "apellido": "Palavecino Arnold",
+    "email": null,
+    "rol": "Ayudante",
+    "foto": null
+  },
+  {
+    "id": 2,
+    "nombre": "Leonel Abel",
+    "apellido": "Chaves",
+    "email": null,
+    "rol": "Ayudante",
+    "foto": null
+  },
+  {
+    "id": 4,
+    "nombre": "Cristian Martín",
+    "apellido": "Sosa",
+    "email": null,
+    "rol": "Ayudante",
+    "foto": null
+  },
+  {
+    "id": 5,
+    "nombre": "Tomás Ariel",
+    "apellido": "Villegas Cabral",
+    "email": null,
+    "rol": "Ayudante",
+    "foto": null
+  },
+  {
+    "id": 7,
+    "nombre": "Franco Daniel",
+    "apellido": "Capra",
+    "email": null,
+    "rol": "Ayudante",
+    "foto": null
+  },
+  {
+    "id": 8,
+    "nombre": "Tomas Gustavo",
+    "apellido": "Rodriguez",
+    "email": null,
+    "rol": "Ayudante",
+    "foto": null
+  },
+  {
+    "id": 9,
+    "nombre": "Luis Dario",
+    "apellido": "Tejerina",
+    "email": null,
+    "rol": "Ayudante",
+    "foto": null
+  },
+  {
+    "id": 6,
+    "nombre": "Flavio Tomás",
+    "apellido": "Villanueva",
+    "email": null,
+    "rol": "Colaborador",
+    "foto": null
+  },
+  {
+    "id": 10,
+    "nombre": "Tomás",
+    "apellido": "Galluccio Antnuez",
+    "email": null,
+    "rol": "Colaborador",
+    "foto": null
+  },
+  {
+    "id": 11,
+    "nombre": "Valentina",
+    "apellido": "Grobly",
+    "email": null,
+    "rol": "Colaborador",
+    "foto": null
+  },
+  {
+    "id": 12,
+    "nombre": "Camila Belén",
+    "apellido": "Lo Iacono",
+    "email": null,
+    "rol": "Colaborador",
+    "foto": null
+  },
+  {
+    "id": 13,
+    "nombre": "Sofía",
+    "apellido": "Toledo",
+    "email": null,
+    "rol": "Colaborador",
+    "foto": null
+  },
+  {
+    "id": 14,
+    "nombre": "Nicolás Ángel",
+    "apellido": "Garofalo",
+    "email": null,
+    "rol": "Colaborador",
+    "foto": null
+  },
+  {
+    "id": 15,
+    "nombre": "Carolina",
+    "apellido": "Di Matteo",
+    "email": null,
+    "rol": "Colaborador",
+    "foto": null
+  }
+]

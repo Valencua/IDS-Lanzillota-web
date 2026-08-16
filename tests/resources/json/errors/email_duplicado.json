@@ -1,0 +1,10 @@
+{
+  "errors": [
+    {
+      "code": "email.duplicated",
+      "message": "Email duplicado",
+      "level": "error",
+      "description": "El email ya está en uso por otro docente."
+    }
+  ]
+}

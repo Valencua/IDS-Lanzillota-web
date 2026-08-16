@@ -10,14 +10,14 @@ logger = logging.getLogger(__name__)
 
 def _mensaje_error_api(response) -> str:
     try:
-        data = response.json()
-        errores = data.get('errors') or []
+        datos = response.json()
+        errores = datos.get('errors') or []
         if errores:
             textos = [
-                e.get('description') or e.get('message') or ''
-                for e in errores
+                error.get('description') or error.get('message') or ''
+                for error in errores
             ]
-            return ' '.join(t for t in textos if t) or 'Error de validación.'
+            return ' '.join(texto for texto in textos if texto) or 'Error de validación.'
     except Exception:
         pass
     return f'Error del servidor (HTTP {response.status_code}).'
@@ -40,21 +40,22 @@ def _fecha_iso_a_corta(fecha_iso: str) -> str:
     except ValueError:
         return str(fecha_iso)
 
+
 def _clase_para_vista(clase: dict) -> dict:
     """Adapta el DTO de la API al formato de la tabla (contenidos + hito en rojo)."""
-    items = clase.get('contenidos') or []
+    contenidos_crudos = clase.get('contenidos') or []
     contenidos = []
     hitos = []
 
-    for item in items:
-        if isinstance(item, str):
-            if item.strip():
-                contenidos.append(item.strip())
+    for contenido in contenidos_crudos:
+        if isinstance(contenido, str):
+            if contenido.strip():
+                contenidos.append(contenido.strip())
             continue
-        texto = str(item.get('texto') or '').strip()
+        texto = str(contenido.get('texto') or '').strip()
         if not texto:
             continue
-        if item.get('hito'):
+        if contenido.get('hito'):
             hitos.append(texto)
         else:
             contenidos.append(texto)
@@ -100,8 +101,8 @@ def obtener_semanas() -> list[dict]:
 
     except requests.exceptions.ConnectionError:
         logger.error(f"No se pudo conectar con la API en {API_BASE_URL}")
-    except Exception as e:
-        logger.error(f"Error al obtener el cronograma: {e}")
+    except Exception as error:
+        logger.error(f"Error al obtener el cronograma: {error}")
 
     return []
 
@@ -129,8 +130,8 @@ def actualizar_clase(token: str, clase_id: int, datos: dict) -> dict:
         logger.error(f"No se pudo conectar con la API en {API_BASE_URL}")
         return {'ok': False, 'error': 'No se pudo conectar con el servidor. Intentá más tarde.'}
 
-    except Exception as e:
-        logger.error(f"Error al actualizar la clase: {e}")
+    except Exception as error:
+        logger.error(f"Error al actualizar la clase: {error}")
         return {'ok': False, 'error': 'Ocurrió un error al guardar la clase.'}
 
 
@@ -149,8 +150,8 @@ def body_desde_formulario(form) -> dict:
             contenidos.append({'texto': texto, 'hito': True})
 
     titulo = (form.get('titulo') or '').strip() or None
-    semana_raw = (form.get('semana') or '').strip()
-    semana = int(semana_raw) if semana_raw.isdigit() else semana_raw
+    semana_texto = (form.get('semana') or '').strip()
+    semana = int(semana_texto) if semana_texto.isdigit() else semana_texto
 
     return {
         'semana': semana,
@@ -178,9 +179,10 @@ def descargar_csv() -> dict:
     except requests.exceptions.ConnectionError:
         logger.error(f"No se pudo conectar con la API en {API_BASE_URL}")
         return {'ok': False, 'error': 'No se pudo conectar con el servidor. Intentá más tarde.'}
-    except Exception as e:
-        logger.error(f"Error al descargar el cronograma: {e}")
+    except Exception as error:
+        logger.error(f"Error al descargar el cronograma: {error}")
         return {'ok': False, 'error': 'Ocurrió un error al descargar el calendario.'}
+
 
 def publicar_csv(token: str, archivo) -> dict:
     """Reemplaza el cronograma vía PUT /cronograma/csv (archivo tal cual)."""
@@ -202,6 +204,6 @@ def publicar_csv(token: str, archivo) -> dict:
     except requests.exceptions.ConnectionError:
         logger.error(f"No se pudo conectar con la API en {API_BASE_URL}")
         return {'ok': False, 'error': 'No se pudo conectar con el servidor. Intentá más tarde.'}
-    except Exception as e:
-        logger.error(f"Error al publicar el CSV: {e}")
+    except Exception as error:
+        logger.error(f"Error al publicar el CSV: {error}")
         return {'ok': False, 'error': 'Ocurrió un error al publicar el calendario.'}

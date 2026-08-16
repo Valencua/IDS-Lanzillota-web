@@ -1,0 +1,601 @@
+[
+  {
+    "id": 97,
+    "semana": 1,
+    "fecha": "2026-08-17",
+    "tipo": "Virtual",
+    "titulo": "Instalación de Linux",
+    "contenidos": [
+      {
+        "texto": "Opciones de instalación (WSL, VM, Dual boot)",
+        "hito": false
+      },
+      {
+        "texto": "Repaso general de comandos",
+        "hito": false
+      },
+      {
+        "texto": "¿Qué es bash?",
+        "hito": false
+      },
+      {
+        "texto": "Variables de entorno",
+        "hito": false
+      },
+      {
+        "texto": "Estructuras condicionales e iterativas",
+        "hito": false
+      },
+      {
+        "texto": "Mi primer script",
+        "hito": false
+      },
+      {
+        "texto": "a",
+        "hito": true
+      },
+      {
+        "texto": "a",
+        "hito": true
+      },
+      {
+        "texto": "a",
+        "hito": true
+      }
+    ]
+  },
+  {
+    "id": 98,
+    "semana": 1,
+    "fecha": "2026-08-19",
+    "tipo": "Presencial",
+    "titulo": "Introducción a la materia",
+    "contenidos": [
+      {
+        "texto": "Presentación de la materia",
+        "hito": false
+      },
+      {
+        "texto": "Terminal y comandos básicos (cd, ls, cat, cp, mv, sudo...)",
+        "hito": false
+      },
+      {
+        "texto": "asd",
+        "hito": false
+      },
+      {
+        "texto": "asdasd",
+        "hito": true
+      }
+    ]
+  },
+  {
+    "id": 99,
+    "semana": 2,
+    "fecha": "2026-08-24",
+    "tipo": "Virtual",
+    "titulo": "Introducción a Jinja",
+    "contenidos": [
+      {
+        "texto": "Bloques",
+        "hito": false
+      },
+      {
+        "texto": "Otro",
+        "hito": false
+      },
+      {
+        "texto": "Otro mas",
+        "hito": false
+      },
+      {
+        "texto": "Presentación",
+        "hito": true
+      }
+    ]
+  },
+  {
+    "id": 100,
+    "semana": 2,
+    "fecha": "2026-08-26",
+    "tipo": "Virtual",
+    "titulo": "A definir",
+    "contenidos": []
+  },
+  {
+    "id": 101,
+    "semana": 3,
+    "fecha": "2026-08-31",
+    "tipo": "Virtual",
+    "titulo": null,
+    "contenidos": []
+  },
+  {
+    "id": 102,
+    "semana": 3,
+    "fecha": "2026-09-02",
+    "tipo": "Presencial",
+    "titulo": "Ejercitación TP1 (obligatoria)",
+    "contenidos": [
+      {
+        "texto": "Ejercitación integral de comandos",
+        "hito": false
+      },
+      {
+        "texto": "Consultas Linux",
+        "hito": false
+      },
+      {
+        "texto": "Ejercicios de scripting",
+        "hito": false
+      },
+      {
+        "texto": "Clase obligatoria: resolución del ejercicio TP1 de bash",
+        "hito": true
+      }
+    ]
+  },
+  {
+    "id": 103,
+    "semana": 4,
+    "fecha": "2026-09-07",
+    "tipo": "Virtual",
+    "titulo": "Python + Flask",
+    "contenidos": [
+      {
+        "texto": "Repaso Python",
+        "hito": false
+      },
+      {
+        "texto": "Instalación de Flask",
+        "hito": false
+      },
+      {
+        "texto": "Introducción a Flask",
+        "hito": false
+      }
+    ]
+  },
+  {
+    "id": 104,
+    "semana": 4,
+    "fecha": "2026-09-09",
+    "tipo": "Virtual",
+    "titulo": "API RESTful",
+    "contenidos": [
+      {
+        "texto": "¿Qué es una API?",
+        "hito": false
+      },
+      {
+        "texto": "¿Qué es REST?",
+        "hito": false
+      },
+      {
+        "texto": "Ejemplo",
+        "hito": false
+      },
+      {
+        "texto": "Entrega enunciado TP2 BackEnd",
+        "hito": true
+      }
+    ]
+  },
+  {
+    "id": 105,
+    "semana": 5,
+    "fecha": "2026-09-14",
+    "tipo": "Virtual",
+    "titulo": "SQL",
+    "contenidos": [
+      {
+        "texto": "¿Qué es una BDD? ¿Qué es SQL?",
+        "hito": false
+      },
+      {
+        "texto": "BDD relacionales",
+        "hito": false
+      },
+      {
+        "texto": "CREATE / DROP TABLE",
+        "hito": false
+      },
+      {
+        "texto": "SELECT-FROM-WHERE",
+        "hito": false
+      }
+    ]
+  },
+  {
+    "id": 106,
+    "semana": 5,
+    "fecha": "2026-09-16",
+    "tipo": "Virtual",
+    "titulo": "SQL (parte 2)",
+    "contenidos": [
+      {
+        "texto": "Tipos de datos",
+        "hito": false
+      },
+      {
+        "texto": "INSERT, UPDATE, DELETE",
+        "hito": false
+      },
+      {
+        "texto": "AUTO_INCREMENT, PK",
+        "hito": false
+      }
+    ]
+  },
+  {
+    "id": 107,
+    "semana": 6,
+    "fecha": "2026-09-21",
+    "tipo": "Virtual",
+    "titulo": "Git avanzado",
+    "contenidos": [
+      {
+        "texto": "Ramas (checkout, branch)",
+        "hito": false
+      },
+      {
+        "texto": "git restore, staging",
+        "hito": false
+      },
+      {
+        "texto": "git log y git diff",
+        "hito": false
+      },
+      {
+        "texto": "Github Project",
+        "hito": false
+      }
+    ]
+  },
+  {
+    "id": 108,
+    "semana": 6,
+    "fecha": "2026-09-23",
+    "tipo": "Virtual",
+    "titulo": "Metodologías ágiles",
+    "contenidos": [
+      {
+        "texto": "Introducción a la agilidad",
+        "hito": false
+      },
+      {
+        "texto": "Kanban",
+        "hito": false
+      },
+      {
+        "texto": "Herramientas (Jira, Trello, Asana, Basecamp...)",
+        "hito": false
+      }
+    ]
+  },
+  {
+    "id": 109,
+    "semana": 7,
+    "fecha": "2026-09-28",
+    "tipo": "Presencial",
+    "titulo": "Ejercitación Backend",
+    "contenidos": [
+      {
+        "texto": "Ejercitación integral de Backend",
+        "hito": false
+      },
+      {
+        "texto": "Clase obligatoria TP N°2",
+        "hito": true
+      }
+    ]
+  },
+  {
+    "id": 110,
+    "semana": 7,
+    "fecha": "2026-09-30",
+    "tipo": "Sin clases",
+    "titulo": "Elecciones en FIUBA (no hay clases)",
+    "contenidos": []
+  },
+  {
+    "id": 111,
+    "semana": 8,
+    "fecha": "2026-10-05",
+    "tipo": "Virtual",
+    "titulo": "Consultas primer parcial",
+    "contenidos": [
+      {
+        "texto": "Repaso y consultas previas al parcial",
+        "hito": false
+      }
+    ]
+  },
+  {
+    "id": 112,
+    "semana": 8,
+    "fecha": "2026-10-07",
+    "tipo": "Presencial",
+    "titulo": "Parcial",
+    "contenidos": [
+      {
+        "texto": "Primer parcial",
+        "hito": true
+      }
+    ]
+  },
+  {
+    "id": 113,
+    "semana": 9,
+    "fecha": "2026-10-12",
+    "tipo": "Virtual",
+    "titulo": "Introducción a Front End",
+    "contenidos": [
+      {
+        "texto": "Intro a HTML",
+        "hito": false
+      },
+      {
+        "texto": "Intro a CSS",
+        "hito": false
+      },
+      {
+        "texto": "Intro a JavaScript",
+        "hito": false
+      },
+      {
+        "texto": "Mi primer código en Flask",
+        "hito": false
+      },
+      {
+        "texto": "Entrega enunciado TP Integrador",
+        "hito": true
+      }
+    ]
+  },
+  {
+    "id": 114,
+    "semana": 9,
+    "fecha": "2026-10-14",
+    "tipo": "Virtual",
+    "titulo": "Front End con Flask",
+    "contenidos": [
+      {
+        "texto": "Flask con HTML + CSS (ejemplo asistido)",
+        "hito": false
+      }
+    ]
+  },
+  {
+    "id": 115,
+    "semana": 10,
+    "fecha": "2026-10-19",
+    "tipo": "Virtual",
+    "titulo": "HTML y CSS",
+    "contenidos": [
+      {
+        "texto": "HTML: estructura y etiquetas básicas",
+        "hito": false
+      },
+      {
+        "texto": "CSS: clases e IDs, atributos básicos",
+        "hito": false
+      },
+      {
+        "texto": "Flexbox (direction, justify, align)",
+        "hito": false
+      }
+    ]
+  },
+  {
+    "id": 116,
+    "semana": 10,
+    "fecha": "2026-10-21",
+    "tipo": "Virtual",
+    "titulo": "JavaScript + HTML",
+    "contenidos": [
+      {
+        "texto": "JavaScript + HTML continuación",
+        "hito": false
+      },
+      {
+        "texto": "Ejercitación",
+        "hito": false
+      },
+      {
+        "texto": "Entrega parcial TP Integrador: alcance, backlog y mockup",
+        "hito": true
+      }
+    ]
+  },
+  {
+    "id": 117,
+    "semana": 11,
+    "fecha": "2026-10-26",
+    "tipo": "Presencial",
+    "titulo": "Integración Front + Backend",
+    "contenidos": [
+      {
+        "texto": "Ejercitación integral Front + Backend",
+        "hito": false
+      },
+      {
+        "texto": "Crear API consumiendo datos de una base",
+        "hito": false
+      },
+      {
+        "texto": "SQL Joins",
+        "hito": false
+      }
+    ]
+  },
+  {
+    "id": 118,
+    "semana": 11,
+    "fecha": "2026-10-28",
+    "tipo": "Virtual",
+    "titulo": "Debugging + Testing",
+    "contenidos": [
+      {
+        "texto": "Debugging",
+        "hito": false
+      },
+      {
+        "texto": "Testing",
+        "hito": false
+      },
+      {
+        "texto": "Entrega parcial TP Integrador: listado de endpoints y backend",
+        "hito": true
+      }
+    ]
+  },
+  {
+    "id": 119,
+    "semana": 12,
+    "fecha": "2026-11-02",
+    "tipo": "Feriado",
+    "titulo": null,
+    "contenidos": []
+  },
+  {
+    "id": 120,
+    "semana": 12,
+    "fecha": "2026-11-04",
+    "tipo": "Virtual",
+    "titulo": "TP Integrador",
+    "contenidos": [
+      {
+        "texto": "Trabajo sobre el TP Integrador",
+        "hito": false
+      },
+      {
+        "texto": "Entrega parcial: endpoints y backend",
+        "hito": true
+      }
+    ]
+  },
+  {
+    "id": 121,
+    "semana": 13,
+    "fecha": "2026-11-09",
+    "tipo": "Virtual",
+    "titulo": "Docker",
+    "contenidos": [
+      {
+        "texto": "¿Qué es Docker? Diferencia con VM",
+        "hito": false
+      },
+      {
+        "texto": "Container vs imagen",
+        "hito": false
+      },
+      {
+        "texto": "Comandos básicos (run, ps, exec, images, pull...)",
+        "hito": false
+      }
+    ]
+  },
+  {
+    "id": 122,
+    "semana": 13,
+    "fecha": "2026-11-11",
+    "tipo": "Presencial",
+    "titulo": "Consultas del TP",
+    "contenidos": [
+      {
+        "texto": "Consultas del TP",
+        "hito": false
+      },
+      {
+        "texto": "Entrega parcial: templates e integración front con backend",
+        "hito": true
+      }
+    ]
+  },
+  {
+    "id": 123,
+    "semana": 14,
+    "fecha": "2026-11-16",
+    "tipo": "Virtual",
+    "titulo": "Docker (parte 2) + Compose",
+    "contenidos": [
+      {
+        "texto": "Dockerfile, volúmenes y puertos",
+        "hito": false
+      },
+      {
+        "texto": "docker build",
+        "hito": false
+      },
+      {
+        "texto": "Docker Compose (compose.yaml)",
+        "hito": false
+      },
+      {
+        "texto": "Comandos (build, up, stop, down)",
+        "hito": false
+      }
+    ]
+  },
+  {
+    "id": 124,
+    "semana": 14,
+    "fecha": "2026-11-18",
+    "tipo": "Presencial",
+    "titulo": "1er Recuperatorio",
+    "contenidos": [
+      {
+        "texto": "Primer recuperatorio",
+        "hito": true
+      }
+    ]
+  },
+  {
+    "id": 125,
+    "semana": 15,
+    "fecha": "2026-11-23",
+    "tipo": "Feriado",
+    "titulo": null,
+    "contenidos": []
+  },
+  {
+    "id": 126,
+    "semana": 15,
+    "fecha": "2026-11-25",
+    "tipo": "Presencial",
+    "titulo": "Entrega TP Integrador",
+    "contenidos": [
+      {
+        "texto": "1er Entrega TP Integrador y Defensa",
+        "hito": true
+      }
+    ]
+  },
+  {
+    "id": 127,
+    "semana": 16,
+    "fecha": "2026-11-30",
+    "tipo": "Presencial",
+    "titulo": "Defensas y consultas TP",
+    "contenidos": [
+      {
+        "texto": "Defensas presenciales y consultas TP",
+        "hito": true
+      }
+    ]
+  },
+  {
+    "id": 128,
+    "semana": 16,
+    "fecha": "2026-12-02",
+    "tipo": "Presencial",
+    "titulo": "2da Entrega TP Integrador",
+    "contenidos": [
+      {
+        "texto": "2da entrega TP Integrador y Defensa",
+        "hito": true
+      }
+    ]
+  }
+]
