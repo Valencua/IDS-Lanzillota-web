@@ -61,11 +61,13 @@ def editar(docente_id):
         'rol': request.form.get('rol', '').strip(),
         'email': email,
     }
+    
     if foto:
         datos['foto'] = foto
 
     resultado = actualizar_docente(session.get('token'), docente_id, datos)
     redireccion = _resultado_o_redirect(resultado)
+    
     if redireccion:
         return redireccion
 
@@ -81,6 +83,7 @@ def editar(docente_id):
 def eliminar(docente_id):
     resultado = eliminar_docente(session.get('token'), docente_id)
     redireccion = _resultado_o_redirect(resultado)
+    
     if redireccion:
         return redireccion
 

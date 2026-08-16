@@ -18,6 +18,7 @@ def admin_required(view):
     def wrapped(*args, **kwargs):
         if not session.get('token'):
             return redirect(url_for('web.admin.auth.login'))
+        
         return view(*args, **kwargs)
     return wrapped
 
@@ -36,6 +37,7 @@ def login():
         return redirect(url_for('web.admin.panel.index'))
 
     error = None
+    
     if request.method == 'POST':
         usuario = request.form.get('usuario', '').strip()
         password = request.form.get('password', '')

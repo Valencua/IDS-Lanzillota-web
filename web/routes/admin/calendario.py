@@ -26,10 +26,13 @@ def index():
     if request.method == 'POST':
         resultado = publicar_csv(session.get('token'), request.files.get('csv'))
         redireccion = _redireccion_si_no_autorizado(resultado)
+        
         if redireccion:
             return redireccion
+        
         if resultado.get('ok'):
             return redirect(url_for('web.admin.calendario.index'))
+        
         error = resultado.get('error')
 
     return render_template(
@@ -47,7 +50,9 @@ def editar(clase_id):
         clase_id,
         body_desde_formulario(request.form),
     )
+    
     redireccion = _redireccion_si_no_autorizado(resultado)
+    
     if redireccion:
         return redireccion
 
@@ -65,6 +70,7 @@ def editar(clase_id):
 @admin_required
 def descargar():
     resultado = descargar_csv()
+    
     if not resultado.get('ok'):
         return render_template(
             'admin/calendario.html',
