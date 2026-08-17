@@ -25,7 +25,7 @@
 
     {# ===== Banner de Slack ===== #}
     <section class="slack-banner">
-        <a href="https://join.slack.com/t/intro-desa-software/shared_invite/zt-3bkw5ibkj-ypuGdxFclpXfXBSv5q1Jvg" target="_blank" class="slack-banner__inner">
+        <a href="https://join.slack.com/t/intro-desa-software/shared_invite/zt-46wdgph1f-Nw1jwCsZ7UFnD5U4KgFXrw" target="_blank" class="slack-banner__inner">
             <div class="slack-banner__text">
                 <h2 class="slack-banner__title">¿Estás perdido? ¿Necesitás consultar?</h2>
                 <p class="slack-banner__desc">
@@ -48,11 +48,7 @@
 
             <h3 class="info__heading">Enlaces de Interés</h3>
             <div class="links">
-                <a href="#" target="_blank" class="link-card" id="whatsapp-card">
-                    <img src="{{ url_for('static', filename='img/whatsapp.svg') }}" alt="" class="link-card__icon">
-                    <span class="link-card__label">Canal de <span class="link-card__accent link-card__accent--whatsapp">Whatsapp</span></span>
-                </a>
-                <a href="https://www.youtube.com/@Intro.Desa.Soft-Lanzillotta" target="_blank" class="link-card">
+                <a href="https://www.youtube.com/@intro.desa.soft-lanzillotta" target="_blank" class="link-card">
                     <img src="{{ url_for('static', filename='img/youtube.svg') }}" alt="" class="link-card__icon">
                     <span class="link-card__label">Canal de <span class="link-card__accent link-card__accent--youtube">Youtube</span></span>
                 </a>
@@ -67,21 +63,6 @@
             </div>
         </div>
     </section>
-    
-    <div class="modal" id="whatsapp-modal" aria-hidden="true">
-        <div class="modal__overlay" data-close></div>
-        <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="wa-title">
-            <h3 class="modal__title" id="wa-title">Atención</h3>
-            <p class="modal__text">
-                Este canal de WhatsApp <strong>ya no es administrado por los docentes</strong>.
-                Es un espacio <strong>únicamente de alumnos</strong>. Si querés continuar, ingresás bajo tu responsabilidad.
-            </p>
-            <div class="modal__actions">
-                <button type="button" class="modal__btn modal__btn--ghost" data-close>Cancelar</button>
-                <a href="https://chat.whatsapp.com/LWHJN7BCCed0FbeIGOEUkp" class="modal__btn modal__btn--primary" target="_blank" rel="noopener">Continuar</a>
-            </div>
-        </div>
-    </div>
 
     {# ===== Modal de advertencia de Meet ===== #}
     <div class="modal" id="meet-modal" aria-hidden="true">
